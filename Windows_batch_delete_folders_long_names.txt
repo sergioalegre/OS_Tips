@@ -1,6 +1,10 @@
 Descargue e instale la última versión estable de 7zip .
+
 Ejecute el Administrador de archivos 7zip ( 7zfm.exe ).
+
 En el Administrador de archivos 7zip, navegue para que pueda ver el nombre de la carpeta que desea eliminar (es decir, está en la carpeta principal).
 Mantenga presionado el botón Shift.
+
 Haga clic en el botón " Eliminar ", ya sea en su teclado o en la barra de herramientas 7zip File Manager; Asegúrate de mantener la tecla Mayús presionada .
+
 Haga clic en el botón " Aceptar "; Asegúrate de mantener la tecla Mayús presionada .
