@@ -1,0 +1,15 @@
+***no probado, hecho por S***
+
+Ver estado actual de discos y particiones:
+  lsblk -fm
+
+Comando usados aparentemente para el resize:
+  lvextend -L +20G vg0/lv3
+  df -h
+  resize2fs /dev/mapper/vg0-lv3
+  exit
+  vgdisplay -v vg0
+  df
+  vgdisplay -v cl
+  fdisk /dev/sda
+
