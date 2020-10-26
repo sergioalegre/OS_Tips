@@ -20,5 +20,5 @@
   
   #añadir 'snaps' desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux)
   https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9<br>
-  <b>snpa search powershell</b> para buscar y para instalar <b>snap install powershell</b>
+  <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b>
   
