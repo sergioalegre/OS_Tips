@@ -1,6 +1,6 @@
 1-SSH<br>
 2-Roles/snaps<br>
-3-Actualizar
+3-Actualizar y Version
 
 <br><br>
 1-SSH<br>
@@ -25,4 +25,5 @@
   
 <br><br>
 3-Actualizar<br>
-  <b> sudo apt-get update && apt-get upgrade</b>
+  <b> sudo apt-get update && apt-get upgrade</b><br>
+  ver version con <b>lsb_release -a</b>
