@@ -1,5 +1,6 @@
 1-SSH<br>
 2-Roles/snaps<br>
+3-Actualizar
 
 <br><br>
 1-SSH<br>
@@ -22,3 +23,6 @@
   https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9<br>
   <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b>
   
+<br><br>
+3-Actualizar<br>
+  <b> sudo apt-get update && apt-get upgrade</b>
