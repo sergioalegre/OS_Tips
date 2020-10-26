@@ -1,6 +1,6 @@
 1-SSH<br>
-2-Roles/snaps<br>
-3-Actualizar y Version
+2-ROLES/SNAPS<br>
+3-ACTUALIZAR Y VERSION
 
 <br><br>
 1-SSH<br>
@@ -9,7 +9,7 @@
   Permitir root: en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b>y luego <b>systemctl restart sshd</b>
   
 <br><br>
-2-Roles/Snaps<br>
+2-ROLES/SNAPS<br>
   Añadir o quitar roles <b>tasksel</b><br>
   http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/<br>
   
@@ -18,7 +18,7 @@
   <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b>
   
 <br><br>
-3-Actualizar y Version<br>
+3-ACTUALIZAR Y VERSION<br>
   Actualizar: <b> sudo apt-get update && apt-get upgrade</b><br>
   Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
   Version actual: <b>lsb_release -a</b>
