@@ -20,3 +20,14 @@ Otra opcion: https://github.com/arfoll/unrarall
 - <b>cd IOTstack</b>
 - <b>./menu.sh</b>
 - <b>docker-compose up -d</b> para descargar los docker image pendientes
+
+
+
+3- HomeAssitant
+- apt-get install \
+  apparmor-utils \
+  avahi-daemon \
+  dbus \
+  jq \
+  network-manager \
+  socat
