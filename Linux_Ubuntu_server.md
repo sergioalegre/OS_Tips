@@ -9,4 +9,5 @@
   <b>systemctl status ssh</b>
   
   #permitir root<br>
-  en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b>
+  en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b><br>
+  y luego <b>systemctl restart sshd</b>
