@@ -12,3 +12,9 @@ find /$TR_TORRENT_DIR/$TR_TORRENT_NAME -name "*.rar" -execdir unrar e -o- "{}" \
 "script-torrent-done-filename": "/path/to/where/you/saved/the/script",</b>
 
 Otra opcion: https://github.com/arfoll/unrarall
+
+2 - IOT
+- <b>git clone https://github.com/gcgarner/IOTstack.git</b>
+- <b>cd IOTstack</b>
+- <b>./menu.sh</b>
+- <b>docker-compose up -d</b> para descargar los docker image pendientes
