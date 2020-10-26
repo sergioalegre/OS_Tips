@@ -1,4 +1,5 @@
 1-SSH<br>
+2-Roles/snaps<br>
 
 <br><br>
 1-SSH<br><br>
@@ -13,6 +14,7 @@
   y luego <b>systemctl restart sshd</b>
   
 <br><br>
-2-Roles<br><br>
+2-Roles/Snaps<br><br>
   #añadir o quitar roles <b>tasksel</b><br>
   http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/<br>
+  #añadir 'snaps' desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux)
