@@ -10,3 +10,5 @@ find /$TR_TORRENT_DIR/$TR_TORRENT_NAME -name "*.rar" -execdir unrar e -o- "{}" \
 - En <b>/var/lib/transmission/.config/transmission-daemon/settings.json</b> poner estas settings:
 <b>"script-torrent-done-enabled": true,<br>
 "script-torrent-done-filename": "/path/to/where/you/saved/the/script",</b>
+
+Otra opcion: https://github.com/arfoll/unrarall
