@@ -11,3 +11,8 @@
   #permitir root<br>
   en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b><br>
   y luego <b>systemctl restart sshd</b>
+  
+<br><br>
+2-Roles<br><br>
+  #añadir o quitar roles <b>tasksel</b><br>
+  http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/<br>
