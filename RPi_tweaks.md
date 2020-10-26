@@ -1,4 +1,5 @@
 1-SCRIPT DESCOMPRESION AUTOMATICA
+2-IOT<br>
 
 
 <br><br>
@@ -13,7 +14,8 @@ find /$TR_TORRENT_DIR/$TR_TORRENT_NAME -name "*.rar" -execdir unrar e -o- "{}" \
 
 Otra opcion: https://github.com/arfoll/unrarall
 
-2 - IOT
+<br><br>
+2-IOT
 - <b>git clone https://github.com/gcgarner/IOTstack.git</b>
 - <b>cd IOTstack</b>
 - <b>./menu.sh</b>
