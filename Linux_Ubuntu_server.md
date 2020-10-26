@@ -4,8 +4,8 @@
 
 <br><br>
 1-SSH<br>
-  Instalar: <b>apt-get install openssh-server</b>
-  Comprobar: <b>systemctl status ssh</b>
+  Instalar: <b>apt-get install openssh-server</b><br>
+  Comprobar: <b>systemctl status ssh</b><br>
   Permitir root: en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b>y luego <b>systemctl restart sshd</b>
   
 <br><br>
