@@ -24,6 +24,7 @@
   <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b>
   
 <br><br>
-3-Actualizar<br>
-  <b> sudo apt-get update && apt-get upgrade</b><br>
-  ver version con <b>lsb_release -a</b>
+3-Actualizar y Version<br>
+  Actualizar: <b> sudo apt-get update && apt-get upgrade</b><br>
+  Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
+  Version actual: <b>lsb_release -a</b>
