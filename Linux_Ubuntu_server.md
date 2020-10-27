@@ -3,6 +3,8 @@
 3-ACTUALIZAR Y VERSION
 4-HARDWARE
 5-PAQUETES/SOFTWARE
+6-PERFORMANCE
+99-VARIOS
 
 <br><br>
 1-SSH<br>
@@ -32,3 +34,15 @@
 <br><br>
 5-PAQUETES/SOFTWARE
   - <b>dpkg -L <paquete></b> ver donde se instalo el paquete
+  
+  
+<br><br>
+6-PERFORMANCE
+  - <b>htop</b> se puede usar el raton para ordenar por CPU o ram
+  - <b>free</b> cuanta RAM esta libre
+  
+  
+<br><br>
+99-VARIOS
+  - <b>history | less</b> ultimos 1000 comandos
+  - <b>last -x | grep shutdown</b> fecha del ultimo apagado/reinicio
