@@ -52,3 +52,5 @@
 99-VARIOS
   - <b>history | less</b> ultimos 1000 comandos
   - <b>last -x | grep shutdown</b> fecha del ultimo apagado/reinicio
+  - <b>tar czf archivo_comprimido.tgz <dirname></b> comprimir un directorio
+  - <b>tar zxvf <archive></b> descomprimir
