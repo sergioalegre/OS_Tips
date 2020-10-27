@@ -4,6 +4,7 @@
 4-HARDWARE
 5-PAQUETES/SOFTWARE
 6-PERFORMANCE
+7-NETWORKING
 99-VARIOS
 
 <br><br>
@@ -40,7 +41,12 @@
 6-PERFORMANCE
   - <b>htop</b> se puede usar el raton para ordenar por CPU o ram
   - <b>free</b> cuanta RAM esta libre
-  
+
+
+<br><br>
+7-NETWORKING
+  - <b>netstat -rn</b> tabla de rutas
+
   
 <br><br>
 99-VARIOS
