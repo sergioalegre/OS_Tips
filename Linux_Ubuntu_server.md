@@ -31,6 +31,7 @@
 <br><br>
 4-HARDWARE
   - <b>dmidecode</b> lista el hardware
+  - <b>uname -m</b> arquitectura de procesador
   
 <br><br>
 5-PAQUETES/SOFTWARE
