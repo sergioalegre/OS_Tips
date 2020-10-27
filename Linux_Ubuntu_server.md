@@ -28,11 +28,13 @@
   - Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
   - Version actual: <b>lsb_release -a</b>
 
+
 <br><br>
 4-HARDWARE
   - <b>dmidecode</b> lista el hardware
   - <b>uname -m</b> arquitectura de procesador
-  
+
+
 <br><br>
 5-PAQUETES/SOFTWARE
   - <b>dpkg -L <paquete></b> ver donde se instalo el paquete
@@ -47,6 +49,7 @@
 <br><br>
 7-NETWORKING
   - <b>netstat -rn</b> tabla de rutas
+  - <b>cat /proc/net/dev/b> ver trafico de red de cada interfaz
 
   
 <br><br>
