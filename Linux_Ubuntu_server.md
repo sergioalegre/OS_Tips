@@ -1,6 +1,8 @@
 1-SSH<br>
 2-ROLES/SNAPS<br>
 3-ACTUALIZAR Y VERSION
+4-HARDWARE
+5-PAQUETES/SOFTWARE
 
 <br><br>
 1-SSH<br>
@@ -22,3 +24,11 @@
   Actualizar: <b> sudo apt-get update && apt-get upgrade</b><br>
   Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
   Version actual: <b>lsb_release -a</b>
+
+<br><br>
+4-HARDWARE
+  <b>dmidecode</b> lista el hardware
+  
+<br><br>
+5-PAQUETES/SOFTWARE
+- <b>dpkg -L <paquete></b> ver donde se instalo el paquete
