@@ -24,10 +24,5 @@ Otra opcion: https://github.com/arfoll/unrarall
 
 
 3- HomeAssitant
-- apt-get install \
-  apparmor-utils \
-  avahi-daemon \
-  dbus \
-  jq \
-  network-manager \
-  socat
+- apt-get install apparmor-utils avahi-daemon dbus jq network-manager socat
+- curl -sL "https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh" | bash -s
