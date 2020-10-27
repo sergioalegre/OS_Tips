@@ -49,7 +49,7 @@
 <br><br>
 7-NETWORKING
   - <b>netstat -rn</b> tabla de rutas
-  - <b>cat /proc/net/dev/b> ver trafico de red de cada interfaz
+  - <b>cat /proc/net/dev</b> ver trafico de red de cada interfaz
 
   
 <br><br>
