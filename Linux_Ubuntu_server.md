@@ -26,6 +26,7 @@
 3-ACTUALIZAR Y VERSION<br>
   - Actualizar: <b> sudo apt-get update && apt-get upgrade</b><br>
   - Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
+  - Subir de version: </b>do-release-upgrade</b>
   - Version actual: <b>lsb_release -a</b>
 
 
