@@ -34,7 +34,7 @@
 4-HARDWARE - TECLADO
   - <b>dmidecode</b> lista el hardware
   - <b>uname -m</b> arquitectura de procesador
-  - Configurar el teclado <b>sudo dpkg-reconfigure keyboard-configuration</b>
+  - Configurar el teclado <b>sudo dpkg-reconfigure keyboard-configuration</b> (require reinicio)
 
 
 <br><br>
