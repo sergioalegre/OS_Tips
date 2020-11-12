@@ -1,7 +1,7 @@
 1-SSH<br>
 2-ROLES/SNAPS<br>
 3-ACTUALIZAR Y VERSION<br>
-4-HARDWARE<br>
+4-HARDWARE - TECLADO<br>
 5-PAQUETES/SOFTWARE<br>
 6-PERFORMANCE<br>
 7-NETWORKING<br>
@@ -31,9 +31,10 @@
 
 
 <br><br>
-4-HARDWARE
+4-HARDWARE - TECLADO
   - <b>dmidecode</b> lista el hardware
   - <b>uname -m</b> arquitectura de procesador
+  - Configurar el teclado <b>sudo dpkg-reconfigure keyboard-configuration</b>
 
 
 <br><br>
