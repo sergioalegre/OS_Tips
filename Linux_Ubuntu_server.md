@@ -23,6 +23,7 @@
   - Añadir 'snaps' desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux)
   - https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9<br>
   - <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b>
+  - <b>https://github.com/gcgarner/IOTstack.git</b> IoTStack
   
 <br><br>
 3-ACTUALIZAR Y VERSION<br>
