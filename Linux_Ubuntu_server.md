@@ -2,9 +2,11 @@
 2-ROLES/SNAPS<br>
 3-ACTUALIZAR Y VERSION<br>
 4-HARDWARE - TECLADO<br>
-5-PAQUETES/SOFTWARE<br>
-6-PERFORMANCE<br>
-7-NETWORKING<br>
+5-NETWORKING<br>
+6-PAQUETES/SOFTWARE<br>
+97-LOGS<br>
+98-PERFORMANCE<br>
+
 99-VARIOS
 
 <br><br>
@@ -37,23 +39,33 @@
   - Configurar el teclado <b>sudo dpkg-reconfigure keyboard-configuration</b> (require reinicio)
 
 
+
 <br><br>
-5-PAQUETES/SOFTWARE
+5-NETWORKING
+  - <b>netstat -rn</b> tabla de rutas
+  - <b>cat /proc/net/dev</b> ver trafico de red de cada interfaz
+<br><br>
+
+
+
+6-PAQUETES/SOFTWARE
   - <b>dpkg -L <paquete></b> ver donde se instalo el paquete
   
-  
+
+
 <br><br>
-6-PERFORMANCE
+97-LOGS
+  - <b>dmesg | less</b> ver los de arraque con Av Pag y Re Pag.
+
+
+
+<br><br>
+98-PERFORMANCE
   - <b>htop</b> se puede usar el raton para ordenar por CPU o ram
   - <b>free</b> cuanta RAM esta libre
 
 
-<br><br>
-7-NETWORKING
-  - <b>netstat -rn</b> tabla de rutas
-  - <b>cat /proc/net/dev</b> ver trafico de red de cada interfaz
 
-  
 <br><br>
 99-VARIOS
   - <b>history | less</b> ultimos 1000 comandos
