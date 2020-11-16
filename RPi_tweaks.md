@@ -1,20 +1,12 @@
-1-SCRIPT DESCOMPRESION AUTOMATICA
+1-XXX<br>
 2-IOT<br>
 3-HomeAssitant<br>
 4-Portainer<br>
 
 
 <br><br>
-1-SCRIPT DESCOMPRESION AUTOMATICA<br>
-https://techblog.jeppson.org/2016/11/automatically-extract-rar-files-downloaded-transmission/
-- contenido de <b>descomprimir_auto.sh</b>
-find /$TR_TORRENT_DIR/$TR_TORRENT_NAME -name "*.rar" -execdir unrar e -o- "{}" \;<br>
-- <b>chmod a+x descomprimir_auto.sh</b>
-- En <b>/var/lib/transmission/.config/transmission-daemon/settings.json</b> poner estas settings:
-<b>"script-torrent-done-enabled": true,<br>
-"script-torrent-done-filename": "/path/to/where/you/saved/the/script",</b>
+1-XXXA<br>
 
-Otra opcion: https://github.com/arfoll/unrarall
 
 
 <br><br>
