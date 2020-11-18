@@ -65,7 +65,7 @@
 7-DISCOS/PARTICIONES
   - <b>parted -l</b> ver discos fiscos y particiones
   - <b>lsblk</b> particiones y puntos de montaje
-  - <b>cat /proc/partitions <paquete></b> no estoy seguro
+  - <b>cat /proc/partitions <paquete></b> 'devices' particionados
   - <b>df -h</b> ver espacio libre en cada punto de montaje
   - Extender LVM:
   <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
