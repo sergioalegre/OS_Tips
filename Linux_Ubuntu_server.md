@@ -5,6 +5,7 @@
 5-NETWORKING<br>
 6-PAQUETES/SOFTWARE<br>
 7-DISCOS/PARTICIONES<br>
+8-ARCHIVOS<br>
 97-LOGS<br>
 98-PERFORMANCE<br>
 
@@ -15,7 +16,7 @@
   - Instalar: <b>apt-get install openssh-server</b><br>
   - Comprobar: <b>systemctl status ssh</b><br>
   - Permitir root: en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b> luego <b>systemctl restart sshd</b>
-  - Timeout SSH de 1h:  en <b>vi /etc/ssh/sshd_config</b> poner <b>ClientAliveInterval  1200</b> y <b>ClientAliveCountMax 3</b> luego <b>systemctl restart sshd</b> 
+  - Timeout SSH de 1h:  en <b>vi /etc/ssh/sshd_config</b> poner <b>ClientAliveInterval  1200</b> y <b>ClientAliveCountMax 3</b> luego <b>systemctl restart sshd</b>
 
 
 
@@ -69,6 +70,12 @@
   - <b>df -h</b> ver espacio libre en cada punto de montaje
   - Extender LVM:
   <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
+
+
+
+<br><br>
+8-ARCHIVOS<br>
+  - **updatedb** actualiza el indice de ficheros, luego con **locate** se puede encontrar
 
 
 
