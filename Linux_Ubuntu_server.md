@@ -22,11 +22,9 @@
 
 <br><br>
 2-ROLES/SNAPS<br>
-  - Añadir o quitar roles <b>tasksel</b><br>
-  - http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/<br>
+  - Añadir o quitar **roles** <b>tasksel</b> (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/)<br>
   <br>
-  - Añadir 'snaps' desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux)
-  - https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9<br>
+  - Añadir o quitar **snaps** desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux) (https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9)<br>
   - <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b><br>
   - <b>IoTStack</b> https://github.com/gcgarner/IOTstack.git
 
@@ -75,7 +73,7 @@
 
 <br><br>
 8-ARCHIVOS<br>
-  - **updatedb** actualiza el indice de ficheros, luego con **locate** se puede encontrar
+  - **updatedb** actualiza el indice de ficheros, luego con **locate** se puede buscar
 
 
 
@@ -87,7 +85,7 @@
 
 <br><br>
 98-PERFORMANCE
-  - <b>htop</b> se puede usar el raton para ordenar por CPU o ram
+  - <b>htop</b> se puede usar el raton, permite ordenar por CPU o ram
   - <b>free</b> cuanta RAM esta libre
 
 
