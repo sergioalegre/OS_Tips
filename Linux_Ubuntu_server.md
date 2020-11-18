@@ -64,13 +64,11 @@
 <br><br>
 7-DISCOS/PARTICIONES
   - <b>parted -l</b> ver discos fiscos y particiones
+  - <b>lsblk</b> particiones y puntos de montaje
   - <b>cat /proc/partitions <paquete></b> no estoy seguro
   - <b>df -h</b> ver espacio libre en cada punto de montaje
-  - <b>vgdisplay</b> en <b>Free  PE / Size</b> veremos el espacio total disponible y el actualmente asginado.
-  Si vemos algo como <b>Free PE / Size  6015 / <23.50 GiB</b> significara que tenemos 23gb usado y podemos extender hasta 60Gb. <b>VG Name</b> es el nombre del grupo de volumenes<br>
-  Para extender este volumen dependera de si:<br>
-  OP1: hemos extendido el vDisk disco de la VM -> entonces es solo extender <br>
-  OP2: hemos añadido un disco (fisico o vDisk) nuevo a la VM -> primero formatear el disco nuevo con <b>mkfs.ext4 /dev/sda8</b>
+  - Extender LVM:
+  - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
 
 
 
