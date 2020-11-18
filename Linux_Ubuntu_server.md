@@ -17,7 +17,8 @@
   - Permitir root: en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b> luego <b>systemctl restart sshd</b>
   - Timeout SSH de 1h:  en <b>vi /etc/ssh/sshd_config</b> poner <b>ClientAliveInterval  1200</b> y <b>ClientAliveCountMax 3</b> luego <b>systemctl restart sshd</b> 
 
-  
+
+
 <br><br>
 2-ROLES/SNAPS<br>
   - Añadir o quitar roles <b>tasksel</b><br>
@@ -26,14 +27,17 @@
   - Añadir 'snaps' desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux)
   - https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9<br>
   - <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b><br>
-  - <b>https://github.com/gcgarner/IOTstack.git</b> IoTStack
-  
+  - <b>IoTStack</b> https://github.com/gcgarner/IOTstack.git
+
+
+
 <br><br>
 3-ACTUALIZAR Y VERSION<br>
   - Actualizar: <b> sudo apt-get update && apt-get upgrade</b><br>
   - Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
   - Subir de version: <b>do-release-upgrade</b>
   - Version actual: <b>lsb_release -a</b>
+
 
 
 <br><br>
@@ -54,7 +58,8 @@
 <br><br>
 6-PAQUETES/SOFTWARE
   - <b>dpkg -L <paquete></b> ver donde se instalo el paquete
-  
+
+
 
 <br><br>
 7-DISCOS/PARTICIONES
@@ -69,7 +74,6 @@
 
 
 
-  
 <br><br>  
 97-LOGS
   - <b>dmesg | less</b> ver los de arraque con Av Pag y Re Pag.
