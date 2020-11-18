@@ -1,18 +1,18 @@
-[TOC]
-#SSH
-#-ROLES/SNAPS
-#-ACTUALIZAR Y VERSION
-#-HARDWARE - TECLADO
-#-NETWORKING
-#-PAQUETES/SOFTWARE
-#-DISCOS/PARTICIONES
-#-ARCHIVOS
-#-LOGS
-#-PERFORMANCE
-#-VARIOS
+1-SSH<br>
+2-ROLES/SNAPS<br>
+3-ACTUALIZAR Y VERSION<br>
+4-HARDWARE - TECLADO<br>
+5-NETWORKING<br>
+6-PAQUETES/SOFTWARE<br>
+7-DISCOS/PARTICIONES<br>
+8-ARCHIVOS<br>
+97-LOGS<br>
+98-PERFORMANCE<br>
+
+99-VARIOS
 
 <br><br>
-SSH
+1-SSH<br>
   - Instalar: <b>apt-get install openssh-server</b><br>
   - Comprobar: <b>systemctl status ssh</b><br>
   - Permitir root: en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b> luego <b>systemctl restart sshd</b>
@@ -85,7 +85,7 @@ SSH
 
 <br><br>
 98-PERFORMANCE
-  - <b>htop</b> se puede usar el raton, permite ordenar por CPU o ram
+  - <b>htop</b> se puede usar el raton para ordenar por CPU o ram
   - <b>free</b> cuanta RAM esta libre
 
 
