@@ -68,7 +68,7 @@
   - <b>cat /proc/partitions <paquete></b> no estoy seguro
   - <b>df -h</b> ver espacio libre en cada punto de montaje
   - Extender LVM:
-  - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
+  <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
 
 
 
