@@ -4,6 +4,7 @@
 4-HARDWARE - TECLADO<br>
 5-NETWORKING<br>
 6-PAQUETES/SOFTWARE<br>
+7-DISCOS/PARTICIONES<br>
 97-LOGS<br>
 98-PERFORMANCE<br>
 
@@ -14,6 +15,8 @@
   - Instalar: <b>apt-get install openssh-server</b><br>
   - Comprobar: <b>systemctl status ssh</b><br>
   - Permitir root: en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b> luego <b>systemctl restart sshd</b>
+  - Timeout SSH de 1h:  en <b>vi /etc/ssh/sshd_config</b> poner <b>ClientAliveInterval  1200</b> y <b>ClientAliveCountMax 3</b> luego <b>systemctl restart sshd</b> 
+
   
 <br><br>
 2-ROLES/SNAPS<br>
@@ -45,16 +48,29 @@
 5-NETWORKING
   - <b>netstat -rn</b> tabla de rutas
   - <b>cat /proc/net/dev</b> ver trafico de red de cada interfaz
+
+
+
 <br><br>
-
-
-
 6-PAQUETES/SOFTWARE
   - <b>dpkg -L <paquete></b> ver donde se instalo el paquete
   
 
-
 <br><br>
+7-DISCOS/PARTICIONES
+  - <b>parted -l</b> ver discos fiscos y particiones
+  - <b>cat /proc/partitions <paquete></b> no estoy seguro
+  - <b>df -h</b> ver espacio libre en cada punto de montaje
+  - <b>vgdisplay</b> en <b>Free  PE / Size</b> veremos el espacio total disponible y el actualmente asginado.
+  Si vemos algo como <b>Free PE / Size  6015 / <23.50 GiB</b> significara que tenemos 23gb usado y podemos extender hasta 60Gb. <b>VG Name</b> es el nombre del grupo de volumenes<br>
+  Para extender este volumen dependera de si:<br>
+  OP1: hemos extendido el vDisk disco de la VM -> entonces es solo extender <br>
+  OP2: hemos añadido un disco (fisico o vDisk) nuevo a la VM -> primero formatear el disco nuevo con <b>mkfs.ext4 /dev/sda8</b>
+
+
+
+  
+<br><br>  
 97-LOGS
   - <b>dmesg | less</b> ver los de arraque con Av Pag y Re Pag.
 
