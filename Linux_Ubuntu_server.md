@@ -26,36 +26,36 @@
   - Permitir root: en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b> luego <b>systemctl restart sshd</b>
   - Timeout SSH de 1h:  en <b>vi /etc/ssh/sshd_config</b> poner <b>ClientAliveInterval  1200</b> y <b>ClientAliveCountMax 3</b> luego <b>systemctl restart sshd</b>
 
-<br>
+
 ### ROLES-SNAPS
   - **roles** añadir o quitar con: <b>tasksel</b> (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/)<br>
   - **snaps** añadir o quitar desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux) (https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9)<br>
   - <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b><br>
   - <b>IoTStack</b> https://github.com/gcgarner/IOTstack.git
 
-<br>
+
 ### ACTUALIZAR-VERSION
   - Actualizar: <b> sudo apt-get update && apt-get upgrade</b><br>
   - Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
   - Subir de version: <b>do-release-upgrade</b>
   - Version actual: <b>lsb_release -a</b>
 
-<br>
+
 ### HARDWARE-TECLADO
   - <b>dmidecode</b> lista el hardware
   - <b>uname -m</b> arquitectura de procesador
   - Configurar el teclado <b>sudo dpkg-reconfigure keyboard-configuration</b> (require reinicio)
 
-<br>
+
 ### NETWORKING
   - <b>netstat -rn</b> tabla de rutas
   - <b>cat /proc/net/dev</b> ver trafico de red de cada interfaz
 
-<br>
+
 ### PAQUETES-SOFTWARE
   - <b>dpkg -L <paquete></b> ver donde se instalo el paquete
 
-<br>
+
 ### DISCOS-PARTICIONES
   - <b>parted -l</b> ver discos fiscos y particiones
   - <b>lsblk</b> particiones y puntos de montaje
@@ -64,20 +64,20 @@
   - Extender LVM:
   <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
 
-<br>
+
 ### ARCHIVOS
   - **updatedb** actualiza el indice de ficheros, luego con **locate** se puede buscar
 
-<br>
+
 ### LOGS
   - <b>dmesg | less</b> ver los de arraque con Av Pag y Re Pag.
 
-<br>
+
 ### PERFORMANCE
   - <b>htop</b> se puede usar el raton para ordenar por CPU o ram
   - <b>free</b> cuanta RAM esta libre
 
-<br>
+
 ### VARIOS
   - <b>history | less</b> ultimos 1000 comandos
   - <b>last -x | grep shutdown</b> fecha del ultimo apagado/reinicio
