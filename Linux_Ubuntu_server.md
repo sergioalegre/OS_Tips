@@ -106,3 +106,4 @@
   - <b>last -x | grep shutdown</b> fecha del ultimo apagado/reinicio
   - <b>tar czf archivo_comprimido.tgz <dirname></b> comprimir un directorio
   - <b>tar zxvf <archive></b> descomprimir
+  - Unir server linux a AD: https://www.redhat.com/sysadmin/linux-active-directory
