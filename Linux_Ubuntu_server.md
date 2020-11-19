@@ -1,10 +1,10 @@
 [#SSH](#SSH)
-[#ROLES/SNAPS](#ROLES/SNAPS)
-[#ACTUALIZAR Y VERSION](#ACTUALIZAR Y VERSION)
-[#HARDWARE - TECLADO](#HARDWARE - TECLADO)
+[#ROLES-SNAPS](#ROLES-SNAPS)
+[#ACTUALIZAR-VERSION](#ACTUALIZAR-VERSION)
+[#HARDWARE-TECLADO](#HARDWARE-TECLADO)
 [#NETWORKING](#NETWORKING)
-[#PAQUETES/SOFTWARE](#PAQUETES/SOFTWARE)
-[#DISCOS/PARTICIONES](#DISCOS/PARTICIONES)
+[#PAQUETES-SOFTWARE](#PAQUETES-SOFTWARE)
+[#DISCOS-PARTICIONES](#DISCOS-PARTICIONES)
 [#ARCHIVOS](#ARCHIVOS)
 [#PERFORMANCE](#PERFORMANCE)
 
@@ -23,7 +23,7 @@
 
 
 <br><br>
-### ROLES/SNAPS
+### ROLES-SNAPS
   - Añadir o quitar **roles** <b>tasksel</b> (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/)<br>
   <br>
   - Añadir o quitar **snaps** desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux) (https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9)<br>
@@ -33,7 +33,7 @@
 
 
 <br><br>
-### ACTUALIZAR Y VERSION
+### ACTUALIZAR-VERSION
   - Actualizar: <b> sudo apt-get update && apt-get upgrade</b><br>
   - Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
   - Subir de version: <b>do-release-upgrade</b>
@@ -42,7 +42,7 @@
 
 
 <br><br>
-### HARDWARE - TECLADO
+### HARDWARE-TECLADO
   - <b>dmidecode</b> lista el hardware
   - <b>uname -m</b> arquitectura de procesador
   - Configurar el teclado <b>sudo dpkg-reconfigure keyboard-configuration</b> (require reinicio)
@@ -57,13 +57,13 @@
 
 
 <br><br>
-### PAQUETES/SOFTWARE
+### PAQUETES-SOFTWARE
   - <b>dpkg -L <paquete></b> ver donde se instalo el paquete
 
 
 
 <br><br>
-### DISCOS/PARTICIONES
+### DISCOS-PARTICIONES
   - <b>parted -l</b> ver discos fiscos y particiones
   - <b>lsblk</b> particiones y puntos de montaje
   - <b>cat /proc/partitions <paquete></b> 'devices' particionados
