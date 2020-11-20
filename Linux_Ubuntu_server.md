@@ -21,46 +21,50 @@
 ------------
 
 ### SSH
-  - Instalar: <b>apt-get install openssh-server</b><br>
-  - Comprobar: <b>systemctl status ssh</b><br>
-  - Permitir root: en <b>vi /etc/ssh/sshd_config</b> poner <b>PermitRootLogin yes</b> luego <b>systemctl restart sshd</b>
-  - Timeout SSH de 1h:  en <b>vi /etc/ssh/sshd_config</b> poner <b>ClientAliveInterval  1200</b> y <b>ClientAliveCountMax 3</b> luego <b>systemctl restart sshd</b>
+  - Instalar: **apt-get install openssh-server**<br>
+  - Comprobar: **systemctl status ssh**<br>
+  - Permitir root: en **vi /etc/ssh/sshd_config** poner **PermitRootLogin yes** luego **systemctl restart sshd**
+  - Timeout SSH de 1h:  en **vi /etc/ssh/sshd_config** poner **ClientAliveInterval  1200** y **ClientAliveCountMax 3** luego **systemctl restart sshd**
 
 
 ### ROLES-SNAPS
-  - **roles** añadir o quitar con: <b>tasksel</b> (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/)<br>
+  - **roles** añadir o quitar con: **tasksel** (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/)<br>
   - **snaps** añadir o quitar desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux) (https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9)<br>
-  - <b>snap search powershell</b> para buscar y para instalar <b>snap install powershell</b><br>
-  - <b>IoTStack</b> https://github.com/gcgarner/IOTstack.git
+  - **snap search powershell** para buscar y para instalar **snap install powershell**<br>
+  - **IoTStack** https://github.com/gcgarner/IOTstack.git
 
 
 ### ACTUALIZAR-VERSION
-  - Actualizar: <b> sudo apt-get update && apt-get upgrade</b><br>
-  - Upgrade: <b>apt-get update && apt-get dist-upgrade</b><br>
-  - Subir de version: <b>do-release-upgrade</b>
-  - Version actual: <b>lsb_release -a</b>
+  - Actualizar: ** sudo apt-get update && apt-get upgrade**<br>
+  - Upgrade: **apt-get update && apt-get dist-upgrade**<br>
+  - Subir de version: **do-release-upgrade**
+  - Version actual: **lsb_release -a**
 
 
 ### HARDWARE-TECLADO
-  - <b>dmidecode</b> lista el hardware
-  - <b>uname -m</b> arquitectura de procesador
-  - Configurar el teclado <b>sudo dpkg-reconfigure keyboard-configuration</b> (require reinicio)
+  - **dmidecode** lista el hardware
+  - **uname -m** arquitectura de procesador
+  - Configurar el teclado **sudo dpkg-reconfigure keyboard-configuration** (require reinicio)
+  - Iniciar impresion **systemctl start cups**
+  - Contar cuantas impresoras hay **lpstat -t | grep device | wc -l**
+
 
 
 ### NETWORKING
-  - <b>netstat -rn</b> tabla de rutas
-  - <b>cat /proc/net/dev</b> ver trafico de red de cada interfaz
+  - **netstat -rn** tabla de rutas
+  - **cat /proc/net/dev** ver trafico de red de cada interfaz
+  - comprobar estado de tarjetas en bonding (agregado) **cat /proc/net/bonding/bond0**
 
 
 ### PAQUETES-SOFTWARE
-  - <b>dpkg -L <paquete></b> ver donde se instalo el paquete
+  - **dpkg -L <paquete>** ver donde se instalo el paquete
 
 
 ### DISCOS-PARTICIONES
-  - <b>parted -l</b> ver discos fiscos y particiones
-  - <b>lsblk</b> particiones y puntos de montaje
-  - <b>cat /proc/partitions <paquete></b> 'devices' particionados
-  - <b>df -h</b> ver espacio libre en cada punto de montaje
+  - **parted -l** ver discos fiscos y particiones
+  - **lsblk** particiones y puntos de montaje
+  - **cat /proc/partitions <paquete>** 'devices' particionados
+  - **df -h** ver espacio libre en cada punto de montaje
   - Extender LVM:
   <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
 
@@ -70,17 +74,17 @@
 
 
 ### LOGS
-  - <b>dmesg | less</b> ver los de arraque con Av Pag y Re Pag.
+  - **dmesg | less** ver los de arraque con Av Pag y Re Pag.
 
 
 ### PERFORMANCE
-  - <b>htop</b> se puede usar el raton para ordenar por CPU o ram
-  - <b>free</b> cuanta RAM esta libre
+  - **htop** se puede usar el raton para ordenar por CPU o ram
+  - **free** cuanta RAM esta libre
 
 
 ### VARIOS
-  - <b>history | less</b> ultimos 1000 comandos
-  - <b>last -x | grep shutdown</b> fecha del ultimo apagado/reinicio
-  - <b>tar czf archivo_comprimido.tgz <dirname></b> comprimir un directorio
-  - <b>tar zxvf <archive></b> descomprimir
+  - **history | less** ultimos 1000 comandos
+  - **last -x | grep shutdown** fecha del ultimo apagado/reinicio
+  - **tar czf archivo_comprimido.tgz <dirname>** comprimir un directorio
+  - **tar zxvf <archive>** descomprimir
   - Unir server linux a AD: https://www.redhat.com/sysadmin/linux-active-directory
