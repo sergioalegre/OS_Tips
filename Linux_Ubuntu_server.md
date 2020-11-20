@@ -30,7 +30,7 @@
 ### ROLES-SNAPS
   - **roles** añadir o quitar con: **tasksel** (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/)
   - **snaps** añadir o quitar desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux) (https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9)<br>
-  - **snap search powershell** para buscar y para instalar **snap install powershell**
+    - **snap search powershell** para buscar y para instalar **snap install powershell**
   - **IoTStack** https://github.com/gcgarner/IOTstack.git
 
 
@@ -45,8 +45,9 @@
   - **dmidecode** lista el hardware
   - **uname -m** arquitectura de procesador
   - Configurar el teclado **sudo dpkg-reconfigure keyboard-configuration** (require reinicio)
-  - Iniciar impresion **systemctl start cups**
-  - Contar cuantas impresoras hay **lpstat -t | grep device | wc -l**
+  - **Impresoras:**
+    - Iniciar impresion **systemctl start cups**
+    - Contar cuantas impresoras hay **lpstat -t | grep device | wc -l**
 
 
 
