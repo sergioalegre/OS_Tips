@@ -67,6 +67,8 @@
   - **lsblk** particiones y puntos de montaje
   - **cat /proc/partitions <paquete>** 'devices' particionados
   - **df -h** ver espacio libre en cada punto de montaje
+  - **mkfs.ext4 /dev/sdb1** formatear partición en un formato concreto
+  - Conceptos LVM: https://www.redhat.com/sysadmin/lvm-vs-partitioning
   - Extender LVM:
   <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
 
