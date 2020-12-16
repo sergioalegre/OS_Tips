@@ -58,7 +58,7 @@
   - comprobar estado de tarjetas en bonding (agregado) **cat /proc/net/bonding/bond0**
   - **CENTOS/RHEL**
     - **nmtui** configuración de red gráfica
-    <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/nmtui.jpg">
+    - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/nmtui.jpg">
     - **ip addr** ver interfaces y estado
     - **nmcli** ver interfaces y estado
     - **ip r** ver tabla rutas
@@ -69,9 +69,7 @@
       - **nmcli connection modify em1 ipv4.gateway "10.162.32.1"**
       - **nmcli con up em1**
     - problema conocido: no levanta la red:
-    <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Centos_no_levanta_la_red.jpg">
-
-
+    - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Centos_no_levanta_la_red.jpg">
 
 
 ### PAQUETES-SOFTWARE
@@ -86,7 +84,7 @@
   - **mkfs.ext4 /dev/sdb1** formatear partición en un formato concreto
   - Conceptos LVM: https://www.redhat.com/sysadmin/lvm-vs-partitioning
   - Extender LVM:
-  <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
+  - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
 
 
 ### ARCHIVOS
