@@ -56,6 +56,22 @@
   - **netstat -rn** tabla de rutas
   - **cat /proc/net/dev** ver trafico de red de cada interfaz
   - comprobar estado de tarjetas en bonding (agregado) **cat /proc/net/bonding/bond0**
+  - **CENTOS/RHEL**
+    - **nmtui** configuración de red gráfica
+    <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/nmtui.jpg">
+    - **ip addr** ver interfaces y estado
+    - **nmcli** ver interfaces y estado
+    - **ip r** ver tabla rutas
+    - **ip link** ver estado de las interfaces
+    - ejemplo (si la interfaz se llama em1):
+      - **nmcli con mod em1 ipv4.method manual**
+      - **nmcli connection modify em1 ipv4.addresses "10.162.32.52/25"**
+      - **nmcli connection modify em1 ipv4.gateway "10.162.32.1"**
+      - **nmcli con up em1**
+    - problema conocido: no levanta la red:
+    <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Centos_no_levanta_la_red.jpg">
+
+
 
 
 ### PAQUETES-SOFTWARE
@@ -81,6 +97,7 @@
 
 ### LOGS
   - **dmesg | less** ver los de arraque con Av Pag y Re Pag.
+  - **journalctl -xe** (CENTOS)
 
 
 ### PERFORMANCE
