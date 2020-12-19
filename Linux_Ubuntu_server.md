@@ -74,6 +74,7 @@
 
 ### PAQUETES-SOFTWARE
   - **dpkg -L <paquete>** ver donde se instalo el paquete
+  - **sudo dpkg --configure -a** buscar si hay algun problema con algun paquete a corregir 
 
 
 ### DISCOS-PARTICIONES
