@@ -75,6 +75,7 @@
 ### PAQUETES-SOFTWARE
   - **dpkg -L <paquete>** ver donde se instalo el paquete
   - **sudo dpkg --configure -a** buscar si hay algun problema con algun paquete a corregir 
+  - **sudo apt purge <package_name>** eliminar paquete y sus archivos de configuracion
 
 
 ### DISCOS-PARTICIONES
