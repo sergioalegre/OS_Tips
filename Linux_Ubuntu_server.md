@@ -49,7 +49,8 @@
     - Iniciar impresion **systemctl start cups**
     - Contar cuantas impresoras hay **lpstat -t | grep device | wc -l**
   - **Procesador:**
-    - arquitectura: **uname -m**
+    - arquitectura **dpkg --print-architecture**
+    - procesador: **uname -m**
     - cuantos cores: **cat /proc/cpuinfo | grep processor | wc -l**
 
 
