@@ -1,7 +1,12 @@
 Comparativa SD: https://www.pidramble.com/wiki/benchmarks/microsd-cards
 
+raspi-config
 activar SSH
-cambiar pass de pi y de root
+locale
+expand filesystem
+
+sudo passwd root
+sudo passwd pi
 
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -16,17 +21,22 @@ http://192.168.0.2:8123/ (unos25 min)
 
 sudo apt-get install kodi
 https://gist.github.com/Cyberek/33af1b92c071791a71aa8bccf87b8a3a
+sudo nano /etc/init.d/kodi
+sudo nano /etc/default/kodi
+sudo chmod a+x /etc/init.d/kodi
+sudo update-rc.d kodi defaults
+tweaks para kodi: https://www.raspberrypi.org/forums/viewtopic.php?t=251645
 
 https://www.webmin.com/deb.html
 su
-nano /etc/apt/source.list
+nano /etc/apt/sources.list
 deb https://download.webmin.com/download/repository sarge contrib
 cd /root
 wget https://download.webmin.com/jcameron-key.asc
 apt-key add jcameron-key.asc
-exit
 sudo apt-get update && sudo apt-get install webmin
 
 sudo apt-get install updatedb locate
 
 montar USB desde webmin
+sudo mkdir /media/DISCO_USB_EXT
