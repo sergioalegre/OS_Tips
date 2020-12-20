@@ -26,3 +26,5 @@ exit
 sudo apt-get update && sudo apt-get install webmin
 
 sudo apt-get install updatedb locate
+
+montar USB desde webmin
