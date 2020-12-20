@@ -50,7 +50,7 @@
     - Contar cuantas impresoras hay **lpstat -t | grep device | wc -l**
   - **Procesador:**
     - arquitectura **dpkg --print-architecture**
-    - procesador: **uname -m**
+    - procesador: **lscpu**
     - cuantos cores: **cat /proc/cpuinfo | grep processor | wc -l**
 
 
