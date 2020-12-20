@@ -1,0 +1,28 @@
+activar SSH
+cambiar pass de pi y de root
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker pi
+
+mkdir homeassistant
+sudo apt-get install -y software-properties-common apparmor-utils apt-transport-https avahi-daemon ca-certificates curl dbus jq network-manager socat
+curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh
+sudo bash installer.sh --machine raspberrypi3 -d /home/pi/homeassistant
+y (unos 10 min)
+http://192.168.0.2:8123/ (unos25 min)
+
+sudo apt-get install kodi
+https://gist.github.com/Cyberek/33af1b92c071791a71aa8bccf87b8a3a
+
+https://www.webmin.com/deb.html
+su
+nano /etc/apt/source.list
+deb https://download.webmin.com/download/repository sarge contrib
+cd /root
+wget https://download.webmin.com/jcameron-key.asc
+apt-key add jcameron-key.asc
+exit
+sudo apt-get update && sudo apt-get install webmin
+
+sudo apt-get install updatedb locate
