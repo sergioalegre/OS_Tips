@@ -62,3 +62,15 @@ comprobar funcione con ssh pi@192.168.0.2 (no deberia pedir password)
 exit
 cd ..
 ssh -i .ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.0.2 date
+
+
+transmission:
+sudo apt-get install transmission-cli transmission-common transmission-daemon
+sudo service transmission-daemon stop
+cp /var/lib/transmission-daemon/info/settings.json /var/lib/transmission-daemon/info/settings.json.ORIGINAL
+"rpc-whitelist": "127.0.0.1,192.168.*.*",
+"download-dir": "/media/DISCO_USB_EXT/Descargas",
+"incomplete-dir": "/media/DISCO_USB_EXT/Descargas_Incompletas",
+"incomplete-dir-enabled": true,
+sudo service transmission-daemon start
+probar la app user y pass: transmission
