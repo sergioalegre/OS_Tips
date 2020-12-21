@@ -47,6 +47,59 @@ Dark Mode en el panel de la izquierda (simbolo luna)
 montar USB desde webmin
 sudo mkdir /media/DISCO_USB_EXT
 Instalar samba desde webmin
+[DISCO_USB_EXT]
+	path = /media/DISCO_USB_EXT
+    browseable = yes
+    guest ok = yes
+    read only = no
+
+[Documentales]
+	path = /media/DISCO_USB_EXT/Documentales
+    browseable = yes
+    guest ok = yes
+    read only = no
+
+[Descargas]
+	path = /media/DISCO_USB_EXT/Descargas
+    browseable = yes
+    guest ok = yes
+    read only = no
+
+[Intercambio]
+	path = /media/DISCO_USB_EXT/Intercambio
+    browseable = yes
+    guest ok = yes
+    read only = no
+
+[Juegos]
+	path = /media/DISCO_USB_EXT/Juegos
+    browseable = yes
+    guest ok = yes
+    read only = no
+    
+[Otros]
+	path = /media/DISCO_USB_EXT/Otros
+    browseable = yes
+    guest ok = yes
+    read only = no
+    
+[Peliculas]
+	path = /media/DISCO_USB_EXT/Peliculas
+    browseable = yes
+    guest ok = yes
+    read only = no
+    
+[Series]
+	path = /media/DISCO_USB_EXT/Series
+    browseable = yes
+    guest ok = yes
+    read only = no
+
+[homeassistant]
+	path = /home/pi/homeassistant/homeassistant/
+    browseable = yes
+    guest ok = yes
+    read only = no
 
 
 sudo apt-get install locate
