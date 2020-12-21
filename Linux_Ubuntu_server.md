@@ -79,6 +79,7 @@
   - **sudo dpkg --configure -a** buscar si hay algun problema con algun paquete a corregir 
   - **sudo apt purge <package_name>** eliminar archivos de configuracion del paquete
   - **apt-get autoclean** vaciar cache apt
+  - **dpkg --configure -a** comprueba si haya paquetes 'a medio instalar' que haya que remediar
 
 
 ### DISCOS-PARTICIONES
