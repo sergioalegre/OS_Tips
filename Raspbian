@@ -5,7 +5,10 @@ activar SSH
 locale
 expand filesystem
 
+
 cambiar tamaño swap: https://wpitchoune.net/tricks/raspberry_pi3_increase_swap_size.html
+/etc/init.d/dphys-swapfile restart
+
 
 sudo passwd root
 sudo passwd pi
