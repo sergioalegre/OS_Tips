@@ -37,8 +37,25 @@ cd /root
 wget https://download.webmin.com/jcameron-key.asc
 apt-key add jcameron-key.asc
 sudo apt-get update && sudo apt-get install webmin
+doble factor de autenticación: https://doxfer.webmin.com/Webmin/Enhanced_Authentication
+Dark Mode en el panel de la izquierda (simbolo luna)
 
-sudo apt-get install updatedb locate
 
 montar USB desde webmin
 sudo mkdir /media/DISCO_USB_EXT
+Instalar samba desde webmin
+
+
+sudo apt-get install locate
+
+
+comandos:
+instalar addon ssh
+ssh-keygen
+cd .ssh && ssh-copy-id -i id_rsa pi@192.168.0.2
+yes
+poner la pass de pi
+comprobar funcione con ssh pi@192.168.0.2 (no deberia pedir password)
+exit
+cd ..
+ssh -i .ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.0.2 date
