@@ -127,3 +127,9 @@ cp /var/lib/transmission-daemon/info/settings.json /var/lib/transmission-daemon/
 "incomplete-dir-enabled": true,
 sudo service transmission-daemon start
 probar la app user y pass: transmission
+
+
+apt install cec-utils
+Sacar el address de la TV con: echo 'scan' | cec-client -s -d
+Activar: echo 'on <DEVICEADDRESS>' | cec-client -s d 1
+
