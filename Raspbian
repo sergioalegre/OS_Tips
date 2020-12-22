@@ -132,6 +132,9 @@ probar la app user y pass: transmission
 portainer:
 Settings / Remove los containers que quiero se muestren
 
+shell_commands:
+en /etc/sudoers poner al final: pi ALL=(ALL) NOPASSWD: ALL
+
 
 NO SEGURO:
 apt install cec-utils
