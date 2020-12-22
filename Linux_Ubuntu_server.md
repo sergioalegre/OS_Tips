@@ -25,6 +25,7 @@
   - Comprobar: **systemctl status ssh**
   - Permitir root: en **vi /etc/ssh/sshd_config** poner **PermitRootLogin yes** luego **systemctl restart sshd**
   - Timeout SSH de 1h:  en **vi /etc/ssh/sshd_config** poner **ClientAliveInterval  1200** y **ClientAliveCountMax 3** luego **systemctl restart sshd**
+  - Intercambio claves SSH: https://domology.es/scripts-y-comandos-ssh-en-home-assistant/  
 
 
 ### ROLES-SNAPS
