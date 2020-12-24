@@ -89,7 +89,7 @@
   - **cat /proc/partitions <paquete>** 'devices' particionados
   - **df -h** ver espacio libre en cada punto de montaje
   - **mkfs.ext4 /dev/sdb1** formatear partición en un formato concreto
-  - comprobar sistema de ficheros en el siguiente arrnaque: **touch /forcefsck**
+  - comprobar sistema de ficheros en el siguiente arrnaque: **touch /forcefsck && reboot**
   - Conceptos LVM: https://www.redhat.com/sysadmin/lvm-vs-partitioning
   - Extender LVM:
   - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
@@ -116,4 +116,3 @@
   - **last -x | grep shutdown** fecha del ultimo apagado/reinicio
   - **tar czf archivo_comprimido.tgz <dirname>** comprimir un directorio
   - **tar zxvf <archive>** descomprimir
-  - Unir server linux a AD: https://www.redhat.com/sysadmin/linux-active-directory
