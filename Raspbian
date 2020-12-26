@@ -102,7 +102,7 @@ Instalar samba desde webmin
     read only = no
 
 
-sudo apt-get install locate
+sudo apt-get install locate unrar
 
 
 comandos:
