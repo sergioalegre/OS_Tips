@@ -102,7 +102,7 @@ Instalar samba desde webmin
     read only = no
 
 
-sudo apt-get install locate unrar
+sudo apt install locate
 
 
 comandos:
@@ -127,6 +127,7 @@ cp /var/lib/transmission-daemon/info/settings.json /var/lib/transmission-daemon/
 "incomplete-dir-enabled": true,
 sudo service transmission-daemon start
 probar la app user y pass: transmission
+limitar desde la GUI el ratio de compartición
 
 
 portainer:
