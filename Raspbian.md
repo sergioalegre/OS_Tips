@@ -190,7 +190,7 @@
 
   - **echo "deb-src http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-free rpi" | sudo tee -a /etc/apt/sources.list**
   - **cd /tmp**
-  - **sudo apt-get build-dep unrar-nonfree;sudo apt-get source -b unrar-nonfree;sudo dpkg -i unrar*.deb;echo 'done'**
+  - sudo apt-get build-dep unrar-nonfree;sudo apt-get source -b unrar-nonfree;sudo dpkg -i unrar*.deb;echo 'done'
 
 
 ### VARIOS
