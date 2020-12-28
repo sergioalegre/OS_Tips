@@ -14,8 +14,9 @@
 
 [#TRANSMISSION](#TRANSMISSION)
 
-[#VARIOS](#VARIOS)
+[#IoTStack](#IoTStack)
 
+[#VARIOS](#VARIOS)
 
 ------------
 
@@ -161,9 +162,6 @@
       ```
 
 
-
-
-
 ### TRANSMISSION
 
   - **sudo apt-get install transmission-cli transmission-common transmission-daemon**
@@ -177,6 +175,13 @@
   - **sudo service transmission-daemon start**
   - Probar la app user y pass: transmission
   - Cambiar el ratio de compartición al mínimo
+
+
+### IoTStack
+
+  - **git clone https://github.com/gcgarner/IOTstack.git**
+  - **cd IOTstack**
+  - **./menu.sh**
 
 
 ### VARIOS
