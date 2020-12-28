@@ -164,7 +164,7 @@
 
 
 
-###TRANSMISSION
+### TRANSMISSION
 
   - **sudo apt-get install transmission-cli transmission-common transmission-daemon**
   - **sudo service transmission-daemon stop**
@@ -179,7 +179,7 @@
   - Cambiar el ratio de compartición al mínimo
 
 
-###VARIOS
+### VARIOS
 
   - Portainer: mostrar Dockers ocultos: Settings / Remove
   - paquetes últiles: **sudo apt-get install locate**
