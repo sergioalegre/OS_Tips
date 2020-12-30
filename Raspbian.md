@@ -29,6 +29,9 @@
     - **sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10** Leerá 80 MB y dirá la velocidad
     - **sudo hdparm -t /dev/mmcblk0** similar al anterior
     - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/RPI-SD-IO.jpg">
+  - HDMI activar al arrancar:
+    - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/RPI-TV-CEC.JPG">
+
 
 ### CONFIG-BASICA
 
