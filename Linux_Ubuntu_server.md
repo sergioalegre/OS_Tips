@@ -14,6 +14,8 @@
 
 [#ARCHIVOS](#ARCHIVOS)
 
+[#BACKUP](#BACKUP)
+
 [#PERFORMANCE](#PERFORMANCE)
 
 [#VARIOS](#VARIOS)
@@ -77,7 +79,7 @@
 
 ### PAQUETES-SOFTWARE
   - **dpkg -L <paquete>** ver donde se instalo el paquete
-  - **sudo dpkg --configure -a** buscar si hay algun problema con algun paquete a corregir 
+  - **sudo dpkg --configure -a** buscar si hay algun problema con algun paquete a corregir
   - **sudo apt purge <package_name>** eliminar archivos de configuracion del paquete
   - **apt-get autoclean** vaciar cache apt
   - **dpkg --configure -a** comprueba si haya paquetes 'a medio instalar' que haya que remediar
@@ -99,6 +101,11 @@
   - **updatedb** actualiza el indice de ficheros, luego con **locate** se puede buscar
   - **sudo du -h /home/ | sort -rh | head -20** top 20 carpetas de mas tamaño dentro de /home
   - **ncdu** utilidad para ver las carpetas por tamaño
+
+
+### BACKUP
+  - script para poner un cron y hacer backp comprimido con fecha de un directorio concreto excluyendo algunos directorios y tipos de ficheros:
+  `cd /media/DISCO_USB_EXT/ZZ_backup_ha/ && zip -r "HA-backup-$(date +"%Y-%m-%d_%H-%M").zip" /home/homeassistant/.homeassistant/ -x "*.log" -x "/*tts/*" -x "*.db" -x "*.db-shm" -x "*.db-wal" -x "*.mp3" -x "/*deps/*" -x "/*www/camera_shots/*" -x "/*.git/*" -x "/*shell/gif_maker/venv/*"`
 
 
 ### LOGS
