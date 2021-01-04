@@ -104,7 +104,7 @@
 
 
 ### BACKUP
-  - script para poner un cron y hacer backup de un directorio concreto: comprimido, nombre basado en fecha, excluyendo algunos directorios y tipos de ficheros:
+  - script.sh para poner un cron y hacer backup de un directorio concreto: comprimido, nombre basado en fecha, excluyendo algunos directorios y tipos de ficheros:
     - `cd /media/DISCO_USB_EXT/ZZ_backup_ha/ && zip -r "HA-backup-$(date +"%Y-%m-%d_%H-%M").zip" /home/homeassistant/.homeassistant/ -x "*.log" -x "/*tts/*" -x "*.db" -x "*.db-shm" -x "*.db-wal" -x "*.mp3" -x "/*deps/*" -x "/*www/camera_shots/*" -x "/*.git/*" -x "/*shell/gif_maker/venv/*"`
 
 
