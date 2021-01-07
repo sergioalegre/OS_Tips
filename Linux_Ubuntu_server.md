@@ -55,6 +55,16 @@
     - arquitectura **dpkg --print-architecture**
     - procesador: **lscpu**
     - cuantos cores: **cat /proc/cpuinfo | grep processor | wc -l**
+  - **Apagar/Encender dispositivo USB**
+    - listar dispositivos USB **for device in $(ls /sys/bus/usb/devices/*/product); do echo $device;cat $device;done**
+    - saldra algo como:
+    - `/sys/bus/usb/devices/1-1.3/product
+      Expansion Desk
+      /sys/bus/usb/devices/usb1/product
+      DWC OTG Controller`
+    - apargar dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/unbind**
+    - encender dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/bind**
+
 
 
 ### NETWORKING
