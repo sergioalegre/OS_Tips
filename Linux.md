@@ -20,6 +20,8 @@
 
 [#VARIOS](#VARIOS)
 
+[#TMUX](#TMUX)
+
 ------------
 
 ### SSH
@@ -134,3 +136,10 @@
   - **last -x | grep shutdown** fecha del ultimo apagado/reinicio
   - **tar czf archivo_comprimido.tgz <dirname>** comprimir un directorio
   - **tar zxvf <archive>** descomprimir
+
+### TMUX
+  - **apt-get install tmux**
+  - instanciar: **tmux**
+  - nuevo panel: **CTRL+B, n**
+  - cambiar de panel: **CTRL+B, <numero panel>**
+  - Dividir paneles verticalmente: **CTRL+B , %**, cambiar de ventana con **CTRL+B , <flechas>**
