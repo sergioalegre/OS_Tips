@@ -73,6 +73,7 @@
 ### NETWORKING
   - **netstat -rn** tabla de rutas
   - **cat /proc/net/dev** ver trafico de red de cada interfaz
+  - comprobar si el puerto 3000 esta abierto: **echo '' > /dev/tcp/127.0.0.1/3000** si no da 'connection refuseVMC' es q esta abierto
   - comprobar estado de tarjetas en bonding (agregado) **cat /proc/net/bonding/bond0**
   - **CENTOS/RHEL**
     - **nmtui** configuración de red gráfica
