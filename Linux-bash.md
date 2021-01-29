@@ -20,6 +20,7 @@
 [#xargs](#xargs) -
 
 ### BASH-GENERAL
+  - saber que tipo de shell estamos **echo $0** (devolvera: bash, zsh, sh, ...)
   - buscar en el bash history **CTRL+R** y cuando lo encuentres **flecha derecha**
   - AND: encadenar comandos con **&&** solo se ejecutarán si el comando precedente dio salida exitosa (0). Se puede ver el valor de salida del ultimo comando con **echo $?**. Por eso en los scripts se usa **exit 1** para indicar que el programa acabo de manera inesperada.
   - OR: con **a||b** ejemplo **opcion1 || opcion2**
@@ -39,6 +40,7 @@
   - grep: en que linea hay ocurrencias: **cat /etc/passwd | grep "^root$" -n**
   - grep: omitir las líneas de salida que contengan una cadena dada: **comando | grep -v cadena_omitir**
   - head: mostar las dos primeras lineas de este output **cat /etc/passwd | head -n 2**
+  - html2text: formatea texto que internet: **curl -k "https://www.meneame.net" | html2text**
   - sed: cambiar la primera ocurrencia de root por NUEVO: **cat /etc/passwd | sed 's/root/NUEVO/'**
   - sed: cambiar todas las ocurrencias de root por NUEVO **cat /etc/passwd | sed 's/root/NUEVO/g'**
   - sort: ordenar **comando | sort**

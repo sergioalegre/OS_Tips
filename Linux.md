@@ -69,7 +69,6 @@
     - encender dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/bind**
 
 
-
 ### NETWORKING
   - **netstat -rn** tabla de rutas
   - **cat /proc/net/dev** ver trafico de red de cada interfaz
