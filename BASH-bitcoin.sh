@@ -19,7 +19,7 @@ trap ctrl_c INT
 function ctrl_c(){
 	echo -e "\n${redColour}[!] Saliendo...\n${endColour}"
 
-	rm ut.t* money* total_entrada_salida.tmp entradas.tmp salidas.tmp bitcoin_to_dollars 2>/dev/null
+	rm ut.t* money* total_entrada_salida.tmp entradas.tmp salidas.tmp bitcoin_to_dollars 2>/dev/null #redirigimos a /dev/null para ocultar errores
 	tput cnorm; exit 1 #que vuelva a mostrar el cursor y marcamos que el programa termino anormalmente
 }
 
