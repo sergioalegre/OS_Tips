@@ -159,8 +159,7 @@ function unconfirmedTransactions(){
 	hashes=$(cat ut.tmp | grep "Hash" -A 1 | grep -v -E "Hash|\--|Tiempo" | head -n $number_output)  #cada hash que es lo que queremos, vemos que en curl empieza siempre por Hash y luego '--' asi que hay que quitarlo, y quitamos la palabra Tiempo. Con ello, nos quedamos solo con los hashes que es lo que queremos mostrar
 
 	echo "Hash_Cantidad_Bitcoin_Tiempo" > ut.table
-
-	for hash in $hashes; do
+	for hash in $hashes; do #explicado minuto 40
 		echo "${hash}_$(cat ut.tmp | grep "$hash" -A 6 | tail -n 1)_$(cat ut.tmp | grep "$hash" -A 4 | tail -n 1)_$(cat ut.tmp | grep "$hash" -A 2 | tail -n 1)" >> ut.table
 	done
 

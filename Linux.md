@@ -139,7 +139,10 @@
 
 ### TMUX
   - **apt-get install tmux**
+  - **git clone https://github.com/gpakosz/.tmux.git**
   - instanciar: **tmux**
   - nuevo panel: **CTRL+B, n**
   - cambiar de panel: **CTRL+B, 'numero-panel'**
-  - Dividir paneles verticalmente: **CTRL+B , %**, cambiar de ventana con **CTRL+B , 'flechas'**
+  - Dividir verticalmente: **CTRL+B , %**
+  - Dividir horizontalmente: **CTRL+B, "**
+  - cambiar de panel **CTRL+B , 'flechas'**
