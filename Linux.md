@@ -61,10 +61,10 @@
   - **Apagar/Encender dispositivo USB**
     - listar dispositivos USB **for device in $(ls /sys/bus/usb/devices/*/product); do echo $device;cat $device;done**
     - saldra algo como:
-      `/sys/bus/usb/devices/1-1.3/product`
-      `Expansion Desk`
-      `/sys/bus/usb/devices/usb1/product`
-      `DWC OTG Controller`
+          /sys/bus/usb/devices/1-1.3/product
+          Expansion Desk
+          /sys/bus/usb/devices/usb1/product
+          DWC OTG Controller
     - apargar dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/unbind**
     - encender dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/bind**
 
@@ -76,7 +76,6 @@
   - comprobar estado de tarjetas en bonding (agregado) **cat /proc/net/bonding/bond0**
   - poner ip estática:
     Create a netplan configuration in the file /etc/netplan/99_config.yaml. The example assumes you are configuringeth0. Change the addresses, gateway4, and nameservers values to meet the requirements.
-
         network:
           version: 2
           renderer: networkd
@@ -88,8 +87,7 @@
               nameservers:
                   search: [mydomain, otherdomain]
                   addresses: [10.10.10.1, 1.1.1.1]
-
-    The configuration can then be applied using the netplan command **sudo netplan apply**`
+    The configuration can then be applied using the netplan command **sudo netplan apply**
 
   - **CENTOS/RHEL**
     - **nmtui** configuración de red gráfica
