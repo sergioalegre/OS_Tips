@@ -77,8 +77,8 @@
   - poner ip estática:
     Create a netplan configuration in the file /etc/netplan/99_config.yaml. The example assumes you are configuringeth0. Change the addresses, gateway4, and nameservers values to meet the requirements.
 
-    `network:
-      version: 2
+    `network: <br>
+      version: 2 <br>
       renderer: networkd
       ethernets:
         eth0:
