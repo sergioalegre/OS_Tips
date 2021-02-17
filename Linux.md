@@ -77,17 +77,17 @@
   - poner ip estática:
     Create a netplan configuration in the file /etc/netplan/99_config.yaml. The example assumes you are configuringeth0. Change the addresses, gateway4, and nameservers values to meet the requirements.
 
-    `network: <br>
-      version: 2 <br>
-      renderer: networkd
-      ethernets:
-        eth0:
-          addresses:
-            - 10.10.10.2/24
-          gateway4: 10.10.10.1
-          nameservers:
-              search: [mydomain, otherdomain]
-              addresses: [10.10.10.1, 1.1.1.1]`
+        network:
+          version: 2
+          renderer: networkd
+          ethernets:
+            eth0:
+              addresses:
+                - 10.10.10.2/24
+              gateway4: 10.10.10.1
+              nameservers:
+                  search: [mydomain, otherdomain]
+                  addresses: [10.10.10.1, 1.1.1.1]
 
     The configuration can then be applied using the netplan command **sudo netplan apply**`
 
