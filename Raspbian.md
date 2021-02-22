@@ -200,3 +200,4 @@
 
   - Portainer: mostrar Dockers ocultos: Settings / Remove
   - paquetes últiles: **sudo apt-get install tmux**
+  - cp y mv con progreso (-g) https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
