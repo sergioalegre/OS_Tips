@@ -29,8 +29,13 @@
   - Comprobar: **systemctl status ssh**
   - Permitir root: en **vi /etc/ssh/sshd_config** poner **PermitRootLogin yes** luego **systemctl restart sshd**
   - Timeout SSH de 1h:  en **vi /etc/ssh/sshd_config** poner **ClientAliveInterval  1200** y **ClientAliveCountMax 3** luego **systemctl restart sshd**
-  - Intercambio claves SSH: https://domology.es/scripts-y-comandos-ssh-en-home-assistant/  
+  - Intercambio claves SSH: https://domology.es/scripts-y-comandos-ssh-en-home-assistant/:
+    - **ssh-keygen** cuando pregunte el nombre ponemos: **clave_internet**
+    - **ssh-copy-id -i clave_internet.pub pi@192.168.0.2** contestamos yes y no ponemos contraseña pero luego nos pide nuestra contraseña
+    - **cat clave_internet** y luego Load en puttygen y Save private key.
+    - En putty\SSH\Auth ponemos la ruta al .ppk
   - 2FA: https://hackertarget.com/ssh-two-factor-google-authenticator/
+  - validar cambios en /etc/ssh/sshd_config con **sshd -T**
 
 
 ### ROLES-SNAPS
