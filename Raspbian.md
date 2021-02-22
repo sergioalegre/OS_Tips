@@ -122,7 +122,7 @@
           read only = no
 
       [Descargas]
-      	path = /media/DISCO_USB_EXT/Descargas
+      	path = /home/pi/Descargas
           browseable = yes
           guest ok = yes
           read only = no
