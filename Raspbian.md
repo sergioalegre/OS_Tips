@@ -204,3 +204,5 @@
   - alias .bashrc:
     - alias la='ls -al --color'
     - alias lm='ls -al --block-size=MB'
+    - alias cp='cp -g' #require https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
+    - alias mv='mv -g' #require https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
