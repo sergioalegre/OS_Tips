@@ -39,10 +39,14 @@
 
 
 ### ROLES-SNAPS
-  - **roles** añadir o quitar con: **tasksel** (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/)
+  - **roles** añadir o quitar con: **tasksel** (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/). **sudo apt-get install tasksel**
   - **snaps** añadir o quitar desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux) (https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9)<br>
     - **snap search powershell** para buscar y para instalar **snap install powershell**
   - **IoTStack** https://github.com/gcgarner/IOTstack.git
+  - RDP:
+    - instalar xfce **sudo apt-get install xfce4**
+    - que RDP use xfce **echo xfce4-session > ~/.xsession**
+    - reiniciar: **sudo service xrdp restart**
 
 
 ### ACTUALIZAR-VERSION
