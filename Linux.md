@@ -187,7 +187,7 @@
   - matar wpa_supplicant y dhclient: **killall dhclient wpa_supplicant**
   - cambiar mac: **ifconfig wlan0 down** (no podemos cambiarla si esta activa) y luego **macchanger -a wlan0mon** (-a nos da una aleatoria). Podriamos poner la MAC que quisieramos con **macchanger --mac="poner_aqui_la_MAC" wlan0mon**. Con **macchanger -s wlan0mon** puedo ver la real y la nueva.
   - en .bashrc podemos hacer un script para 'preparar el entorno'. Enviamos la salida de outputs a /dev/null (00:16)
-  - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/wifi1.jpg">
+  - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/wifi1.JPG">
   - si nos da problemas el modo monitor, podemos resetear la red con **service network-manager restart**
 
   NUESTRO ENTORNO:
