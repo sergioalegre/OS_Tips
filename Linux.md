@@ -244,3 +244,4 @@
     - rainbow tables con airolib-ng o genpmk (02:10)
 
   QUE SE PUEDE SABER SIN ESTAR CONECTADO A LA RED (02:24)
+    - ver el trafico http con ettercap, drifnet e iptables (02:31)
