@@ -40,7 +40,10 @@
   - grep: en que linea hay ocurrencias: **cat /etc/passwd | grep "^root$" -n**
   - grep: omitir las líneas de salida que contengan una cadena dada: **comando | grep -v cadena_omitir**
   - head: mostar las dos primeras lineas de este output **cat /etc/passwd | head -n 2**
+  - head: copiar las primeras 1000 lineas de un fichero a otro **head -1000 fichero_largo.json > resumen.json**
+  - Leer la fila 28 de un fichero **head -28 fichero | tail -1**
   - html2text: formatea texto que internet: **curl -k "https://www.meneame.net" | html2text**
+  - jq: formatear json en consola, si hacemos **cat** de json me saldra sin saltos ni tabulaciones asi que **head fichero.json | jq**
   - sed: cambiar la primera ocurrencia de root por NUEVO: **cat /etc/passwd | sed 's/root/NUEVO/'**
   - sed: cambiar todas las ocurrencias de root por NUEVO **cat /etc/passwd | sed 's/root/NUEVO/g'**
   - sort: ordenar **comando | sort**
