@@ -56,7 +56,6 @@
   - cada 2 segundos que lance de continuo un comando **watch -n 2 ifconfig**
     - similar: **while true; do ifconfig; sleep 2; clear; done**
 
-
 ### chattr
   - cambiar las flags de los ficheros: **chattr -i archivo.txt**
 
