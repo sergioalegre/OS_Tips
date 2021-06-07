@@ -86,8 +86,12 @@
 ### mktemp
   - The mktemp command creates a temporary file or directory safely and prints its name. All files and directories will be saved in the system's temporary directory, i.e /tmp. So you need not to manually clean up them. Once you rebooted your system, the temporary files will be gone. **mktemp -d**
 
+### nc
+  - escuchar el puerto 4646 **nc -nlvp 4646**, probar que escuchamos mandando un Hola **echo "Hola" > /dev/tcp/127.0.0.1/4646**
+
 ### nmap
   - buscar puertos abiertos en localhost entre el 1000 y el 2000 **nmap --open -T5 -v -n -p1000:2000 127.0.0.1**
+  - buscar los 500 puerto mas comunes y lo exporte al fichero salida **nmap --top-ports 500 --open -T5 -v -n -oG salida**
 
 ### openssl
   - establecer conexion ssl a localhost puerto 1000 **openssl s_client -connect 127.0.0.1:1000**

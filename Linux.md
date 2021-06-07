@@ -141,9 +141,13 @@
 ### ARCHIVOS
   - **updatedb** actualiza el indice de ficheros, luego con **locate** se puede buscar
   - **sudo du -h /home/ | sort -rh | head -20** top 20 carpetas de mas tamaño dentro de /home
+  - buscar top 5 ficheros mas grandes:
+      - **du -a / | sort -n -r | head -n 5**
+      - ver tamaño en MB **ls -al --block-size=M**
   - **ncdu** utilidad para ver las carpetas por tamaño
   - cp y mv con progreso (-g) https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
    - **scp -P 22222 pi@sergio.duckdns.org:/home/pi/Descargas/archivo.7z /home/sergio/**
+
 
 
 ### BACKUP
