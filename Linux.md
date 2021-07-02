@@ -161,8 +161,10 @@
 
 
 ### PERFORMANCE
-  - **htop** se puede usar el raton para ordenar por CPU o ram
-  - **free** cuanta RAM esta libre
+  - **htop**
+  - **free** RAM: cuanta esta libre
+  - **iostat 2** disco: en un sistema OK el %iowait cerca de 0% y %idle cerca del 100%
+  - **atop** disco: dentro de atop pulsar **d** para ver que aplicaciones usan mas disco
 
 
 ### VARIOS
