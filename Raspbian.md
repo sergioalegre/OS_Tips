@@ -89,6 +89,9 @@
     - **sudo chmod a+x /etc/init.d/kodi**
     - **sudo update-rc.d kodi defaults**
   - Tweaks kodi segun modelo raspberry: https://www.raspberrypi.org/forums/viewtopic.php?t=251645
+  - Habilitar borrado de ficheros en XXX
+  - Descargar plugins
+  - Configurar screensaver.picture.slideshow
 
 
 ### WEBMIN
@@ -164,6 +167,12 @@
       	force user = root
       	guest ok = yes
       	force group = root
+
+      [Fotos_Destacadas]
+      	path = /home/pi/Fotos_Destacadas
+          browseable = yes
+          guest ok = yes
+          read only = no
       ```
 
 
