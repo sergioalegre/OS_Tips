@@ -141,8 +141,8 @@
   - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/Linux_Extend_LVM_Partition.jpg">
   
   - Convertir de MBR a GPT sin perder datos:
-    1 - Download GParted Live CD
-    2 – Boot from GParted Live CD. Select all options by default on boot and once the system started, in terminal (ALT+F2 and type terminal) type the following commands (let’s assume /dev/sda hard disk): we can see what is the desired disk letter at gparted
+    - Download GParted Live CD
+    – Boot from GParted Live CD. Select all options by default on boot and once the system started, in terminal (ALT+F2 and type terminal) type the following commands (let’s assume /dev/sda hard disk): we can see what is the desired disk letter at gparted
     **sudo gdisk /dev/sda**
     then type the **W** command to convert MBR to GPT partition table. You will get a message:
     Find checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING PARTITIONS!
@@ -150,7 +150,7 @@
     You type **Y** and if everything is ok with this convertion, you’ll get another message:
     OK; writing new GUID partition table (GPT) to /dev/sda. The operation completed successfully.
     Now the partition is GPT. Reboot
-    3 – Resize partition
+    – Resize partition
 
 
 
