@@ -57,7 +57,7 @@
 ### BUCLES
   - imprimir del 001 al 100: **for i in $ {001..100}; do echo $i; done**
   - cada 2 segundos que lance de continuo un comando **watch -n 2 ifconfig**
-    - similar: **while true; do ifconfig; sleep 2; clear; done**
+    - similar: **while true; do ifconfig; sleep 2; done**
 
 ### chattr
   - cambiar las flags de los ficheros: **chattr -i archivo.txt**
