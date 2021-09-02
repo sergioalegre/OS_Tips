@@ -182,7 +182,7 @@
   - **sudo service transmission-daemon stop**
   - **cp /var/lib/transmission-daemon/info/settings.json /var/lib/transmission-daemon/info/settings.json.ORIGINAL**
   - **nano /var/lib/transmission-daemon/info/settings.json** cambiar estos parametros:
-    - "rpc-whitelist": "127.0.0.1,192.168.*.*",
+    - "rpc-whitelist-enabled": false,
     - "download-dir": "/media/DISCO_USB_EXT/Descargas",
     - "incomplete-dir": "/media/DISCO_USB_EXT/Descargas_Incompletas",
     - "incomplete-dir-enabled": true,

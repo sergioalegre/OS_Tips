@@ -78,7 +78,7 @@
           DWC OTG Controller
     - apargar dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/unbind**
     - encender dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/bind**
-  - **Cambiar colores a consola:** PS1='\e[33;1m\u@\h: \e[31m\W\e[0m\$ ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"
+  - **Cambiar colores a consola:** PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"
 
 
 
@@ -183,7 +183,7 @@
 ### PERFORMANCE
   - **htop**
   - **free** RAM: cuanta esta libre
-  - **iostat 2** disco: en un sistema OK el %iowait cerca de 0% y %idle cerca del 100%
+  - **iostat 2 -m** disco: en un sistema OK el %iowait cerca de 0% y %idle cerca del 100%. Requiere **sudo apt-get install sysstat -y**
   - **atop** disco: dentro de atop pulsar **d** para ver que aplicaciones usan mas disco
 
 
