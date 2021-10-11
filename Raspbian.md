@@ -14,6 +14,8 @@
 
 [#TRANSMISSION](#TRANSMISSION)
 
+[#FILEBROWSER](#FILEBROWSER)
+
 [#IoTStack](#IoTStack)
 
 [#UNRAR](#UNRAR)
@@ -189,6 +191,14 @@
   - **sudo service transmission-daemon start**
   - Probar la app user y pass: transmission
   - Cambiar el ratio de compartición al mínimo
+
+
+### FILEBROWSER
+
+  - https://filebrowser.org/installation
+  - **filebrowser -a 192.168.0.2 -p 8888 -r / --noauth**
+  - comandos a permitir **mv rm unrar ls mkdir rmdir**
+
 
 
 ### IoTStack
