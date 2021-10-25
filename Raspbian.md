@@ -200,10 +200,9 @@
   - comandos a permitir **mv rm unrar ls mkdir rmdir**
 
 
-
 ### IoTStack
 
-  - **git clone https://github.com/gcgarner/IOTstack.git**
+  - **git clone https://github.com/SensorsIot/IOTstack.git**
   - **cd IOTstack**
   - **./menu.sh**
 
@@ -221,7 +220,7 @@
   - Portainer: mostrar Dockers ocultos: Settings / Remove
   - paquetes últiles: **sudo apt-get install tmux**
   - cp y mv con progreso (-g) https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
-  - cron job: **sudo chown -R debian-transmission /home/pi/Descargas**
+  - cron job: **sudo chown -R pi /home/pi/Descargas**
   - alias .bashrc:
     - alias la='ls -al --color'
     - alias lm='ls -al --block-size=MB'

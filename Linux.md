@@ -131,6 +131,7 @@
 ### DISCOS-PARTICIONES
   - **parted -l** ver discos fiscos y particiones
   - **lsblk** particiones y puntos de montaje
+  - **lsblk -f** tipo de formato de las particiones
   - **cat /proc/partitions <paquete>** 'devices' particionados
   - **df -h** ver espacio libre en cada punto de montaje
   - **mkfs.ext4 /dev/sdb1** formatear partición en un formato concreto
