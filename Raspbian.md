@@ -32,7 +32,12 @@
     - **sudo hdparm -t /dev/mmcblk0** similar al anterior
     - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/RPI-SD-IO.jpg">
   - HDMI activar al arrancar:
+    - **apt install cec-utils**
+    - Sacar el address de la TV con: **echo 'scan' | cec-client -s -d**
+    - Activar: **echo 'on <DEVICEADDRESS>' | cec-client -s d 1**
     - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/RPI-TV-CEC.JPG">
+  - soporte 4K:
+    - conectar al puerto adyacente al USB-C
 
 
 ### CONFIG-BASICA
@@ -41,17 +46,13 @@
       - activar SSH
       - locale
       - expand filesystem
+      - enable 4Kp60
 
   - cambiar tamaño swap: https://wpitchoune.net/tricks/raspberry_pi3_increase_swap_size.html
       - **/etc/init.d/dphys-swapfile restart** para aplicar
 
   - **sudo passwd root**
   - **sudo passwd pi**
-
-  - configurar para que arranque el HDMI al arrancar la PI
-    - **apt install cec-utils**
-    - Sacar el address de la TV con: **echo 'scan' | cec-client -s -d**
-    - Activar: **echo 'on <DEVICEADDRESS>' | cec-client -s d 1**
 
 
 ### DOCKER
