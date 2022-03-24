@@ -171,11 +171,11 @@
   - **rsync a destino CIFS**
       ```
       sudo mkdir /mnt/netapp
-      sudo mount -t cifs //10.144.69.176/STRNSARC01 /mnt/netapp -o username="hq_admin15@GRUPOANTOLIN.COM"
+      sudo mount -t cifs //ip.ip.ip.ip/SHARE/mnt/netapp -o username="sergio@DOMAIN.COM"
       <METER PASS>
 
       terminal:
-      sudo rsync -azv /media/ubuntu/XXX /mnt/netapp/USB --log-file=/home/ubuntu/logfile.txt && ls -la /home/ubuntu/ && cat /home/ubuntu/logfile.txt
+      sudo rsync -azv /media/ubuntu/<disk_path> /mnt/netapp/ --log-file=/home/ubuntu/logfile.txt && ls -la /home/ubuntu/ && cat /home/ubuntu/logfile.txt
 
       GUI:
       sudo apt-get install grsync      
