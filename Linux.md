@@ -168,6 +168,18 @@
   - **ncdu** utilidad para ver las carpetas por tamaño
   - cp y mv con progreso (-g) https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
    - **scp -P 22222 pi@sergio.duckdns.org:/home/pi/Descargas/archivo.7z /home/sergio/**
+  - **rsync a destino CIFS**
+      ```
+      sudo mkdir /mnt/netapp
+      sudo mount -t cifs //10.144.69.176/STRNSARC01 /mnt/netapp -o username="hq_admin15@GRUPOANTOLIN.COM"
+      <METER PASS>
+
+      terminal:
+      sudo rsync -azv /media/ubuntu/XXX /mnt/netapp/USB --log-file=/home/ubuntu/logfile.txt && ls -la /home/ubuntu/ && cat /home/ubuntu/logfile.txt
+
+      GUI:
+      sudo apt-get install grsync      
+      ```       
 
 
 
