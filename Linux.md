@@ -177,7 +177,7 @@
       terminal:
       sudo rsync -azv /media/ubuntu/<disk_path> /mnt/netapp/ --log-file=/home/ubuntu/logfile.txt && ls -la /home/ubuntu/ && cat /home/ubuntu/logfile.txt
 
-      GUI:
+      GUI:https://www.unixmen.com/grsync-gadmin-rsync-graphical-front-end-applications-rsync-tool/#:~:text=Grsync%20is%20a%20graphical%20user,%2C%20mirroring%20of%20files%2C%20etc.
       sudo apt-get install grsync      
       ```       
 
