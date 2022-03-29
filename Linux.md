@@ -171,7 +171,7 @@
   - **rsync a destino CIFS**
       ```
       sudo mkdir /mnt/netapp
-      sudo mount -t cifs //ip.ip.ip.ip/SHARE/mnt/netapp -o username="sergio@DOMAIN.COM"
+      sudo mount -t cifs //ip.ip.ip.ip/SHARE /mnt/netapp -o username="sergio@DOMAIN.COM"
       <METER PASS>
 
       terminal:
