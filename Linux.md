@@ -20,7 +20,7 @@
 
 [#VARIOS](#VARIOS)
 
-[#TMUX](#TMUX)
+[#CUSTOM_SHELL](#CUSTOM_SHELL)
 
 [#WIFI](#WIFI)
 
@@ -44,7 +44,8 @@
   - **roles** añadir o quitar con: **tasksel** (http://spotwise.com/2008/11/05/adding-roles-to-ubuntu-server/). **sudo apt-get install tasksel**
   - **snaps** añadir o quitar desde la snap store (Snaps are applications packaged with all their dependencies to run on all popular Linux) (https://codeburst.io/how-to-install-and-use-snap-on-ubuntu-18-04-9fcb6e3b34f9)<br>
     - **snap search powershell** para buscar y para instalar **snap install powershell**
-  - **IoTStack** https://github.com/gcgarner/IOTstack.git
+  - **IoTStack** https://github.com/SensorsIot/IOTstack
+    - **mkdir IoTStack** y luego el curl y el install
   - RDP:
     - instalar xfce **sudo apt-get install xfce4**
     - que RDP use xfce **echo xfce4-session > ~/.xsession**
@@ -79,7 +80,6 @@
     - apargar dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/unbind**
     - encender dispositivo: **echo '1-1.3' | sudo tee /sys/bus/usb/drivers/usb/bind**
   - **Cambiar colores a consola:** PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"
-
 
 
 ### NETWORKING
@@ -158,7 +158,6 @@
     - Resize partition
 
 
-
 ### ARCHIVOS
   - **updatedb** actualiza el indice de ficheros, luego con **locate** se puede buscar
   - **sudo du -h /home/ | sort -rh | head -20** top 20 carpetas de mas tamaño dentro de /home
@@ -180,7 +179,6 @@
       GUI:https://www.unixmen.com/grsync-gadmin-rsync-graphical-front-end-applications-rsync-tool/#:~:text=Grsync%20is%20a%20graphical%20user,%2C%20mirroring%20of%20files%2C%20etc.
       sudo apt-get install grsync      
       ```       
-
 
 
 ### BACKUP
@@ -206,16 +204,21 @@
   - **tar czf archivo_comprimido.tgz <dirname>** comprimir un directorio
   - **tar zxvf <archive>** descomprimir
 
-### TMUX
-  - **apt-get install tmux**
-  - **git clone https://github.com/gpakosz/.tmux.git**
-  - instanciar: **tmux**
-  - nuevo panel: **CTRL+B, n**
-  - cambiar de panel: **CTRL+B, 'numero-panel'**
-  - Dividir verticalmente: **CTRL+B , %**
-  - Dividir horizontalmente: **CTRL+B, "**
-  - cambiar de panel **CTRL+B , 'flechas'**
 
+### CUSTOM_SHELL
+  - **lsd**
+    - Instalar desde https://github.com/Peltoche/lsd y configurar .bashrc
+    - Fonts: Download a Nerd Font, Unzip and copy to ~/.fonts, run the command **fc-cache -fv** to manually rebuild the font cache
+  - **tmux**
+    - **apt-get install tmux**
+    - **git clone https://github.com/gpakosz/.tmux.git**
+    - instanciar: **tmux**
+    - nuevo panel: **CTRL+B, n**
+    - cambiar de panel: **CTRL+B, 'numero-panel'**
+    - Dividir verticalmente: **CTRL+B , %**
+    - Dividir horizontalmente: **CTRL+B, "**
+    - cambiar de panel **CTRL+B , 'flechas'**    
+  - **bat**    
 
 ### WIFI
   - basado: **https://lbry.tv/@s4vitar:f/pentesting_redes_wifi**
