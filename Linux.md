@@ -50,6 +50,7 @@
     - instalar xfce **sudo apt-get install xfce4**
     - que RDP use xfce **echo xfce4-session > ~/.xsession**
     - reiniciar: **sudo service xrdp restart**
+    - si el ultimo comando no funciona (20.04 en adelante) probar **sudo apt install xrdp**
 
 
 ### ACTUALIZAR-VERSION
