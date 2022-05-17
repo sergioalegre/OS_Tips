@@ -1,10 +1,13 @@
 # Windows Subsystem for Linux
+[#Basics](#Basics)
 
 [#Montar-disco](#Montar-disco)
 
 [#GWSL](#GWSL)
 
 
+### Basics
+  - restart WSL via Powershell (as admin) **Get-Service LxssManager | Restart-Service**
 
 
 ### Montar-disco
