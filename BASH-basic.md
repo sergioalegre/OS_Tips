@@ -76,6 +76,7 @@
   - buscar desde la raiz todos los archivos del usuario pi y tamaño 33 bytes: **find / -user pi -size 33c**
   - lo mismo pero omitiendo errores de permisos al buscar: **find / -user pi -size 33c 2>/dev/null**
   - mostrar solo archivos a partir de aqui: **find . -type f**
+  - los 10 archivos mas pesados ** find /media/DISCO_USB_EXT/Series/ -type f -printf '%s %p\n' | sort -nr | head -10**
 
 ### hostname
   - **hostname -I** ips del sistema
