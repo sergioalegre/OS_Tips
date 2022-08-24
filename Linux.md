@@ -202,6 +202,7 @@
 
 ### VARIOS
   - **history | less** ultimos 1000 comandos
+  - **history | grep ffmpeg** buscar un comando concreto en el history
   - **last -x | grep shutdown** fecha del ultimo apagado/reinicio
   - **tar czf archivo_comprimido.tgz <dirname>** comprimir un directorio
   - **tar zxvf <archive>** descomprimir

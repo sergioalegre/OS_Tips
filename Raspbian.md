@@ -111,6 +111,8 @@
 
 
 ### SAMBA
+  - montar portatil **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
+  
   - montar USB desde webmin de modo permanente
   - **sudo mkdir /media/DISCO_USB_EXT**
   - Configurar:
