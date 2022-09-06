@@ -59,6 +59,7 @@
   - Upgrade: **apt-get update && apt-get dist-upgrade**
   - Subir de version: **do-release-upgrade**
   - Version actual: **lsb_release -a**
+  - Ver distro y version: **cat /etc/*release***
   - ver si es un OS puro o basado en **cat /etc/os-release**
 
 
@@ -90,7 +91,7 @@
   - comprobar si el puerto 3000 esta abierto: **echo '' > /dev/tcp/127.0.0.1/3000** si no da 'connection refuseVMC' es q esta abierto
   - comprobar estado de tarjetas en bonding (agregado) **cat /proc/net/bonding/bond0**
   - poner ip estática:
-    Create a netplan configuration in the file /etc/netplan/99_config.yaml. The example assumes you are configuringeth0. Change the addresses, gateway4, and nameservers values to meet the requirements.
+    Create a netplan configuration in the file /etc/netplan/<nombre_interfaz>.yaml. The example assumes you are configuringeth0. Change the addresses, gateway4, and nameservers values to meet the requirements.
       ```    
         network:
           version: 2
@@ -104,7 +105,7 @@
                   search: [mydomain, otherdomain]
                   addresses: [10.10.10.1, 1.1.1.1]
       ```                  
-    The configuration can then be applied using the netplan command **sudo netplan apply**
+    The configuration apply: **sudo netplan apply**
 
   - **CENTOS/RHEL**
     - **nmtui** configuración de red gráfica

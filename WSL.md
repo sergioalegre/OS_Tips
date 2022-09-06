@@ -5,6 +5,9 @@
 
 [#GWSL](#GWSL)
 
+[#Windows_2019](#Windows_2019)
+
+
 
 ### Basics
   - restart WSL via Powershell (as admin) **Get-Service LxssManager | Restart-Service**
@@ -23,3 +26,9 @@
   - Descargar e instalar: https://opticos.github.io/gwsl/tutorials/manual.html#installing-gwsl
   - Entrar en la opcion **GWSL Distro Tools**
   - Activar las opciones: **Display/Audio Auto-Exporting** y **LibGl Indirect is Enabled**
+
+
+### Windows_2019
+  - **Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux**
+  - Bajar una distro desde https://docs.microsoft.com/en-us/windows/wsl/install-manual#downloading-distributions
+  - **Add-AppxPackage .\nombre_distro.appx**
