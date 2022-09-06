@@ -59,8 +59,7 @@
   - Upgrade: **apt-get update && apt-get dist-upgrade**
   - Subir de version: **do-release-upgrade**
   - Version actual: **lsb_release -a**
-  - Ver distro y version: **cat /etc/*release***
-  - ver si es un OS puro o basado en **cat /etc/os-release**
+  - Ver distro y version: cat /etc/*release*
 
 
 ### HARDWARE-TECLADO
