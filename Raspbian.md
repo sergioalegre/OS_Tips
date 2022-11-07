@@ -18,7 +18,9 @@
 
 [#IoTStack](#IoTStack)
 
-[#UNRAR](#UNRAR)
+[#UNRAR/7z](#UNRAR/7z)
+
+[#CALIBRE-WEB](#CALIBRE-WEB)
 
 [#VARIOS](#VARIOS)
 
@@ -112,7 +114,7 @@
 
 ### SAMBA
   - montar portatil **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
-  
+
   - montar USB desde webmin de modo permanente
   - **sudo mkdir /media/DISCO_USB_EXT**
   - Configurar:
@@ -178,6 +180,12 @@
           browseable = yes
           guest ok = yes
           read only = no
+
+      [Libros]
+      	path = /media/DISCO_USB_EXT/calibre/books
+          browseable = yes
+          guest ok = yes
+          read only = no          
       ```
 
 
@@ -210,13 +218,27 @@
   - **./menu.sh**
 
 
-### UNRAR y 7z
+### UNRAR/7z
 
   - **echo "deb-src http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-free rpi" | sudo tee -a /etc/apt/sources.list**
   - **cd /tmp**
   - **sudo apt-get build-dep unrar-nonfree;sudo apt-get source -b unrar-nonfree;sudo dpkg -i unrar*.deb;echo 'done'**
   - **sudo apt install --assume-yes p7zip-full**
 
+
+### CALIBRE-WEB
+
+  docker run -d \
+  --name=calibre-web \
+  --security-opt="seccomp=unconfined" \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/Madrid \
+  -p 8083:8083 \
+  -v /media/DISCO_USB_EXT/calibre/config:/config \
+  -v /media/DISCO_USB_EXT/calibre/books:/books \
+  --restart unless-stopped \
+  lscr.io/linuxserver/calibre-web:latest
 
 ### VARIOS
 
