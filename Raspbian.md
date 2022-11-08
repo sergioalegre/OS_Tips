@@ -182,7 +182,7 @@
           read only = no
 
       [Libros]
-      	path = /media/DISCO_USB_EXT/calibre/books
+      	path = /media/DISCO_USB_EXT/Calibre/books
           browseable = yes
           guest ok = yes
           read only = no          
@@ -227,18 +227,26 @@
 
 
 ### CALIBRE-WEB
+  - **sudo chown -R pi /media/DISCO_USB_EXT/Calibre**
+  - **sudo chgrp -R pi /media/DISCO_USB_EXT/Calibre**
+      ```
+      docker run -d \
+      --name=calibre-web \
+      --security-opt="seccomp=unconfined" \
+      -e PUID=1000 \
+      -e PGID=1000 \
+      -e TZ=Europe/Madrid \
+      -p 8083:8083 \
+      -v /media/DISCO_USB_EXT/Calibre/config:/config \
+      -v /media/DISCO_USB_EXT/Calibre/books:/books \
+      --restart unless-stopped \
+      lscr.io/linuxserver/calibre-web:latest
+      ```
+  - Admin/Basic Configuration/Enable Uploads
+  - Admin/admin:
+    - Personalizar vistas
+    - Allow eBook Viever y Allow Uploads
 
-  docker run -d \
-  --name=calibre-web \
-  --security-opt="seccomp=unconfined" \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Europe/Madrid \
-  -p 8083:8083 \
-  -v /media/DISCO_USB_EXT/calibre/config:/config \
-  -v /media/DISCO_USB_EXT/calibre/books:/books \
-  --restart unless-stopped \
-  lscr.io/linuxserver/calibre-web:latest
 
 ### VARIOS
 
