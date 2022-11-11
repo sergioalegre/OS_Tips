@@ -5,6 +5,8 @@
 
 [#GWSL](#GWSL)
 
+[#Networking](#Networking)
+
 [#Windows_2019](#Windows_2019)
 
 
@@ -26,6 +28,13 @@
   - Descargar e instalar: https://opticos.github.io/gwsl/tutorials/manual.html#installing-gwsl
   - Entrar en la opcion **GWSL Distro Tools**
   - Activar las opciones: **Display/Audio Auto-Exporting** y **LibGl Indirect is Enabled**
+
+
+### Networking
+  - WSL 2 is running as a hyper-v virtual machine. This is a change from the bridged network adapter used in WSL 1, meaning that WSL 2 uses a Network Address Translation (NAT) service for it's virtual network, instead of making it bridged to the host
+  - Ejemplo para exponer el puerto 3390:
+    - **netsh interface portproxy add v4tov4 listenport=3390 listenaddress=0.0.0.0 connectport=3390 connectaddress=<mi_ip_de_lan>**
+    - Abrir puerto 3390 (en este ejemplo) en el firewall de Windows.
 
 
 ### Windows_2019
