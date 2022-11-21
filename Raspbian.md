@@ -14,6 +14,8 @@
 
 [#TRANSMISSION](#TRANSMISSION)
 
+[#AMULE](#AMULE)
+
 [#FILEBROWSER](#FILEBROWSER)
 
 [#IoTStack](#IoTStack)
@@ -131,18 +133,6 @@
           guest ok = yes
           read only = no
 
-      [Descargas]
-      	path = /home/pi/Descargas
-          browseable = yes
-          guest ok = yes
-          read only = no
-
-      [Intercambio]
-      	path = /media/DISCO_USB_EXT/Intercambio
-          browseable = yes
-          guest ok = yes
-          read only = no
-
       [Juegos]
       	path = /media/DISCO_USB_EXT/Juegos
           browseable = yes
@@ -167,6 +157,12 @@
           guest ok = yes
           read only = no
 
+      [Fotos_Destacadas]
+      	path = /home/pi/Fotos_Destacadas
+          browseable = yes
+          guest ok = yes
+          read only = no
+
       [homeassistant]
       	browseable = yes
       	path = /home/pi/homeassistant/homeassistant/
@@ -175,17 +171,27 @@
       	guest ok = yes
       	force group = root
 
-      [Fotos_Destacadas]
-      	path = /home/pi/Fotos_Destacadas
+      [Libros]
+      	path = /media/DISCO_USB_EXT/calibre/books
           browseable = yes
           guest ok = yes
           read only = no
 
-      [Libros]
-      	path = /media/DISCO_USB_EXT/Calibre/books
-          browseable = yes
-          guest ok = yes
-          read only = no          
+      [aMule]
+      	writeable = yes
+      	force user = root
+      	force group = root
+      	browseable = yes
+      	path = /home/amule/.aMule/Incoming
+      	public = yes
+
+      [aMule_Temp]
+      	writeable = yes
+      	force user = root
+      	force group = root
+      	browseable = yes
+      	path = /home/amule/.aMule/Temp
+      	public = yes    
       ```
 
 
@@ -202,6 +208,22 @@
   - **sudo service transmission-daemon start**
   - Probar la app user y pass: transmission
   - Cambiar el ratio de compartición al mínimo
+
+
+### AMULE
+
+  - **sudo apt-get install amule amule-daemon**
+  - **sudo adduser amule**
+  - **nano /etc/default/amule-daemon** poner AMULED_USER="amule" y AMULED_HOME="/home/amule"
+  - **sudo service amule-daemon start**
+  - Crear contraseña mi_md5_pass: **echo -n <poner_aqui_contraseña> | md5sum** y copiarnos todo son el espacio ni guion final
+  - **sudo nano /home/amule/amule.conf**
+    - **AcceptExternalConnections=1**
+    - **ECPassword=<mi_md5_pass>**
+    - En [WebServer] poner **Enabled=1**
+    - **Password=<mi_md5_pass>**
+    - **Port=8090**
+  - **sudo service amule-daemon restart**
 
 
 ### FILEBROWSER
@@ -227,6 +249,7 @@
 
 
 ### CALIBRE-WEB
+
   - **sudo chown -R pi /media/DISCO_USB_EXT/Calibre**
   - **sudo chgrp -R pi /media/DISCO_USB_EXT/Calibre**
       ```
@@ -257,5 +280,3 @@
   - alias .bashrc:
     - alias la='ls -al --color'
     - alias lm='ls -al --block-size=MB'
-    - alias cp='cp -g' #require https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
-    - alias mv='mv -g' #require https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
