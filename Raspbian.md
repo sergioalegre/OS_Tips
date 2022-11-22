@@ -26,6 +26,8 @@
 
 [#VARIOS](#VARIOS)
 
+[#COMANDOS_UTILES](#COMANDOS_UTILES)
+
 ------------
 
 ### HARDWARE
@@ -308,3 +310,45 @@
         ::.
 
         ```
+### COMANDOS_UTILES
+  - velodidad CPU:
+  - **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
+
+  - velocidad SD
+  - **while true; do sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10; sleep 5; done**
+
+  - temperatura CPU:
+  - **vcgencmd measure_tempnano**
+
+  - TRANSMISSION config:
+  - **/etc/transmission-daemon/settings.json**
+  - servicio:
+  - **sudo systemctl start transmission-daemon**
+
+  - ls en MB
+  - **ls -al --block-size=MB**
+
+  - cambiar prompot y colores
+  - **PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"**
+
+  - Home assistant:
+  - **systemctl stop hassio-supervisor && docker ps -a -q | xargs docker stop**
+  - **systemctl status hassio-supervisor**
+
+  - FileBrowsers
+  - **sudo filebrowser -a 192.168.0.2 -p 8888 -r /**
+
+   - Inventario
+   - **lm -R -l > 211230_inventario.txt**
+
+   - Tamaño carpetas (Series,Pelis) del disco externo
+   - **du -h --max-depth=1 /media/DISCO_USB_EXT/**
+
+   - resolucion video, codec, idiomas, subtitulos
+   - **ffmpeg -i VIDEO.MDK**
+
+   - montar PORTATIL
+   - **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
+
+   - aMule
+   - **sudo service amule-daemon start**
