@@ -116,52 +116,51 @@
 
 ### SAMBA
   - montar portatil **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
-
   - montar USB desde webmin de modo permanente
   - **sudo mkdir /media/DISCO_USB_EXT**
   - Configurar:
       ```
       [DISCO_USB_EXT]
       	path = /media/DISCO_USB_EXT
-          browseable = yes
-          guest ok = yes
-          read only = no
+        browseable = yes
+        guest ok = yes
+        read only = no
 
       [Documentales]
       	path = /media/DISCO_USB_EXT/Documentales
-          browseable = yes
-          guest ok = yes
-          read only = no
+        browseable = yes
+        guest ok = yes
+        read only = no
 
       [Juegos]
       	path = /media/DISCO_USB_EXT/Juegos
-          browseable = yes
-          guest ok = yes
-          read only = no
+        browseable = yes
+        guest ok = yes
+        read only = no
 
       [Otros]
       	path = /media/DISCO_USB_EXT/Otros
-          browseable = yes
-          guest ok = yes
-          read only = no
+        browseable = yes
+        guest ok = yes
+        read only = no
 
       [Peliculas]
       	path = /media/DISCO_USB_EXT/Peliculas
-          browseable = yes
-          guest ok = yes
-          read only = no
+        browseable = yes
+        guest ok = yes
+        read only = no
 
       [Series]
       	path = /media/DISCO_USB_EXT/Series
-          browseable = yes
-          guest ok = yes
-          read only = no
+        browseable = yes
+        guest ok = yes
+        read only = no
 
       [Fotos_Destacadas]
       	path = /home/pi/Fotos_Destacadas
-          browseable = yes
-          guest ok = yes
-          read only = no
+        browseable = yes
+        guest ok = yes
+        read only = no
 
       [homeassistant]
       	browseable = yes
@@ -173,9 +172,9 @@
 
       [Libros]
       	path = /media/DISCO_USB_EXT/calibre/books
-          browseable = yes
-          guest ok = yes
-          read only = no
+        browseable = yes
+        guest ok = yes
+        read only = no
 
       [aMule]
       	writeable = yes
@@ -275,8 +274,37 @@
 
   - Portainer: mostrar Dockers ocultos: Settings / Remove
   - paquetes últiles: **sudo apt-get install tmux**
-  - cp y mv con progreso (-g) https://ostechnix.com/advanced-copy-add-progress-bar-to-cp-and-mv-commands-in-linux/
   - cron job: **sudo chown -R pi /home/pi/Descargas**
   - alias .bashrc:
     - alias la='ls -al --color'
     - alias lm='ls -al --block-size=MB'
+  - **sudo nano /etc/motd**
+        ```
+                        .^~:
+                      .!!J7
+                       :77....
+                    ^~::^:.:.^~
+                    ! .~ :^  ~~
+                   .! .: ..  !.                             .::^^
+                   .!   .:::~!                      ...::^^^~^^~~
+                   .!^^^?!....          ..::::^^^^^^^^^^:::::::!:
+                       .77.  ...::^^^^^^^^^^:::::::::::::::::::7.
+                     ..:??^:~!7?~~~~^^^^::^^^^^^:::::::::::::::7.
+                    !~^^^::::::7^.        ....::::^^^^^::::::::!
+                  .:7:^^~~^^^:^7^^~:                 .....::^^^~
+                 ^~~7:7~:^:~7:!..~:!.
+                ~!~:~.!^^^^~!:7  .!!~
+               ^~~ :~:^^^^^^::!   .!!
+              :~!. ^^::::::::~!  .:^~^
+             .~^^ .~~~~!:^7~^^. :!~^^~.
+            :~!!    :7!^ .!^:
+           :!~!^    ~~~: :7!^                .......
+                    !.^. ^^^^        ..:^:::^^::::^^^:::::::^^:::...
+                    7.7. !:!:  ..:^^^::..                   ......::
+                   ^7^!~:7^~7^^^:..
+               ..:~7^^^!:~^^~.
+            .^^::....
+         .:^^.
+        ::.
+
+        ```
