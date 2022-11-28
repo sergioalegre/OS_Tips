@@ -316,7 +316,7 @@
 
         ```
 ### COMANDOS_UTILES
-  - velodidad CPU: **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
+  - velocidad CPU: **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
 
   - velocidad SD: **while true; do sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10; sleep 5; done**
 
@@ -327,7 +327,7 @@
 
   - ls en MB: **ls -al --block-size=MB**
 
-  - cambiar prompot y colores: **PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"**
+  - cambiar prompt y colores: **PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"**
 
   - Home assistant:
     - **systemctl stop hassio-supervisor && docker ps -a -q | xargs docker stop**
