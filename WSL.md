@@ -25,9 +25,12 @@
 
 ### GWSL
   - Entorno gráfico para soluionar el problema *cannot open display*
-  - Descargar e instalar: https://opticos.github.io/gwsl/tutorials/manual.html#installing-gwsl
-  - Entrar en la opcion **GWSL Distro Tools**
-  - Activar las opciones: **Display/Audio Auto-Exporting** y **LibGl Indirect is Enabled**
+    - Opcion1:
+      - Descargar e instalar: https://opticos.github.io/gwsl/tutorials/manual.html#installing-gwsl
+      - Entrar en la opcion **GWSL Distro Tools**
+      - Activar las opciones: **Display/Audio Auto-Exporting** y **LibGl Indirect is Enabled**
+    - Opcion 2: **export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0**
+
 
 
 ### Networking

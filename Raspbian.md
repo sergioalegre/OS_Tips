@@ -98,8 +98,8 @@
     - **sudo chmod a+x /etc/init.d/kodi**
     - **sudo update-rc.d kodi defaults**
   - Tweaks kodi segun modelo raspberry: https://www.raspberrypi.org/forums/viewtopic.php?t=251645
-  - Habilitar borrado de ficheros en XXX
-  - Descargar plugins
+  - Habilitar borrado/renombrado de ficheros en Apariencia--Skin--Lista de archivos
+  - Descargar plugins (rar,Luar)
   - Configurar screensaver.picture.slideshow
 
 
@@ -225,6 +225,10 @@
     - **Password=<mi_md5_pass>**
     - **Port=8090**
   - **sudo service amule-daemon restart**
+  - GUI preferencias:
+    - Files: **Preallocate disk space for new files** y **save 10 sources on rare files**
+    - Servers: https://emuling.gitlab.io/server.met
+    - Security: http://upd.emule-security.org/ipfilter.zip
 
 
 ### FILEBROWSER
@@ -280,6 +284,7 @@
   - alias .bashrc:
     - alias la='ls -al --color'
     - alias lm='ls -al --block-size=MB'
+    - alias incoming='cd /home/amule/.aMule/Incoming/ && ls'
   - **sudo nano /etc/motd**
         ```
                         .^~:
@@ -311,44 +316,31 @@
 
         ```
 ### COMANDOS_UTILES
-  - velodidad CPU:
-  - **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
+  - velodidad CPU: **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
 
-  - velocidad SD
-  - **while true; do sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10; sleep 5; done**
+  - velocidad SD: **while true; do sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10; sleep 5; done**
 
-  - temperatura CPU:
-  - **vcgencmd measure_tempnano**
+  - temperatura CPU: **vcgencmd measure_tempnano**
 
-  - TRANSMISSION config:
-  - **/etc/transmission-daemon/settings.json**
-  - servicio:
-  - **sudo systemctl start transmission-daemon**
+  - TRANSMISSION config: **/etc/transmission-daemon/settings.json**
+  - servicio: **sudo systemctl start transmission-daemon**
 
-  - ls en MB
-  - **ls -al --block-size=MB**
+  - ls en MB: **ls -al --block-size=MB**
 
-  - cambiar prompot y colores
-  - **PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"**
+  - cambiar prompot y colores: **PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"**
 
   - Home assistant:
-  - **systemctl stop hassio-supervisor && docker ps -a -q | xargs docker stop**
-  - **systemctl status hassio-supervisor**
+    - **systemctl stop hassio-supervisor && docker ps -a -q | xargs docker stop**
+    - **systemctl status hassio-supervisor**
 
-  - FileBrowsers
-  - **sudo filebrowser -a 192.168.0.2 -p 8888 -r /**
+  - FileBrowsers: **sudo filebrowser -a 192.168.0.2 -p 8888 -r /**
 
-   - Inventario
-   - **lm -R -l > 211230_inventario.txt**
+   - Inventario: **lm -R -l > 211230_inventario.txt**
 
-   - Tamaño carpetas (Series,Pelis) del disco externo
-   - **du -h --max-depth=1 /media/DISCO_USB_EXT/**
+   - Tamaño carpetas (Series,Pelis) del disco externo: **du -h --max-depth=1 /media/DISCO_USB_EXT/**
 
-   - resolucion video, codec, idiomas, subtitulos
-   - **ffmpeg -i VIDEO.MDK**
+   - resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.MDK**
 
-   - montar PORTATIL
-   - **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
+   - montar PORTATIL: **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
 
-   - aMule
-   - **sudo service amule-daemon start**
+   - aMule: **sudo service amule-daemon start**
