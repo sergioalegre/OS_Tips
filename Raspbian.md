@@ -401,7 +401,7 @@
   - temperatura CPU: **vcgencmd measure_tempnano**
 
   - TRANSMISSION config: **/etc/transmission-daemon/settings.json**
-  - servicio: **sudo systemctl start transmission-daemon**
+    - servicio: **sudo systemctl start transmission-daemon**
 
   - ls en MB: **ls -al --block-size=MB**
 
