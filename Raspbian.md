@@ -351,7 +351,7 @@
               - PMA_USER=root
               - PMA_ARBITARY=1
               - PMA_HOST=mysql
-              - PMA_PASSWORD=vFvpKjJ7HUbkD3wyLDp4    
+              - PMA_PASSWORD=CAMBIAESTACONTRASEÑA    
       ```
 
 ### VARIOS
