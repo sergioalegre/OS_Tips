@@ -24,6 +24,12 @@
 
 [#CALIBRE-WEB](#CALIBRE-WEB)
 
+[#NGINX-PROXY-MANAGER](#NGINX-PROXY-MANAGER)
+
+[#PORTAINER](#PORTAINER)
+
+[#WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4](#WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4)
+
 [#VARIOS](#VARIOS)
 
 [#COMANDOS_UTILES](#COMANDOS_UTILES)
@@ -276,6 +282,78 @@
     - Allow eBook Viever y Allow Uploads
 
 
+### NGINX-PROXY-MANAGER
+
+      ```
+      docker run -d \
+      --name=nginx-proxy-manager \
+      -p 80:80  \
+      -p 81:81  \
+      -p 443:443
+      -v /home/pi/npm/data:/data  \
+      -v /home/pi/npm/letsencrypt:/etc/letsencrypt  \
+      --restart unless-stopped \
+      jc21/nginx-proxy-manager
+      ```
+
+### PORTAINER
+
+    - **docker volume create portainer_nuevo**
+
+      ```
+      docker run -d \
+      -p 8000:8000 \
+      -p 9000:9000 \
+      --name=portainer \
+      --restart=unless-stopped \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v portainer_nuevo:/data \
+      portainer/portainer-ce
+      ```
+
+### WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4
+      ```
+      version: '3.6'
+
+      services:
+        wordpress:
+          container_name: wordpress
+          image: wordpress:5.7.2
+          ports:
+            - 8081:80
+          environment:
+            - "WORDPRESS_DB_USER=root"
+            - "WORDPRESS_DB_PASSWORD=CAMBIAESTACONTRASEÑA"
+          restart: always
+          dns: 8.8.8.8
+          volumes:
+            - /home/pi/wp_data:/var/www/html
+
+        mysql:
+          container_name: mysql
+          image: jsurf/rpi-mariadb
+          volumes:
+          - /home/pi/mysql:/var/lib/mysql
+          environment:
+          - "MYSQL_ROOT_PASSWORD=CAMBIAESTACONTRASEÑA"
+          - "MYSQL_DATABASE=wordpress"
+          restart: always
+
+        phpmyadmin:
+            container_name: phpmyadmin
+            image: mt08/rpi-phpmyadmin    
+            depends_on:      
+              - mysql
+            ports:      
+              - "8082:80"        
+            environment:
+              - PMA_ROOT_USER=root
+              - PMA_USER=root
+              - PMA_ARBITARY=1
+              - PMA_HOST=mysql
+              - PMA_PASSWORD=vFvpKjJ7HUbkD3wyLDp4    
+      ```
+
 ### VARIOS
 
   - Portainer: mostrar Dockers ocultos: Settings / Remove
@@ -333,14 +411,14 @@
     - **systemctl stop hassio-supervisor && docker ps -a -q | xargs docker stop**
     - **systemctl status hassio-supervisor**
 
-  - FileBrowsers: **sudo filebrowser -a 192.168.0.2 -p 8888 -r /**
+  - FileBrowser: **sudo filebrowser -a 192.168.0.2 -p 8888 -r /**
 
-   - Inventario: **lm -R -l > 211230_inventario.txt**
+  - Inventario: **lm -R -l > 211230_inventario.txt**
 
-   - Tamaño carpetas (Series,Pelis) del disco externo: **du -h --max-depth=1 /media/DISCO_USB_EXT/**
+  - Tamaño carpetas (Series,Pelis) del disco externo: **du -h --max-depth=1 /media/DISCO_USB_EXT/**
 
-   - resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.MDK**
+  - resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.MDK**
 
-   - montar PORTATIL: **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
+  - montar PORTATIL: **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
 
-   - aMule: **sudo service amule-daemon start**
+  - aMule: **sudo service amule-daemon start**
