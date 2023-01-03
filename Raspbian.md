@@ -24,16 +24,6 @@
 
 [#UNRAR/7z](#UNRAR/7z)
 
-[#CALIBRE-WEB](#CALIBRE-WEB)
-
-[#NGINX-PROXY-MANAGER](#NGINX-PROXY-MANAGER)
-
-[#PORTAINER](#PORTAINER)
-
-[#WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4](#WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4)
-
-[#CLOUDFLARE_DDNS](#CLOUDFLARE_DDNS)
-
 [#NGINX_PHP](#NGINX_PHP)
 
 [#VARIOS](#VARIOS)
@@ -118,8 +108,104 @@
           - 9091:9091
           - 51413:51413
           - 51413:51413/udp
-    ```      
+    ```  
 
+#### CALIBRE-WEB
+
+  - **sudo chown -R pi /media/DISCO_USB_EXT/Calibre**
+  - **sudo chgrp -R pi /media/DISCO_USB_EXT/Calibre**
+      ```
+      docker run -d \
+      --name=calibre-web \
+      --security-opt="seccomp=unconfined" \
+      -e PUID=1000 \
+      -e PGID=1000 \
+      -e TZ=Europe/Madrid \
+      -p 8083:8083 \
+      -v /media/DISCO_USB_EXT/Calibre/config:/config \
+      -v /media/DISCO_USB_EXT/Calibre/books:/books \
+      --restart unless-stopped \
+      lscr.io/linuxserver/calibre-web:latest
+      ```
+  - Admin/Basic Configuration/Enable Uploads
+  - Admin/admin:
+    - Personalizar vistas
+    - Allow eBook Viever y Allow Uploads
+
+
+#### NGINX-PROXY-MANAGER
+
+      ```
+      docker run -d \
+      --name=nginx-proxy-manager \
+      -p 80:80  \
+      -p 81:81  \
+      -p 443:443
+      -v /home/pi/npm/data:/data  \
+      -v /home/pi/npm/letsencrypt:/etc/letsencrypt  \
+      --restart unless-stopped \
+      jc21/nginx-proxy-manager
+      ```
+
+#### PORTAINER
+
+  - **docker volume create portainer_nuevo**
+
+      ```
+      docker run -d \
+      -p 8000:8000 \
+      -p 9000:9000 \
+      --name=portainer \
+      --restart=unless-stopped \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v portainer_nuevo:/data \
+      portainer/portainer-ce
+      ```
+
+#### WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4
+      ```
+      version: '3.6'
+
+      services:
+        wordpress:
+          container_name: wordpress
+          image: wordpress:5.7.2
+          ports:
+            - 8081:80
+          environment:
+            - "WORDPRESS_DB_USER=root"
+            - "WORDPRESS_DB_PASSWORD=CAMBIAESTACONTRASEÑA"
+          restart: always
+          dns: 8.8.8.8
+          volumes:
+            - /home/pi/wp_data:/var/www/html
+
+        mysql:
+          container_name: mysql
+          image: jsurf/rpi-mariadb
+          volumes:
+          - /home/pi/mysql:/var/lib/mysql
+          environment:
+          - "MYSQL_ROOT_PASSWORD=CAMBIAESTACONTRASEÑA"
+          - "MYSQL_DATABASE=wordpress"
+          restart: always
+
+        phpmyadmin:
+            container_name: phpmyadmin
+            image: mt08/rpi-phpmyadmin    
+            depends_on:      
+              - mysql
+            ports:      
+              - "8082:80"        
+            environment:
+              - PMA_ROOT_USER=root
+              - PMA_USER=root
+              - PMA_ARBITARY=1
+              - PMA_HOST=mysql
+              - PMA_PASSWORD=CAMBIAESTACONTRASEÑA    
+      ```
+
+#### CLOUDFLARE_DDNS
 
 ### HOME-ASSISTANT
 
@@ -277,6 +363,7 @@
 
 
 ### FILEBROWSER
+  - NOTA: deprecado en favor de docker
   - en docker **/srv** ha de apuntar a **/** en el host
   - legacy:
     - https://filebrowser.org/installation
@@ -299,102 +386,7 @@
   - **sudo apt install --assume-yes p7zip-full**
 
 
-### CALIBRE-WEB
 
-  - **sudo chown -R pi /media/DISCO_USB_EXT/Calibre**
-  - **sudo chgrp -R pi /media/DISCO_USB_EXT/Calibre**
-      ```
-      docker run -d \
-      --name=calibre-web \
-      --security-opt="seccomp=unconfined" \
-      -e PUID=1000 \
-      -e PGID=1000 \
-      -e TZ=Europe/Madrid \
-      -p 8083:8083 \
-      -v /media/DISCO_USB_EXT/Calibre/config:/config \
-      -v /media/DISCO_USB_EXT/Calibre/books:/books \
-      --restart unless-stopped \
-      lscr.io/linuxserver/calibre-web:latest
-      ```
-  - Admin/Basic Configuration/Enable Uploads
-  - Admin/admin:
-    - Personalizar vistas
-    - Allow eBook Viever y Allow Uploads
-
-
-### NGINX-PROXY-MANAGER
-
-      ```
-      docker run -d \
-      --name=nginx-proxy-manager \
-      -p 80:80  \
-      -p 81:81  \
-      -p 443:443
-      -v /home/pi/npm/data:/data  \
-      -v /home/pi/npm/letsencrypt:/etc/letsencrypt  \
-      --restart unless-stopped \
-      jc21/nginx-proxy-manager
-      ```
-
-### PORTAINER
-
-  - **docker volume create portainer_nuevo**
-
-      ```
-      docker run -d \
-      -p 8000:8000 \
-      -p 9000:9000 \
-      --name=portainer \
-      --restart=unless-stopped \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v portainer_nuevo:/data \
-      portainer/portainer-ce
-      ```
-
-### WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4
-      ```
-      version: '3.6'
-
-      services:
-        wordpress:
-          container_name: wordpress
-          image: wordpress:5.7.2
-          ports:
-            - 8081:80
-          environment:
-            - "WORDPRESS_DB_USER=root"
-            - "WORDPRESS_DB_PASSWORD=CAMBIAESTACONTRASEÑA"
-          restart: always
-          dns: 8.8.8.8
-          volumes:
-            - /home/pi/wp_data:/var/www/html
-
-        mysql:
-          container_name: mysql
-          image: jsurf/rpi-mariadb
-          volumes:
-          - /home/pi/mysql:/var/lib/mysql
-          environment:
-          - "MYSQL_ROOT_PASSWORD=CAMBIAESTACONTRASEÑA"
-          - "MYSQL_DATABASE=wordpress"
-          restart: always
-
-        phpmyadmin:
-            container_name: phpmyadmin
-            image: mt08/rpi-phpmyadmin    
-            depends_on:      
-              - mysql
-            ports:      
-              - "8082:80"        
-            environment:
-              - PMA_ROOT_USER=root
-              - PMA_USER=root
-              - PMA_ARBITARY=1
-              - PMA_HOST=mysql
-              - PMA_PASSWORD=CAMBIAESTACONTRASEÑA    
-      ```
-
-### CLOUDFLARE_DDNS
 
 ### NGINX_PHP:
 
