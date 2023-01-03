@@ -14,6 +14,8 @@
 
 [#TRANSMISSION](#TRANSMISSION)
 
+[#TRANSMISSION-DOCKER](#TRANSMISSION-DOCKER)
+
 [#AMULE](#AMULE)
 
 [#FILEBROWSER](#FILEBROWSER)
@@ -30,7 +32,11 @@
 
 [#WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4](#WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4)
 
+[#NGINX_PHP](#NGINX_PHP)
+
 [#VARIOS](#VARIOS)
+
+[#PROBLEMAS_CONOCIDOS](#PROBLEMAS_CONOCIDOS)
 
 [#COMANDOS_UTILES](#COMANDOS_UTILES)
 
@@ -217,6 +223,32 @@
   - Cambiar el ratio de compartición al mínimo
 
 
+### TRANSMISSION-DOCKER  
+  - nota: hubo que usar seccomp:unconfined porque sino el docker no arrancaba
+
+    ```
+    version: "2.1"
+    services:
+      transmission:
+        image: lscr.io/linuxserver/transmission
+        container_name: transmission
+        security_opt:
+          - seccomp:unconfined
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=America/Argentina/Buenos_Aires
+          - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+        volumes:
+          - /home/pi/dockers/transmission/config:/config
+          - /home/pi/dockers/transmission/downloads:/downloads
+          - /home/pi/dockers/transmission/watch:/watch
+        ports:
+          - 9091:9091
+          - 51413:51413
+          - 51413:51413/udp
+    ```      
+
 ### AMULE
 
   - **sudo apt-get install amule amule-daemon**
@@ -238,10 +270,11 @@
 
 
 ### FILEBROWSER
-
-  - https://filebrowser.org/installation
-  - **filebrowser -a 192.168.0.2 -p 8888 -r / --noauth**
-  - comandos a permitir **mv rm unrar ls mkdir rmdir**
+  - en docker **/srv** ha de apuntar a **/** en el host
+  - legacy:
+    - https://filebrowser.org/installation
+    - **filebrowser -a 192.168.0.2 -p 8888 -r / --noauth**
+    - comandos a permitir **pwd mv rm unrar ls mkdir rmdir**
 
 
 ### IoTStack
@@ -300,16 +333,16 @@
 
     - **docker volume create portainer_nuevo**
 
-      ```
-      docker run -d \
-      -p 8000:8000 \
-      -p 9000:9000 \
-      --name=portainer \
-      --restart=unless-stopped \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v portainer_nuevo:/data \
-      portainer/portainer-ce
-      ```
+    ```
+    docker run -d \
+    -p 8000:8000 \
+    -p 9000:9000 \
+    --name=portainer \
+    --restart=unless-stopped \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v portainer_nuevo:/data \
+    portainer/portainer-ce
+    ```
 
 ### WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4
       ```
@@ -354,6 +387,22 @@
               - PMA_PASSWORD=CAMBIAESTACONTRASEÑA    
       ```
 
+
+### NGINX_PHP:
+
+      - **sudo apt install php-fpm php-common php7.3-cli php7.3-common php7.3-fpm php7.3-json php7.3-opcache php7.3-readline nginx libgd3 libnginx-mod-http-auth-pam libnginx-mod-http-dav-ext libnginx-mod-http-echo libnginx-mod-http-geoip libnginx-mod-http-image-filter libnginx-mod-http-subs-filter libnginx-mod-http-upstream-fair libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream nginx-common nginx-full**
+      - editar este archivo: **cd /etc/nginx/sites-available && nano default**:
+        - en esta linea añadir index.php: index index.html index.htm to index **index.php** index.html index.htm
+        - descomentar las lineas de php$ para dejarlo asi:
+                ```
+                location ~ \.php$ {
+                  include snippets/fastcgi-php.conf;
+                  fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+                }
+                ```
+      - **sudo systemctl restart nginx**
+
+
 ### VARIOS
 
   - Portainer: mostrar Dockers ocultos: Settings / Remove
@@ -393,6 +442,17 @@
         ::.
 
         ```
+
+
+### PROBLEMAS_CONOCIDOS
+  - Problema con dockers: <b>libseccomp2</b> o <b>warning: unable to iopause</b>,
+    - Solución: en docker run: <b>--security-opt seccomp=unconfined</b> en docker compose:
+    ```
+    security_opt:
+      - seccomp:unconfined
+    ```
+
+
 ### COMANDOS_UTILES
   - velocidad CPU: **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
 
