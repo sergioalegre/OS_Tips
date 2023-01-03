@@ -4,6 +4,8 @@
 
 [#DOCKER](#DOCKER)
 
+[#MY_DOCKERS](#MY_DOCKERS)
+
 [#HOME-ASSISTANT](#HOME-ASSISTANT)
 
 [#KODI](#KODI)
@@ -13,8 +15,6 @@
 [#SAMBA](#SAMBA)
 
 [#TRANSMISSION](#TRANSMISSION)
-
-[#TRANSMISSION-DOCKER](#TRANSMISSION-DOCKER)
 
 [#AMULE](#AMULE)
 
@@ -31,6 +31,8 @@
 [#PORTAINER](#PORTAINER)
 
 [#WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4](#WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4)
+
+[#CLOUDFLARE_DDNS](#CLOUDFLARE_DDNS)
 
 [#NGINX_PHP](#NGINX_PHP)
 
@@ -89,6 +91,34 @@
       - **exit**
       - **cd ..**
       - Prueba2: **ssh -i .ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.0.2 date**
+
+### MY_DOCKERS
+
+#### TRANSMISSION-DOCKER  
+  - nota: hubo que usar seccomp:unconfined porque sino el docker no arrancaba
+
+    ```
+    version: "2.1"
+    services:
+      transmission:
+        image: lscr.io/linuxserver/transmission
+        container_name: transmission
+        security_opt:
+          - seccomp:unconfined
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=America/Argentina/Buenos_Aires
+          - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+        volumes:
+          - /home/pi/dockers/transmission/config:/config
+          - /home/pi/dockers/transmission/downloads:/downloads
+          - /home/pi/dockers/transmission/watch:/watch
+        ports:
+          - 9091:9091
+          - 51413:51413
+          - 51413:51413/udp
+    ```      
 
 
 ### HOME-ASSISTANT
@@ -210,6 +240,7 @@
 
 ### TRANSMISSION
 
+  - NOTA: métodp deprecado en favor de docker
   - **sudo apt-get install transmission-cli transmission-common transmission-daemon**
   - **sudo service transmission-daemon stop**
   - **cp /var/lib/transmission-daemon/info/settings.json /var/lib/transmission-daemon/info/settings.json.ORIGINAL**
@@ -223,31 +254,7 @@
   - Cambiar el ratio de compartición al mínimo
 
 
-### TRANSMISSION-DOCKER  
-  - nota: hubo que usar seccomp:unconfined porque sino el docker no arrancaba
 
-    ```
-    version: "2.1"
-    services:
-      transmission:
-        image: lscr.io/linuxserver/transmission
-        container_name: transmission
-        security_opt:
-          - seccomp:unconfined
-        environment:
-          - PUID=1000
-          - PGID=1000
-          - TZ=America/Argentina/Buenos_Aires
-          - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-        volumes:
-          - /home/pi/dockers/transmission/config:/config
-          - /home/pi/dockers/transmission/downloads:/downloads
-          - /home/pi/dockers/transmission/watch:/watch
-        ports:
-          - 9091:9091
-          - 51413:51413
-          - 51413:51413/udp
-    ```      
 
 ### AMULE
 
@@ -387,6 +394,7 @@
               - PMA_PASSWORD=CAMBIAESTACONTRASEÑA    
       ```
 
+### CLOUDFLARE_DDNS
 
 ### NGINX_PHP:
 
