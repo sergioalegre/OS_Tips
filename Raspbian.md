@@ -14,11 +14,7 @@
 
 [#SAMBA](#SAMBA)
 
-[#TRANSMISSION](#TRANSMISSION)
-
 [#AMULE](#AMULE)
-
-[#FILEBROWSER](#FILEBROWSER)
 
 [#IoTStack](#IoTStack)
 
@@ -31,6 +27,8 @@
 [#PROBLEMAS_CONOCIDOS](#PROBLEMAS_CONOCIDOS)
 
 [#COMANDOS_UTILES](#COMANDOS_UTILES)
+
+[#DEPRECADO](#DEPRECADO)
 
 ------------
 
@@ -163,6 +161,7 @@
       ```
 
 #### WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4
+
       ```
       version: '3.6'
 
@@ -206,6 +205,7 @@
       ```
 
 #### CLOUDFLARE_DDNS
+
       ```
       version: "3.7"
       services:
@@ -224,7 +224,7 @@
             - /home/pi/dockers/cloudflare-ddns-sergioalegre/config.json:/config.json
           restart: unless-stopped
       ```
-      
+
 ### HOME-ASSISTANT
 
   - **mkdir homeassistant**
@@ -342,24 +342,6 @@
       ```
 
 
-### TRANSMISSION
-
-  - NOTA: métodp deprecado en favor de docker
-  - **sudo apt-get install transmission-cli transmission-common transmission-daemon**
-  - **sudo service transmission-daemon stop**
-  - **cp /var/lib/transmission-daemon/info/settings.json /var/lib/transmission-daemon/info/settings.json.ORIGINAL**
-  - **nano /var/lib/transmission-daemon/info/settings.json** cambiar estos parametros:
-    - "rpc-whitelist-enabled": false,
-    - "download-dir": "/media/DISCO_USB_EXT/Descargas",
-    - "incomplete-dir": "/media/DISCO_USB_EXT/Descargas_Incompletas",
-    - "incomplete-dir-enabled": true,
-  - **sudo service transmission-daemon start**
-  - Probar la app user y pass: transmission
-  - Cambiar el ratio de compartición al mínimo
-
-
-
-
 ### AMULE
 
   - **sudo apt-get install amule amule-daemon**
@@ -380,15 +362,6 @@
     - Security: http://upd.emule-security.org/ipfilter.zip
 
 
-### FILEBROWSER
-  - NOTA: deprecado en favor de docker
-  - en docker **/srv** ha de apuntar a **/** en el host
-  - legacy:
-    - https://filebrowser.org/installation
-    - **filebrowser -a 192.168.0.2 -p 8888 -r / --noauth**
-    - comandos a permitir **pwd mv rm unrar ls mkdir rmdir**
-
-
 ### IoTStack
 
   - **git clone https://github.com/SensorsIot/IOTstack.git**
@@ -402,7 +375,6 @@
   - **cd /tmp**
   - **sudo apt-get build-dep unrar-nonfree;sudo apt-get source -b unrar-nonfree;sudo dpkg -i unrar*.deb;echo 'done'**
   - **sudo apt install --assume-yes p7zip-full**
-
 
 
 
@@ -500,3 +472,29 @@
   - montar PORTATIL: **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
 
   - aMule: **sudo service amule-daemon start**
+
+
+### DEPRECADO
+
+#### TRANSMISSION
+
+  - NOTA: métodp deprecado en favor de docker
+  - **sudo apt-get install transmission-cli transmission-common transmission-daemon**
+  - **sudo service transmission-daemon stop**
+  - **cp /var/lib/transmission-daemon/info/settings.json /var/lib/transmission-daemon/info/settings.json.ORIGINAL**
+  - **nano /var/lib/transmission-daemon/info/settings.json** cambiar estos parametros:
+    - "rpc-whitelist-enabled": false,
+    - "download-dir": "/media/DISCO_USB_EXT/Descargas",
+    - "incomplete-dir": "/media/DISCO_USB_EXT/Descargas_Incompletas",
+    - "incomplete-dir-enabled": true,
+  - **sudo service transmission-daemon start**
+  - Probar la app user y pass: transmission
+  - Cambiar el ratio de compartición al mínimo
+
+#### FILEBROWSER
+  - NOTA: deprecado en favor de docker
+  - en docker **/srv** ha de apuntar a **/** en el host
+  - legacy:
+    - https://filebrowser.org/installation
+    - **filebrowser -a 192.168.0.2 -p 8888 -r / --noauth**
+    - comandos a permitir **pwd mv rm unrar ls mkdir rmdir**  
