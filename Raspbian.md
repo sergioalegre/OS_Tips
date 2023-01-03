@@ -206,7 +206,25 @@
       ```
 
 #### CLOUDFLARE_DDNS
-
+      ```
+      version: "3.7"
+      services:
+        cloudflare-ddns:
+          image: timothyjmiller/cloudflare-ddns:latest
+          container_name: cloudflare-ddns-sergioalegre
+          security_opt:
+            - seccomp:unconfined    
+          #security_opt:
+            - no-new-privileges:true
+          network_mode: "host"
+          environment:
+            - PUID=1000
+            - PGID=1000
+          volumes:
+            - /home/pi/dockers/cloudflare-ddns-sergioalegre/config.json:/config.json
+          restart: unless-stopped
+      ```
+      
 ### HOME-ASSISTANT
 
   - **mkdir homeassistant**
