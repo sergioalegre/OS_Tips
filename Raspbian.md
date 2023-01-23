@@ -2,6 +2,8 @@
 
 [#CONFIG-BASICA](#CONFIG-BASICA)
 
+[#CONFIG-TXT](#CONFIG-TXT)
+
 [#DOCKER](#DOCKER)
 
 [#MY_DOCKERS](#MY_DOCKERS)
@@ -13,6 +15,8 @@
 [#WEBMIN](#WEBMIN)
 
 [#SAMBA](#SAMBA)
+
+[#CRON_JOBS](#CRON_JOBS)
 
 [#AMULE](#AMULE)
 
@@ -52,7 +56,7 @@
 
   - **raspi-config**:
       - activar SSH
-      - locale
+      - Localisation: Locale y Timezone
       - expand filesystem
       - enable 4Kp60
 
@@ -61,6 +65,25 @@
 
   - **sudo passwd root**
   - **sudo passwd pi**
+
+
+### CONFIG-TXT  
+  - **sudo cp /boot/config.txt /boot/config_ORIGINAL.txt && sudo nano /boot/config.txt**
+      ```
+      hdmi_edid_file=1
+      hdmi_force_hotplug=1
+      hdmi_enable_4kp60=1
+      # Disable PWR LED
+      dtparam=pwr_led_trigger=none
+      dtparam=pwr_led_activelow=off
+      # Disable Activity LED
+      dtparam=act_led_trigger=none
+      dtparam=act_led_activelow=off
+      # Disable ethernet LEDs
+      dtparam=eth_led0=4
+      dtparam=eth_led1=4
+
+      ```
 
 
 ### DOCKER
@@ -79,6 +102,7 @@
       - **exit**
       - **cd ..**
       - Prueba2: **ssh -i .ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.0.2 date**
+
 
 ### MY_DOCKERS
 
@@ -225,6 +249,22 @@
           restart: unless-stopped
       ```
 
+#### DUPLICATI
+      ```
+      version: '3.3'
+      services:
+          duplicati:
+              container_name: duplicati
+              volumes:
+                  - '/home/pi/dockers/duplicati/:/data'
+                  - '/home/pi/dockers_backup/:/DOCKERS_BACKUP'
+                  - '/media/DISCO_USB_EXT/:/DISCO_USB_EXT'
+                  - '/:/RAIZ_RPI'
+              ports:
+                  - '8087:8200'
+              image: duplicati/duplicati
+      ```          
+
 ### HOME-ASSISTANT
 
   - **mkdir homeassistant**
@@ -339,8 +379,25 @@
       	browseable = yes
       	path = /home/amule/.aMule/Temp
       	public = yes    
+
+      [Transmission]
+      	writable = yes
+      	guest ok = yes
+      	path = /home/pi/downloads/complete/
       ```
 
+
+### CRON_JOBS
+      ```
+      ###INVENTARIO
+      cmdPeliculas="cd /media/DISCO_USB_EXT/Peliculas && lm -R -l > Inventario_Peliculas.txt"
+      cmdSeries="cd /media/DISCO_USB_EXT/Series && lm -R -l > Inventario_Series.txt"
+      #Todos los días a las 21h
+      schedPelis="0 21 * * * $cmdPeliculas"
+      schedSeries="0 21 * * * $cmdSeries"
+      ( crontab -l | grep -v -F "$cmdPeliculas" ; echo "$schedPelis" ) | crontab -
+      ( crontab -l | grep -v -F "$cmdSeries" ; echo "$schedSeries" ) | crontab -
+      ```      
 
 ### AMULE
 
@@ -402,36 +459,70 @@
     - alias la='ls -al --color'
     - alias lm='ls -al --block-size=MB'
     - alias incoming='cd /home/amule/.aMule/Incoming/ && ls'
-  - **sudo nano /etc/motd**
-        ```
-                        .^~:
-                      .!!J7
-                       :77....
-                    ^~::^:.:.^~
-                    ! .~ :^  ~~
-                   .! .: ..  !.                             .::^^
-                   .!   .:::~!                      ...::^^^~^^~~
-                   .!^^^?!....          ..::::^^^^^^^^^^:::::::!:
-                       .77.  ...::^^^^^^^^^^:::::::::::::::::::7.
-                     ..:??^:~!7?~~~~^^^^::^^^^^^:::::::::::::::7.
-                    !~^^^::::::7^.        ....::::^^^^^::::::::!
-                  .:7:^^~~^^^:^7^^~:                 .....::^^^~
-                 ^~~7:7~:^:~7:!..~:!.
-                ~!~:~.!^^^^~!:7  .!!~
-               ^~~ :~:^^^^^^::!   .!!
-              :~!. ^^::::::::~!  .:^~^
-             .~^^ .~~~~!:^7~^^. :!~^^~.
-            :~!!    :7!^ .!^:
-           :!~!^    ~~~: :7!^                .......
-                    !.^. ^^^^        ..:^:::^^::::^^^:::::::^^:::...
-                    7.7. !:!:  ..:^^^::..                   ......::
-                   ^7^!~:7^~7^^^:..
-               ..:~7^^^!:~^^~.
-            .^^::....
-         .:^^.
-        ::.
+  - PiKISS: https://github.com/jmcerrejon/PiKISS
 
-        ```
+  -MOTD:
+    - **sudo systemctl disable motd**
+    - **sudo rm -f /etc/motd**
+    - **sudo rm /etc/update-motd.d/10-uname**
+    - **sudo touch /etc/update-motd.d/10-info**
+    - **sudo chmod a+x /etc/update-motd.d/***
+    - **sudo nano /etc/update-motd.d/10-info**
+
+      ```
+      #!/bin/sh
+
+      upSeconds="$(/usr/bin/cut -d. -f1 /proc/uptime)"
+      secs=$((${upSeconds}%60))
+      mins=$((${upSeconds}/60%60))
+      hours=$((${upSeconds}/3600%24))
+      days=$((${upSeconds}/86400))
+      UPTIME=`printf "%d days, %02dh%02dm%02ds" "$days" "$hours" "$mins" "$secs"`
+
+      # get the load averages
+      read one five fifteen rest < /proc/loadavg
+
+      echo "
+
+                              .^~:
+                            .!!J7
+                             :77....
+                          ^~::^:.:.^~
+                          ! .~ :^  ~~
+                         .! .: ..  !.                             .::^^
+                         .!   .:::~!                      ...::^^^~^^~~
+                         .!^^^?!....          ..::::^^^^^^^^^^:::::::!:
+                             .77.  ...::^^^^^^^^^^:::::::::::::::::::7.
+                           ..:??^:~!7?~~~~^^^^::^^^^^^:::::::::::::::7.
+                          !~^^^::::::7^.        ....::::^^^^^::::::::!
+                        .:7:^^~~^^^:^7^^~:                 .....::^^^~
+                       ^~~7:7~:^:~7:!..~:!.
+                      ~!~:~.!^^^^~!:7  .!!~
+                     ^~~ :~:^^^^^^::!   .!!
+                    :~!. ^^::::::::~!  .:^~^
+                   .~^^ .~~~~!:^7~^^. :!~^^~.
+                  :~!!    :7!^ .!^:
+                 :!~!^    ~~~: :7!^                .......
+                          !.^. ^^^^        ..:^:::^^::::^^^:::::::^^:::...
+                          7.7. !:!:  ..:^^^::..                   ......::
+                         ^7^!~:7^~7^^^:..
+                     ..:~7^^^!:~^^~.
+                  .^^::....
+               .:^^.
+              ::.
+
+        `uname -srmo`
+        `date -u`
+
+
+        Last login.........: `lastlog -u pi | awk 'NR==2 {$1=$2=$3=""; print $0}' | awk '$1=$1'` from `lastlog -u pi | awk 'NR==2 {print $3}'`
+        Uptime.............: ${UPTIME}
+        Temperature........: `/opt/vc/bin/vcgencmd measure_temp | awk -F '[/=]' '{print $2}'`
+        Memory.............: `free -h | awk 'NR==2 {print $4}'` (Free) / `free -h | awk 'NR==2 {print $2}'` (Total)
+        Root Drive.........: `df -h -x tmpfs -x vfat -x devtmpfs | awk 'NR==2 {print $5 " (" $3 "/" $2 ") used on " $1 }'`
+        IP Addresses.......: `ifconfig eth0 | grep "inet " | awk '{print $2}'`
+      "
+      ```
 
 
 ### PROBLEMAS_CONOCIDOS
@@ -444,17 +535,15 @@
 
 
 ### COMANDOS_UTILES
-  - velocidad CPU: **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
+  - CPU velocidad: **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
+  - CPU temperatura: **vcgencmd measure_tempnano**
 
-  - velocidad SD: **while true; do sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10; sleep 5; done**
-
-  - temperatura CPU: **vcgencmd measure_tempnano**
+  - SD velocidad: **while true; do sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10; sleep 5; done**
 
   - TRANSMISSION config: **/etc/transmission-daemon/settings.json**
     - servicio: **sudo systemctl start transmission-daemon**
 
   - ls en MB: **ls -al --block-size=MB**
-
   - cambiar prompt y colores: **PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"**
 
   - Home assistant:
@@ -464,7 +553,6 @@
   - FileBrowser: **sudo filebrowser -a 192.168.0.2 -p 8888 -r /**
 
   - Inventario: **lm -R -l > 211230_inventario.txt**
-
   - Tamaño carpetas (Series,Pelis) del disco externo: **du -h --max-depth=1 /media/DISCO_USB_EXT/**
 
   - resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.MDK**
@@ -472,6 +560,11 @@
   - montar PORTATIL: **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
 
   - aMule: **sudo service amule-daemon start**
+
+  - RClone, conexion multicloud: https://ostechnix.com/how-to-mount-google-drive-locally-as-virtual-file-system-in-linux/
+    - **rclone config**
+    - IMPORTANTE: cuando estemos en Remote config /Use auto config? decir **N**
+
 
 
 ### DEPRECADO
