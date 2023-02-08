@@ -447,12 +447,12 @@
       - editar este archivo: **cd /etc/nginx/sites-available && nano default**:
         - en esta linea añadir index.php: index index.html index.htm to index **index.php** index.html index.htm
         - descomentar las lineas de php$ para dejarlo asi:
-                ```
-                location ~ \.php$ {
-                  include snippets/fastcgi-php.conf;
-                  fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
-                }
-                ```
+      ```
+      location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+      }
+      ```
       - **sudo systemctl restart nginx**
 
 
