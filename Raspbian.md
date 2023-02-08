@@ -443,10 +443,10 @@
 
 ### NGINX_PHP:
 
-      - **sudo apt install php-fpm php-common php7.3-cli php7.3-common php7.3-fpm php7.3-json php7.3-opcache php7.3-readline nginx libgd3 libnginx-mod-http-auth-pam libnginx-mod-http-dav-ext libnginx-mod-http-echo libnginx-mod-http-geoip libnginx-mod-http-image-filter libnginx-mod-http-subs-filter libnginx-mod-http-upstream-fair libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream nginx-common nginx-full**
-      - editar este archivo: **cd /etc/nginx/sites-available && nano default**:
-        - en esta linea añadir index.php: index index.html index.htm to index **index.php** index.html index.htm
-        - descomentar las lineas de php$ para dejarlo asi:
+  - **sudo apt install php-fpm php-common php7.3-cli php7.3-common php7.3-fpm php7.3-json php7.3-opcache php7.3-readline nginx libgd3 libnginx-mod-http-auth-pam libnginx-mod-http-dav-ext libnginx-mod-http-echo libnginx-mod-http-geoip libnginx-mod-http-image-filter libnginx-mod-http-subs-filter libnginx-mod-http-upstream-fair libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream nginx-common nginx-full**
+  - editar este archivo: **cd /etc/nginx/sites-available && nano default**:
+    - en esta linea añadir index.php: index index.html index.htm to index **index.php** index.html index.htm
+    - descomentar las lineas de php$ para dejarlo asi:
 
       ```
       location ~ \.php$ {
@@ -454,8 +454,8 @@
         fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
       }
       ```
-      
-      - **sudo systemctl restart nginx**
+
+  - **sudo systemctl restart nginx**
 
 
 ### VARIOS
