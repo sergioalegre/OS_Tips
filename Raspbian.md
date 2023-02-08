@@ -384,6 +384,12 @@
       	writable = yes
       	guest ok = yes
       	path = /home/pi/downloads/complete/
+
+        [Conocimiento]
+        	path = /media/DISCO_USB_EXT/Conocimiento
+          browseable = yes
+          guest ok = yes
+          read only = no        
       ```
 
 
@@ -461,7 +467,7 @@
     - alias incoming='cd /home/amule/.aMule/Incoming/ && ls'
   - PiKISS: https://github.com/jmcerrejon/PiKISS
 
-  -MOTD:
+  - MOTD:
     - **sudo systemctl disable motd**
     - **sudo rm -f /etc/motd**
     - **sudo rm /etc/update-motd.d/10-uname**
