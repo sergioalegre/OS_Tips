@@ -132,6 +132,25 @@
           - 51413:51413/udp
     ```  
 
+#### PHP
+    ```
+    services:
+      sergioalegre-php:
+        container_name: sergioalegre-php
+        #security_opt:
+        #  - seccomp:unconfined
+        image: treehouses/php-apache
+        ports:
+          - 8084:80
+        restart: always
+        dns: 8.8.8.8
+        volumes: 
+          - /home/pi/dockers/sergioalegre.es/:/var/www/html
+    ```   
+  - Conectar a la red de BBDD
+  - comprobar version php **php -v**
+  - **apt update && apt-get install -y php7.3-{mysql,sqlite3,mbstring,json,gd,bz2,bcmath,imagic}**
+
 #### CALIBRE-WEB
 
   - **sudo chown -R pi /media/DISCO_USB_EXT/Calibre**
