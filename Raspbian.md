@@ -188,7 +188,7 @@
       jc21/nginx-proxy-manager
       ```
 
-### FAIL2BAN
+#### FAIL2BAN
       ```
       services:
           fail2ban:
@@ -202,6 +202,17 @@
                   - '/var/log:/var/log:ro'
               image: 'crazymax/fail2ban:latest'   
       ```           
+  - **sudo nano /home/pi/dockers/fail2ban/jail.d/sshd.conf**
+
+      ```
+      [sshd]
+      enabled = true
+      chain = INPUT
+      port = ssh
+      filter = sshd[mode=aggressive]
+      logpath = /var/log/auth.log
+      maxretry = 3
+      ```
 
 #### PORTAINER
 
