@@ -144,7 +144,7 @@
           - 8084:80
         restart: always
         dns: 8.8.8.8
-        volumes: 
+        volumes:
           - /home/pi/dockers/sergioalegre.es/:/var/www/html
     ```   
   - Conectar a la red de BBDD
@@ -188,6 +188,21 @@
       jc21/nginx-proxy-manager
       ```
 
+### FAIL2BAN
+      ```
+      services:
+          fail2ban:
+              container_name: fail2ban
+              restart: always
+              security_opt:
+              - seccomp:unconfined        
+              network_mode: host
+              volumes:
+                  - '/home/pi/dockers/fail2ban:/data'
+                  - '/var/log:/var/log:ro'
+              image: 'crazymax/fail2ban:latest'   
+      ```           
+
 #### PORTAINER
 
   - **docker volume create portainer_nuevo**
@@ -216,21 +231,27 @@
             - 8081:80
           environment:
             - "WORDPRESS_DB_USER=root"
-            - "WORDPRESS_DB_PASSWORD=CAMBIAESTACONTRASEÑA"
+            - "WORDPRESS_DB_PASSWORD=CAMBIARCONTRASEÑAAQUI"
           restart: always
           dns: 8.8.8.8
           volumes:
-            - /home/pi/wp_data:/var/www/html
+            - /home/pi/dockers/afanburgos.com:/var/www/html
+          networks:
+            wordpress_default:
+              ipv4_address: 172.22.0.3      
 
         mysql:
           container_name: mysql
           image: jsurf/rpi-mariadb
           volumes:
-          - /home/pi/mysql:/var/lib/mysql
+          - /home/pi/dockers/mysql:/var/lib/mysql
           environment:
-          - "MYSQL_ROOT_PASSWORD=CAMBIAESTACONTRASEÑA"
+          - "MYSQL_ROOT_PASSWORD=CAMBIARCONTRASEÑAAQUI"
           - "MYSQL_DATABASE=wordpress"
           restart: always
+          networks:
+            wordpress_default:
+              ipv4_address: 172.22.0.2    
 
         phpmyadmin:
             container_name: phpmyadmin
@@ -244,8 +265,21 @@
               - PMA_USER=root
               - PMA_ARBITARY=1
               - PMA_HOST=mysql
-              - PMA_PASSWORD=CAMBIAESTACONTRASEÑA    
+              - PMA_PASSWORD=CAMBIARCONTRASEÑAAQUI
+            networks:
+              wordpress_default:
+                ipv4_address: 172.22.0.4        
+
+      networks:
+        wordpress_default:
+          driver: bridge
+          ipam:
+           config:
+             - subnet: 172.22.0.0/16
+               gateway: 172.22.0.1         
       ```
+
+      - recordar que el docker sergioalegre-php tambien se conecta a esta red. Si se enciende antes puede que haya cogido una de estas IPs reservadas
 
 #### CLOUDFLARE_DDNS
 
