@@ -132,6 +132,26 @@
           - 51413:51413/udp
     ```  
 
+
+#### AUDIOBOOKSELF
+    ```
+    version: "3.7"
+    services:
+      audiobookshelf:
+        image: ghcr.io/advplyr/audiobookshelf:latest
+        container_name: audiobookshelf
+        security_opt:
+          - seccomp:unconfined    
+        ports:
+          - 8088:80
+        volumes:
+          - /home/pi/dockers/audiobookshelf/audiobooks:/audiobooks
+          - /home/pi/dockers/audiobookshelf/podcasts:/podcasts
+          - /home/pi/dockers/audiobookshelf/config:/config
+          - /home/pi/dockers/audiobookshelf/metadata:/metadata     
+    ```  
+
+
 #### PHP
     ```
     services:
@@ -214,6 +234,7 @@
       maxretry = 3
       ```
 
+
 #### PORTAINER
 
   - **docker volume create portainer_nuevo**
@@ -228,6 +249,7 @@
       -v portainer_nuevo:/data \
       portainer/portainer-ce
       ```
+
 
 #### WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4
 
@@ -292,6 +314,7 @@
 
       - recordar que el docker sergioalegre-php tambien se conecta a esta red. Si se enciende antes puede que haya cogido una de estas IPs reservadas
 
+
 #### CLOUDFLARE_DDNS
 
       ```
@@ -313,6 +336,7 @@
           restart: unless-stopped
       ```
 
+
 #### DUPLICATI
       ```
       version: '3.3'
@@ -327,7 +351,18 @@
               ports:
                   - '8087:8200'
               image: duplicati/duplicati
-      ```          
+      ```
+  - Configuración email (requiere contraseña generada en Mi Cuenta/Seguridad/Contraseñas de aplicaciones):
+      ```  
+      --send-mail-url=smtp://smtp.gmail.com:587/?starttls=when-available
+      --send-mail-any-operation=true
+      --send-mail-subject=Duplicati %PARSEDRESULT%, %OPERATIONNAME% report for %backup-name%
+      --send-mail-to=sergio.alegre.arribas@gmail.com
+      --send-mail-username=sergio.alegre.arribas@gmail.com
+      --send-mail-password=<PONER LA CONTRASEÑA GENERADA>
+      --send-mail-from=sergio.alegre.arribas@gmail.com         
+      ```
+
 
 ### HOME-ASSISTANT
 
@@ -525,7 +560,7 @@
 ### VARIOS
 
   - Portainer: mostrar Dockers ocultos: Settings / Remove
-  - paquetes últiles: **sudo apt-get install tmux**
+  - paquetes últiles: **sudo apt-get install tmux renameutils** (el ultimo tiene **qmv** para renames masivos)
   - cron job: **sudo chown -R pi /home/pi/Descargas**
   - alias .bashrc:
     - alias la='ls -al --color'
