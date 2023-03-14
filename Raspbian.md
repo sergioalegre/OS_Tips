@@ -68,6 +68,7 @@
 
 
 ### CONFIG-TXT  
+
   - **sudo cp /boot/config.txt /boot/config_ORIGINAL.txt && sudo nano /boot/config.txt**
       ```
       hdmi_edid_file=1
@@ -106,7 +107,8 @@
 
 ### MY_DOCKERS
 
-#### TRANSMISSION-DOCKER  
+#### TRANSMISSION-DOCKER
+
   - nota: hubo que usar seccomp:unconfined porque sino el docker no arrancaba
 
     ```
@@ -120,7 +122,7 @@
         environment:
           - PUID=1000
           - PGID=1000
-          - TZ=America/Argentina/Buenos_Aires
+          - TZ=Europe/Madrid
           - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
         volumes:
           - /home/pi/dockers/transmission/config:/config
@@ -134,6 +136,7 @@
 
 
 #### AUDIOBOOKSELF
+
     ```
     version: "3.7"
     services:
@@ -153,6 +156,7 @@
 
 
 #### PHP
+
     ```
     services:
       sergioalegre-php:
@@ -170,6 +174,7 @@
   - Conectar a la red de BBDD
   - comprobar version php **php -v**
   - **apt update && apt-get install -y php7.3-{mysql,sqlite3,mbstring,json,gd,bz2,bcmath,imagic}**
+
 
 #### CALIBRE-WEB
 
@@ -194,6 +199,30 @@
     - Allow eBook Viever y Allow Uploads
 
 
+#### AUDIOBOOKSELF
+
+  - Generar el claim en https://www.plex.tv/claim/
+    ```
+    version: "2.1"
+    services:
+      plex:
+        image: ghcr.io/linuxserver/plex:arm32v7-latest
+        container_name: plex
+        security_opt:
+          - seccomp:unconfined  
+        network_mode: host
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - VERSION=docker
+          - PLEX_CLAIM= <PONER CLAIM AQUI>
+        volumes:
+          - /home/pi/dockers/plex/library:/config
+          - /home/pi/Series_Nuevas:/tv
+          - /home/pi/Peliculas_Nuevas:/movies
+        restart: unless-stopped    
+    ```    
+
 #### NGINX-PROXY-MANAGER
 
       ```
@@ -208,7 +237,9 @@
       jc21/nginx-proxy-manager
       ```
 
+
 #### FAIL2BAN
+
       ```
       services:
           fail2ban:
@@ -338,6 +369,7 @@
 
 
 #### DUPLICATI
+
       ```
       version: '3.3'
       services:
@@ -399,6 +431,20 @@
     - **sudo apt-get update && sudo apt-get install webmin**
   - 2FA: https://doxfer.webmin.com/Webmin/Enhanced_Authentication
   - Dark Mode: en el panel de la izquierda (simbolo luna)
+  - ruta a los File Bookmarks:
+          ```
+          /media/DISCO_USB_EXT
+          /media/DISCO_USB_EXT/ZZZ___REVISAR
+          /media/DISCO_USB_EXT/Peliculas/SciFi
+          /media/DISCO_USB_EXT/Peliculas/Varios
+          /media/DISCO_USB_EXT/Series
+          /home/pi/dockers
+          /home/amule/.aMule/Incoming
+          /home/pi/downloads/complete
+          /home/pi/Peliculas_Nuevas
+          /home/pi/Series_Nuevas
+          /home/pi/dockers/audiobookshelf/audiobooks          
+          ```
 
 
 ### SAMBA
@@ -633,8 +679,8 @@
 
 
 ### PROBLEMAS_CONOCIDOS
-  - Problema con dockers: <b>libseccomp2</b> o <b>warning: unable to iopause</b>,
-    - Solución: en docker run: <b>--security-opt seccomp=unconfined</b> en docker compose:
+  - Problema con dockers: **libseccomp2** o **warning: unable to iopause**,
+    - Solución: en docker run: **--security-opt seccomp=unconfined** en docker compose:
     ```
     security_opt:
       - seccomp:unconfined
@@ -656,8 +702,6 @@
   - Home assistant:
     - **systemctl stop hassio-supervisor && docker ps -a -q | xargs docker stop**
     - **systemctl status hassio-supervisor**
-
-  - FileBrowser: **sudo filebrowser -a 192.168.0.2 -p 8888 -r /**
 
   - Inventario: **lm -R -l > 211230_inventario.txt**
   - Tamaño carpetas (Series,Pelis) del disco externo: **du -h --max-depth=1 /media/DISCO_USB_EXT/**
