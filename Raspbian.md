@@ -199,6 +199,21 @@
     - Allow eBook Viever y Allow Uploads
 
 
+#### FIREFOX
+
+    ```
+    services:
+      firefox:
+        image: jlesage/firefox
+        container_name: firefox
+        security_opt:
+          - seccomp:unconfined    
+        ports:
+          #- 5900:5900 #VNC
+          - 5800:5800 #HTTP
+    ```  
+
+
 #### AUDIOBOOKSELF
 
   - Generar el claim en https://www.plex.tv/claim/
