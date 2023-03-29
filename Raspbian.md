@@ -38,11 +38,6 @@
 
 ### HARDWARE
 
-  - Comparativa SD: https://www.pidramble.com/wiki/benchmarks/microsd-cards
-  - I/O de la SD:
-    - **sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10** Leerá 80 MB y dirá la velocidad
-    - **sudo hdparm -t /dev/mmcblk0** similar al anterior
-    - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/RPI-SD-IO.jpg">
   - HDMI activar al arrancar:
     - **apt install cec-utils**
     - Sacar el address de la TV con: **echo 'scan' | cec-client -s -d**
@@ -98,11 +93,12 @@
     - En la consola del docker: **ssh-keygen** nos le generará en el dir .ssh
       - copiarle al host: **cd .ssh && ssh-copy-id -i id_rsa pi@192.168.0.2**
       - **yes**
-      - **poner la pass de pi**
-      - Prueba1: comprobar funcione con ssh pi@192.168.0.2 (no deberia pedir password)
+      - poner la pass de pi
+      - Prueba1: comprobar funcione con **ssh pi@192.168.0.2** (no deberia pedir password)
       - **exit**
       - **cd ..**
       - Prueba2: **ssh -i .ssh/id_rsa -o StrictHostKeyChecking=no pi@192.168.0.2 date**
+
 
 
 ### MY_DOCKERS
@@ -151,7 +147,8 @@
           - /home/pi/dockers/audiobookshelf/audiobooks:/audiobooks
           - /home/pi/dockers/audiobookshelf/podcasts:/podcasts
           - /home/pi/dockers/audiobookshelf/config:/config
-          - /home/pi/dockers/audiobookshelf/metadata:/metadata     
+          - /home/pi/dockers/audiobookshelf/metadata:/metadata
+        restart: unless-stopped                     
     ```  
 
 
@@ -178,8 +175,6 @@
 
 #### CALIBRE-WEB
 
-  - **sudo chown -R pi /media/DISCO_USB_EXT/Calibre**
-  - **sudo chgrp -R pi /media/DISCO_USB_EXT/Calibre**
       ```
       docker run -d \
       --name=calibre-web \
@@ -188,8 +183,8 @@
       -e PGID=1000 \
       -e TZ=Europe/Madrid \
       -p 8083:8083 \
-      -v /media/DISCO_USB_EXT/Calibre/config:/config \
-      -v /media/DISCO_USB_EXT/Calibre/books:/books \
+      -v /home/pi/dockers/Calibre/config:/config \
+      -v /home/pi/dockers/Calibre/books:/books \
       --restart unless-stopped \
       lscr.io/linuxserver/calibre-web:latest
       ```
@@ -210,11 +205,11 @@
           - seccomp:unconfined    
         ports:
           #- 5900:5900 #VNC
-          - 5800:5800 #HTTP
+          - 8086:5800 #HTTP
     ```  
 
 
-#### AUDIOBOOKSELF
+#### PLEX
 
   - Generar el claim en https://www.plex.tv/claim/
     ```
@@ -240,175 +235,175 @@
 
 #### NGINX-PROXY-MANAGER
 
-      ```
-      docker run -d \
-      --name=nginx-proxy-manager \
-      -p 80:80  \
-      -p 81:81  \
-      -p 443:443
-      -v /home/pi/npm/data:/data  \
-      -v /home/pi/npm/letsencrypt:/etc/letsencrypt  \
-      --restart unless-stopped \
-      jc21/nginx-proxy-manager
-      ```
+    ```
+    docker run -d \
+    --name=nginx-proxy-manager \
+    -p 80:80  \
+    -p 81:81  \
+    -p 443:443
+    -v /home/pi/npm/data:/data  \
+    -v /home/pi/npm/letsencrypt:/etc/letsencrypt  \
+    --restart unless-stopped \
+    jc21/nginx-proxy-manager
+    ```
 
 
 #### FAIL2BAN
 
-      ```
-      services:
-          fail2ban:
-              container_name: fail2ban
-              restart: always
-              security_opt:
-              - seccomp:unconfined        
-              network_mode: host
-              volumes:
-                  - '/home/pi/dockers/fail2ban:/data'
-                  - '/var/log:/var/log:ro'
-              image: 'crazymax/fail2ban:latest'   
-      ```           
+    ```
+    services:
+        fail2ban:
+            container_name: fail2ban
+            restart: always
+            security_opt:
+            - seccomp:unconfined        
+            network_mode: host
+            volumes:
+                - '/home/pi/dockers/fail2ban:/data'
+                - '/var/log:/var/log:ro'
+            image: 'crazymax/fail2ban:latest'   
+    ```           
   - **sudo nano /home/pi/dockers/fail2ban/jail.d/sshd.conf**
 
-      ```
-      [sshd]
-      enabled = true
-      chain = INPUT
-      port = ssh
-      filter = sshd[mode=aggressive]
-      logpath = /var/log/auth.log
-      maxretry = 3
-      ```
+    ```
+    [sshd]
+    enabled = true
+    chain = INPUT
+    port = ssh
+    filter = sshd[mode=aggressive]
+    logpath = /var/log/auth.log
+    maxretry = 3
+    ```
 
 
 #### PORTAINER
 
   - **docker volume create portainer_nuevo**
 
-      ```
-      docker run -d \
-      -p 8000:8000 \
-      -p 9000:9000 \
-      --name=portainer \
-      --restart=unless-stopped \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v portainer_nuevo:/data \
-      portainer/portainer-ce
-      ```
+  ```
+  docker run -d \
+  -p 8000:8000 \
+  -p 9000:9000 \
+  --name=portainer \
+  --restart=unless-stopped \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v portainer_nuevo:/data \
+  portainer/portainer-ce
+  ```
 
 
 #### WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4
 
-      ```
-      version: '3.6'
+    ```
+    version: '3.6'
 
-      services:
-        wordpress:
-          container_name: wordpress
-          image: wordpress:5.7.2
-          ports:
-            - 8081:80
+    services:
+      wordpress:
+        container_name: wordpress
+        image: wordpress:5.7.2
+        ports:
+          - 8081:80
+        environment:
+          - "WORDPRESS_DB_USER=root"
+          - "WORDPRESS_DB_PASSWORD=CAMBIARCONTRASEÑAAQUI"
+        restart: always
+        dns: 8.8.8.8
+        volumes:
+          - /home/pi/dockers/afanburgos.com:/var/www/html
+        networks:
+          wordpress_default:
+            ipv4_address: 172.22.0.3      
+
+      mysql:
+        container_name: mysql
+        image: jsurf/rpi-mariadb
+        volumes:
+        - /home/pi/dockers/mysql:/var/lib/mysql
+        environment:
+        - "MYSQL_ROOT_PASSWORD=CAMBIARCONTRASEÑAAQUI"
+        - "MYSQL_DATABASE=wordpress"
+        restart: always
+        networks:
+          wordpress_default:
+            ipv4_address: 172.22.0.2    
+
+      phpmyadmin:
+          container_name: phpmyadmin
+          image: mt08/rpi-phpmyadmin    
+          depends_on:      
+            - mysql
+          ports:      
+            - "8082:80"        
           environment:
-            - "WORDPRESS_DB_USER=root"
-            - "WORDPRESS_DB_PASSWORD=CAMBIARCONTRASEÑAAQUI"
-          restart: always
-          dns: 8.8.8.8
-          volumes:
-            - /home/pi/dockers/afanburgos.com:/var/www/html
+            - PMA_ROOT_USER=root
+            - PMA_USER=root
+            - PMA_ARBITARY=1
+            - PMA_HOST=mysql
+            - PMA_PASSWORD=CAMBIARCONTRASEÑAAQUI
           networks:
             wordpress_default:
-              ipv4_address: 172.22.0.3      
+              ipv4_address: 172.22.0.4        
 
-        mysql:
-          container_name: mysql
-          image: jsurf/rpi-mariadb
-          volumes:
-          - /home/pi/dockers/mysql:/var/lib/mysql
-          environment:
-          - "MYSQL_ROOT_PASSWORD=CAMBIARCONTRASEÑAAQUI"
-          - "MYSQL_DATABASE=wordpress"
-          restart: always
-          networks:
-            wordpress_default:
-              ipv4_address: 172.22.0.2    
+    networks:
+      wordpress_default:
+        driver: bridge
+        ipam:
+         config:
+           - subnet: 172.22.0.0/16
+             gateway: 172.22.0.1         
+    ```
 
-        phpmyadmin:
-            container_name: phpmyadmin
-            image: mt08/rpi-phpmyadmin    
-            depends_on:      
-              - mysql
-            ports:      
-              - "8082:80"        
-            environment:
-              - PMA_ROOT_USER=root
-              - PMA_USER=root
-              - PMA_ARBITARY=1
-              - PMA_HOST=mysql
-              - PMA_PASSWORD=CAMBIARCONTRASEÑAAQUI
-            networks:
-              wordpress_default:
-                ipv4_address: 172.22.0.4        
-
-      networks:
-        wordpress_default:
-          driver: bridge
-          ipam:
-           config:
-             - subnet: 172.22.0.0/16
-               gateway: 172.22.0.1         
-      ```
-
-      - recordar que el docker sergioalegre-php tambien se conecta a esta red. Si se enciende antes puede que haya cogido una de estas IPs reservadas
+    - recordar que el docker sergioalegre-php tambien se conecta a esta red. Si se enciende antes puede que haya cogido una de estas IPs reservadas
 
 
 #### CLOUDFLARE_DDNS
 
-      ```
-      version: "3.7"
-      services:
-        cloudflare-ddns:
-          image: timothyjmiller/cloudflare-ddns:latest
-          container_name: cloudflare-ddns-sergioalegre
-          security_opt:
-            - seccomp:unconfined    
-          #security_opt:
-            - no-new-privileges:true
-          network_mode: "host"
-          environment:
-            - PUID=1000
-            - PGID=1000
-          volumes:
-            - /home/pi/dockers/cloudflare-ddns-sergioalegre/config.json:/config.json
-          restart: unless-stopped
-      ```
+    ```
+    version: "3.7"
+    services:
+      cloudflare-ddns:
+        image: timothyjmiller/cloudflare-ddns:latest
+        container_name: cloudflare-ddns-sergioalegre
+        security_opt:
+          - seccomp:unconfined    
+        #security_opt:
+          - no-new-privileges:true
+        network_mode: "host"
+        environment:
+          - PUID=1000
+          - PGID=1000
+        volumes:
+          - /home/pi/dockers/cloudflare-ddns-sergioalegre/config.json:/config.json
+        restart: unless-stopped
+    ```
 
 
 #### DUPLICATI
 
-      ```
-      version: '3.3'
-      services:
-          duplicati:
-              container_name: duplicati
-              volumes:
-                  - '/home/pi/dockers/duplicati/:/data'
-                  - '/home/pi/dockers_backup/:/DOCKERS_BACKUP'
-                  - '/media/DISCO_USB_EXT/:/DISCO_USB_EXT'
-                  - '/:/RAIZ_RPI'
-              ports:
-                  - '8087:8200'
-              image: duplicati/duplicati
-      ```
+    ```
+    version: '3.3'
+    services:
+        duplicati:
+            container_name: duplicati
+            volumes:
+                - '/home/pi/dockers/duplicati/:/data'
+                - '/home/pi/dockers_backup/:/DOCKERS_BACKUP'
+                - '/media/DISCO_USB_EXT/:/DISCO_USB_EXT'
+                - '/:/RAIZ_RPI'
+            ports:
+                - '8087:8200'
+            image: duplicati/duplicati
+    ```
   - Configuración email (requiere contraseña generada en Mi Cuenta/Seguridad/Contraseñas de aplicaciones):
-      ```  
-      --send-mail-url=smtp://smtp.gmail.com:587/?starttls=when-available
-      --send-mail-any-operation=true
-      --send-mail-subject=Duplicati %PARSEDRESULT%, %OPERATIONNAME% report for %backup-name%
-      --send-mail-to=sergio.alegre.arribas@gmail.com
-      --send-mail-username=sergio.alegre.arribas@gmail.com
-      --send-mail-password=<PONER LA CONTRASEÑA GENERADA>
-      --send-mail-from=sergio.alegre.arribas@gmail.com         
-      ```
+    ```  
+    --send-mail-url=smtp://smtp.gmail.com:587/?starttls=when-available
+    --send-mail-any-operation=true
+    --send-mail-subject=Duplicati %PARSEDRESULT%, %OPERATIONNAME% report for %backup-name%
+    --send-mail-to=sergio.alegre.arribas@gmail.com
+    --send-mail-username=sergio.alegre.arribas@gmail.com
+    --send-mail-password=<PONER LA CONTRASEÑA GENERADA>
+    --send-mail-from=sergio.alegre.arribas@gmail.com         
+    ```
 
 
 ### HOME-ASSISTANT
@@ -447,19 +442,19 @@
   - 2FA: https://doxfer.webmin.com/Webmin/Enhanced_Authentication
   - Dark Mode: en el panel de la izquierda (simbolo luna)
   - ruta a los File Bookmarks:
-          ```
-          /media/DISCO_USB_EXT
-          /media/DISCO_USB_EXT/ZZZ___REVISAR
-          /media/DISCO_USB_EXT/Peliculas/SciFi
-          /media/DISCO_USB_EXT/Peliculas/Varios
-          /media/DISCO_USB_EXT/Series
-          /home/pi/dockers
-          /home/amule/.aMule/Incoming
-          /home/pi/downloads/complete
-          /home/pi/Peliculas_Nuevas
-          /home/pi/Series_Nuevas
-          /home/pi/dockers/audiobookshelf/audiobooks          
-          ```
+      ```
+      /media/DISCO_USB_EXT
+      /media/DISCO_USB_EXT/ZZZ___REVISAR
+      /media/DISCO_USB_EXT/Peliculas/SciFi
+      /media/DISCO_USB_EXT/Peliculas/Varios
+      /media/DISCO_USB_EXT/Series
+      /home/pi/dockers
+      /home/amule/.aMule/Incoming
+      /home/pi/downloads/complete
+      /home/pi/Peliculas_Nuevas
+      /home/pi/Series_Nuevas
+      /home/pi/dockers/audiobookshelf/audiobooks          
+      ```
 
 
 ### SAMBA
@@ -532,24 +527,28 @@
       	path = /home/amule/.aMule/Incoming
       	public = yes
 
-      [aMule_Temp]
-      	writeable = yes
-      	force user = root
-      	force group = root
-      	browseable = yes
-      	path = /home/amule/.aMule/Temp
-      	public = yes    
-
       [Transmission]
       	writable = yes
       	guest ok = yes
       	path = /home/pi/downloads/complete/
 
-        [Conocimiento]
-        	path = /media/DISCO_USB_EXT/Conocimiento
-          browseable = yes
-          guest ok = yes
-          read only = no        
+      [Conocimiento]
+      	path = /media/DISCO_USB_EXT/Conocimiento
+        browseable = yes
+        guest ok = yes
+        read only = no
+
+      [Peliculas_Nuevas]
+      	path = /home/pi/Peliculas_Nuevas
+        browseable = yes
+        guest ok = yes
+        read only = no  
+
+      [Series_Nuevas]
+      	path = //home/pi/Series_Nuevas
+        browseable = yes
+        guest ok = yes
+        read only = no                                
       ```
 
 
@@ -757,3 +756,11 @@
     - https://filebrowser.org/installation
     - **filebrowser -a 192.168.0.2 -p 8888 -r / --noauth**
     - comandos a permitir **pwd mv rm unrar ls mkdir rmdir**  
+
+### HARDWARE
+
+  - Comparativa SD: https://www.pidramble.com/wiki/benchmarks/microsd-cards
+  - I/O de la SD:
+    - **sudo dd if=/dev/mmcblk0 of=/dev/null bs=8M count=10** Leerá 80 MB y dirá la velocidad
+    - **sudo hdparm -t /dev/mmcblk0** similar al anterior
+    - <img src="https://github.com/sergioalegre/OS_Tips/blob/master/pics/RPI-SD-IO.jpg">
