@@ -152,6 +152,29 @@
     ```  
 
 
+#### HEIMDALL
+
+    ```
+    version: "2.1"
+    services:
+      heimdall:
+        image: lscr.io/linuxserver/heimdall:latest
+        container_name: heimdall
+        security_opt:
+          - seccomp:unconfined    
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=Etc/UTC
+        volumes:
+          - /home/pi/dockers/heimdall:/config
+        ports:
+          - 8089:80
+          #- 443:443
+        restart: unless-stopped
+    ```
+
+
 #### PHP
 
     ```
@@ -205,7 +228,7 @@
           - seccomp:unconfined    
         ports:
           #- 5900:5900 #VNC
-          - 8086:5800 #HTTP
+          - 8091:5800 #HTTP
     ```  
 
 
@@ -294,6 +317,8 @@
 
 #### WORDPRESS+MYSQL+PHPMYADMIN_raspberryPi4
 
+    - recordar que el docker sergioalegre-php tambien se conecta a esta red. Si se enciende antes puede que haya cogido una de estas IPs reservadas
+
     ```
     version: '3.6'
 
@@ -352,8 +377,6 @@
            - subnet: 172.22.0.0/16
              gateway: 172.22.0.1         
     ```
-
-    - recordar que el docker sergioalegre-php tambien se conecta a esta red. Si se enciende antes puede que haya cogido una de estas IPs reservadas
 
 
 #### CLOUDFLARE_DDNS
@@ -462,6 +485,7 @@
   - montar USB desde webmin de modo permanente
   - **sudo mkdir /media/DISCO_USB_EXT**
   - Configurar:
+
       ```
       [DISCO_USB_EXT]
       	path = /media/DISCO_USB_EXT
