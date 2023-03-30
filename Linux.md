@@ -89,7 +89,7 @@
   - ver trafico de red de cada interfaz: **cat /proc/net/dev**
   - comprobar si el puerto 3000 esta abierto: **echo '' > /dev/tcp/127.0.0.1/3000** si no da 'connection refuseVMC' es q esta abierto
   - comprobar estado de tarjetas en bonding (agregado) **cat /proc/net/bonding/bond0**
-  - poner ip estática:
+  - poner ip estática (con **ip a** podemos ver el nombre de la interfaz):
     Create a netplan configuration in the file /etc/netplan/<nombre_interfaz>.yaml. The example assumes you are configuringeth0. Change the addresses, gateway4, and nameservers values to meet the requirements.
       ```    
         network:
@@ -101,7 +101,6 @@
                 - 10.10.10.2/24
               gateway4: 10.10.10.1
               nameservers:
-                  search: [mydomain, otherdomain]
                   addresses: [10.10.10.1, 1.1.1.1]
       ```                  
     The configuration apply: **sudo netplan apply**

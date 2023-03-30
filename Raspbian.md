@@ -217,6 +217,24 @@
     - Allow eBook Viever y Allow Uploads
 
 
+#### PICOSHARE
+
+    ```
+    version: '3.3'
+    services:
+        picoshare:
+            environment:
+                - PORT=3001
+                - PS_SHARED_SECRET=<PONER_CONTRASEÑA_AQUI>
+            ports:
+                - '8092:3001/tcp'
+            volumes:
+                - '/home/pi/dockers/picoshare/:/data'
+            container_name: picoshare
+            image: mtlynch/picoshare
+    ```  
+
+
 #### FIREFOX
 
     ```
@@ -486,7 +504,7 @@
   - **sudo mkdir /media/DISCO_USB_EXT**
   - Configurar:
 
-      ```
+    ```
       [DISCO_USB_EXT]
       	path = /media/DISCO_USB_EXT
         browseable = yes
@@ -573,20 +591,23 @@
         browseable = yes
         guest ok = yes
         read only = no                                
-      ```
+    ```
 
 
 ### CRON_JOBS
+
+#### INVENTARIO: generar y copiar los domingos a las 2am cuando enciendo el Disco USB
+
       ```
-      ###INVENTARIO
       cmdPeliculas="cd /media/DISCO_USB_EXT/Peliculas && lm -R -l > Inventario_Peliculas.txt"
       cmdSeries="cd /media/DISCO_USB_EXT/Series && lm -R -l > Inventario_Series.txt"
       #Todos los días a las 21h
-      schedPelis="0 21 * * * $cmdPeliculas"
-      schedSeries="0 21 * * * $cmdSeries"
+      schedPelis="0 2 2 ? * SUN * $cmdPeliculas"
+      schedSeries="0 2 2 ? * SUN * $cmdSeries"
       ( crontab -l | grep -v -F "$cmdPeliculas" ; echo "$schedPelis" ) | crontab -
       ( crontab -l | grep -v -F "$cmdSeries" ; echo "$schedSeries" ) | crontab -
       ```      
+
 
 ### AMULE
 
@@ -621,7 +642,6 @@
   - **cd /tmp**
   - **sudo apt-get build-dep unrar-nonfree;sudo apt-get source -b unrar-nonfree;sudo dpkg -i unrar*.deb;echo 'done'**
   - **sudo apt install --assume-yes p7zip-full**
-
 
 
 ### NGINX_PHP:
