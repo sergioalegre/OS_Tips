@@ -108,7 +108,6 @@
   - nota: hubo que usar seccomp:unconfined porque sino el docker no arrancaba
 
     ```
-    version: "2.1"
     services:
       transmission:
         image: lscr.io/linuxserver/transmission
@@ -128,13 +127,13 @@
           - 9091:9091
           - 51413:51413
           - 51413:51413/udp
+        restart: always      
     ```  
 
 
 #### AUDIOBOOKSELF
 
     ```
-    version: "3.7"
     services:
       audiobookshelf:
         image: ghcr.io/advplyr/audiobookshelf:latest
@@ -148,14 +147,37 @@
           - /home/pi/dockers/audiobookshelf/podcasts:/podcasts
           - /home/pi/dockers/audiobookshelf/config:/config
           - /home/pi/dockers/audiobookshelf/metadata:/metadata
-        restart: unless-stopped                     
+        restart: always                      
     ```  
+
+
+#### CALIBRE-WEB
+
+      ```
+      services:
+          calibre-web:
+              container_name: calibre-web
+              environment:
+                  - PUID=1000
+                  - PGID=1000
+                  - TZ=Europe/Madrid
+              ports:
+                  - '8083:8083'
+              volumes:
+                  - '/home/pi/dockers/Calibre/config:/config'
+                  - '/home/pi/dockers/Calibre/books:/books'
+              restart: always
+              image: 'lscr.io/linuxserver/calibre-web:latest'
+      ```
+  - Admin/Basic Configuration/Enable Uploads
+  - Admin/admin:
+    - Personalizar vistas
+    - Allow eBook Viever y Allow Uploads
 
 
 #### HEIMDALL
 
     ```
-    version: "2.1"
     services:
       heimdall:
         image: lscr.io/linuxserver/heimdall:latest
@@ -171,7 +193,7 @@
         ports:
           - 8089:80
           #- 443:443
-        restart: unless-stopped
+        restart: always
     ```
 
 
@@ -196,31 +218,9 @@
   - **apt update && apt-get install -y php7.3-{mysql,sqlite3,mbstring,json,gd,bz2,bcmath,imagic}**
 
 
-#### CALIBRE-WEB
-
-      ```
-      docker run -d \
-      --name=calibre-web \
-      --security-opt="seccomp=unconfined" \
-      -e PUID=1000 \
-      -e PGID=1000 \
-      -e TZ=Europe/Madrid \
-      -p 8083:8083 \
-      -v /home/pi/dockers/Calibre/config:/config \
-      -v /home/pi/dockers/Calibre/books:/books \
-      --restart unless-stopped \
-      lscr.io/linuxserver/calibre-web:latest
-      ```
-  - Admin/Basic Configuration/Enable Uploads
-  - Admin/admin:
-    - Personalizar vistas
-    - Allow eBook Viever y Allow Uploads
-
-
 #### PICOSHARE
 
     ```
-    version: '3.3'
     services:
         picoshare:
             environment:
@@ -232,6 +232,7 @@
                 - '/home/pi/dockers/picoshare/:/data'
             container_name: picoshare
             image: mtlynch/picoshare
+            restart: always            
     ```  
 
 
@@ -273,6 +274,7 @@
           - /home/pi/Peliculas_Nuevas:/movies
         restart: unless-stopped    
     ```    
+
 
 #### NGINX-PROXY-MANAGER
 
@@ -613,10 +615,10 @@
 
   - **sudo apt-get install amule amule-daemon**
   - **sudo adduser amule**
-  - **nano /etc/default/amule-daemon** poner AMULED_USER="amule" y AMULED_HOME="/home/amule"
+  - **sudo nano /etc/default/amule-daemon** poner AMULED_USER="amule" y AMULED_HOME="/home/amule"
   - **sudo service amule-daemon start**
   - Crear contraseña mi_md5_pass: **echo -n <poner_aqui_contraseña> | md5sum** y copiarnos todo son el espacio ni guion final
-  - **sudo nano /home/amule/amule.conf**
+  - **sudo nano /home/amule/.aMule/amule.conf**
     - **AcceptExternalConnections=1**
     - **ECPassword=<mi_md5_pass>**
     - En [WebServer] poner **Enabled=1**
@@ -624,6 +626,9 @@
     - **Port=8090**
   - **sudo service amule-daemon restart**
   - GUI preferencias:
+    -	Max upload rate: 15
+    - TCP Port y UDP Port: lo que haya en el router
+    - **cd /usr/share/amule/webserver/default && sudo mv loginlogo.jpg loginlogo_SERGIO.jpg && sudo mv logo.png logo_SERGIO.png && sudo mv loginlogo.png loginlogo_SERGIO.png**
     - Files: **Preallocate disk space for new files** y **save 10 sources on rare files**
     - Servers: https://emuling.gitlab.io/server.met
     - Security: http://upd.emule-security.org/ipfilter.zip
