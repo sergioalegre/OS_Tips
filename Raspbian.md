@@ -670,6 +670,14 @@
 
   - Portainer: mostrar Dockers ocultos: Settings / Remove
   - paquetes últiles: **sudo apt-get install tmux renameutils** (el ultimo tiene **qmv** para renames masivos)
+  - arrancar tmux al inicio:
+    - **nano ~/.bash_profile**
+          ```
+          # inicia tmux
+          if [ -z "$TMUX" ]; then
+              tmux attach -t default || tmux new -s default
+          fi
+          ```          
   - cron job: **sudo chown -R pi /home/pi/Descargas**
   - alias .bashrc:
     - alias la='ls -al --color'
@@ -770,6 +778,7 @@
   - Tamaño carpetas (Series,Pelis) del disco externo: **du -h --max-depth=1 /media/DISCO_USB_EXT/**
 
   - resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.MDK**
+  - buscar videos que no sean  h264 ni h265: **./buscar_videos_trascodificar.sh <carpeta>**
 
   - montar PORTATIL: **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
 
