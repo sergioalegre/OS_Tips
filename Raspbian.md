@@ -133,42 +133,42 @@
 
 #### AUDIOBOOKSELF
 
-    ```
-    services:
-      audiobookshelf:
-        image: ghcr.io/advplyr/audiobookshelf:latest
-        container_name: audiobookshelf
-        security_opt:
-          - seccomp:unconfined    
-        ports:
-          - 8088:80
-        volumes:
-          - /home/pi/dockers/audiobookshelf/audiobooks:/audiobooks
-          - /home/pi/dockers/audiobookshelf/podcasts:/podcasts
-          - /home/pi/dockers/audiobookshelf/config:/config
-          - /home/pi/dockers/audiobookshelf/metadata:/metadata
-        restart: always                      
-    ```  
+  ```
+  services:
+    audiobookshelf:
+      image: ghcr.io/advplyr/audiobookshelf:latest
+      container_name: audiobookshelf
+      security_opt:
+        - seccomp:unconfined    
+      ports:
+        - 8088:80
+      volumes:
+        - /home/pi/dockers/audiobookshelf/audiobooks:/audiobooks
+        - /home/pi/dockers/audiobookshelf/podcasts:/podcasts
+        - /home/pi/dockers/audiobookshelf/config:/config
+        - /home/pi/dockers/audiobookshelf/metadata:/metadata
+      restart: always                      
+  ```  
 
 
 #### CALIBRE-WEB
 
-      ```
-      services:
-          calibre-web:
-              container_name: calibre-web
-              environment:
-                  - PUID=1000
-                  - PGID=1000
-                  - TZ=Europe/Madrid
-              ports:
-                  - '8083:8083'
-              volumes:
-                  - '/home/pi/dockers/Calibre/config:/config'
-                  - '/home/pi/dockers/Calibre/books:/books'
-              restart: always
-              image: 'lscr.io/linuxserver/calibre-web:latest'
-      ```
+  ```
+  services:
+      calibre-web:
+          container_name: calibre-web
+          environment:
+              - PUID=1000
+              - PGID=1000
+              - TZ=Europe/Madrid
+          ports:
+              - '8083:8083'
+          volumes:
+              - '/home/pi/dockers/Calibre/config:/config'
+              - '/home/pi/dockers/Calibre/books:/books'
+          restart: always
+          image: 'lscr.io/linuxserver/calibre-web:latest'
+  ```
   - Admin/Basic Configuration/Enable Uploads
   - Admin/admin:
     - Personalizar vistas
@@ -177,42 +177,42 @@
 
 #### HEIMDALL
 
-    ```
-    services:
-      heimdall:
-        image: lscr.io/linuxserver/heimdall:latest
-        container_name: heimdall
-        security_opt:
-          - seccomp:unconfined    
-        environment:
-          - PUID=1000
-          - PGID=1000
-          - TZ=Etc/UTC
-        volumes:
-          - /home/pi/dockers/heimdall:/config
-        ports:
-          - 8089:80
-          #- 443:443
-        restart: always
-    ```
+  ```
+  services:
+    heimdall:
+      image: lscr.io/linuxserver/heimdall:latest
+      container_name: heimdall
+      security_opt:
+        - seccomp:unconfined    
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Etc/UTC
+      volumes:
+        - /home/pi/dockers/heimdall:/config
+      ports:
+        - 8089:80
+        #- 443:443
+      restart: always
+  ```
 
 
 #### PHP
 
-    ```
-    services:
-      sergioalegre-php:
-        container_name: sergioalegre-php
-        #security_opt:
-        #  - seccomp:unconfined
-        image: treehouses/php-apache
-        ports:
-          - 8084:80
-        restart: always
-        dns: 8.8.8.8
-        volumes:
-          - /home/pi/dockers/sergioalegre.es/:/var/www/html
-    ```   
+  ```
+  services:
+    sergioalegre-php:
+      container_name: sergioalegre-php
+      #security_opt:
+      #  - seccomp:unconfined
+      image: treehouses/php-apache
+      ports:
+        - 8084:80
+      restart: always
+      dns: 8.8.8.8
+      volumes:
+        - /home/pi/dockers/sergioalegre.es/:/var/www/html
+  ```   
   - Conectar a la red de BBDD
   - comprobar version php **php -v**
   - **apt update && apt-get install -y php7.3-{mysql,sqlite3,mbstring,json,gd,bz2,bcmath,imagic}**
@@ -220,35 +220,35 @@
 
 #### PICOSHARE
 
-    ```
-    services:
-        picoshare:
-            environment:
-                - PORT=3001
-                - PS_SHARED_SECRET=<PONER_CONTRASEÑA_AQUI>
-            ports:
-                - '8092:3001/tcp'
-            volumes:
-                - '/home/pi/dockers/picoshare/:/data'
-            container_name: picoshare
-            image: mtlynch/picoshare
-            restart: always            
-    ```  
+  ```
+  services:
+      picoshare:
+          environment:
+              - PORT=3001
+              - PS_SHARED_SECRET=<PONER_CONTRASEÑA_AQUI>
+          ports:
+              - '8092:3001/tcp'
+          volumes:
+              - '/home/pi/dockers/picoshare/:/data'
+          container_name: picoshare
+          image: mtlynch/picoshare
+          restart: always            
+  ```  
 
 
 #### FIREFOX
 
-    ```
-    services:
-      firefox:
-        image: jlesage/firefox
-        container_name: firefox
-        security_opt:
-          - seccomp:unconfined    
-        ports:
-          #- 5900:5900 #VNC
-          - 8091:5800 #HTTP
-    ```  
+  ```
+  services:
+    firefox:
+      image: jlesage/firefox
+      container_name: firefox
+      security_opt:
+        - seccomp:unconfined    
+      ports:
+        #- 5900:5900 #VNC
+        - 8091:5800 #HTTP
+  ```  
 
 
 #### PLEX
@@ -278,34 +278,34 @@
 
 #### NGINX-PROXY-MANAGER
 
-    ```
-    docker run -d \
-    --name=nginx-proxy-manager \
-    -p 80:80  \
-    -p 81:81  \
-    -p 443:443
-    -v /home/pi/npm/data:/data  \
-    -v /home/pi/npm/letsencrypt:/etc/letsencrypt  \
-    --restart unless-stopped \
-    jc21/nginx-proxy-manager
-    ```
+  ```
+  docker run -d \
+  --name=nginx-proxy-manager \
+  -p 80:80  \
+  -p 81:81  \
+  -p 443:443
+  -v /home/pi/npm/data:/data  \
+  -v /home/pi/npm/letsencrypt:/etc/letsencrypt  \
+  --restart unless-stopped \
+  jc21/nginx-proxy-manager
+  ```
 
 
 #### FAIL2BAN
 
-    ```
-    services:
-        fail2ban:
-            container_name: fail2ban
-            restart: always
-            security_opt:
-            - seccomp:unconfined        
-            network_mode: host
-            volumes:
-                - '/home/pi/dockers/fail2ban:/data'
-                - '/var/log:/var/log:ro'
-            image: 'crazymax/fail2ban:latest'   
-    ```           
+  ```
+  services:
+      fail2ban:
+          container_name: fail2ban
+          restart: always
+          security_opt:
+          - seccomp:unconfined        
+          network_mode: host
+          volumes:
+              - '/home/pi/dockers/fail2ban:/data'
+              - '/var/log:/var/log:ro'
+          image: 'crazymax/fail2ban:latest'   
+  ```           
   - **sudo nano /home/pi/dockers/fail2ban/jail.d/sshd.conf**
 
     ```
@@ -401,42 +401,42 @@
 
 #### CLOUDFLARE_DDNS
 
-    ```
-    version: "3.7"
-    services:
-      cloudflare-ddns:
-        image: timothyjmiller/cloudflare-ddns:latest
-        container_name: cloudflare-ddns-sergioalegre
-        security_opt:
-          - seccomp:unconfined    
-        #security_opt:
-          - no-new-privileges:true
-        network_mode: "host"
-        environment:
-          - PUID=1000
-          - PGID=1000
-        volumes:
-          - /home/pi/dockers/cloudflare-ddns-sergioalegre/config.json:/config.json
-        restart: unless-stopped
-    ```
+  ```
+  version: "3.7"
+  services:
+    cloudflare-ddns:
+      image: timothyjmiller/cloudflare-ddns:latest
+      container_name: cloudflare-ddns-sergioalegre
+      security_opt:
+        - seccomp:unconfined    
+      #security_opt:
+        - no-new-privileges:true
+      network_mode: "host"
+      environment:
+        - PUID=1000
+        - PGID=1000
+      volumes:
+        - /home/pi/dockers/cloudflare-ddns-sergioalegre/config.json:/config.json
+      restart: unless-stopped
+  ```
 
 
 #### DUPLICATI
 
-    ```
-    version: '3.3'
-    services:
-        duplicati:
-            container_name: duplicati
-            volumes:
-                - '/home/pi/dockers/duplicati/:/data'
-                - '/home/pi/dockers_backup/:/DOCKERS_BACKUP'
-                - '/media/DISCO_USB_EXT/:/DISCO_USB_EXT'
-                - '/:/RAIZ_RPI'
-            ports:
-                - '8087:8200'
-            image: duplicati/duplicati
-    ```
+  ```
+  version: '3.3'
+  services:
+      duplicati:
+          container_name: duplicati
+          volumes:
+              - '/home/pi/dockers/duplicati/:/data'
+              - '/home/pi/dockers_backup/:/DOCKERS_BACKUP'
+              - '/media/DISCO_USB_EXT/:/DISCO_USB_EXT'
+              - '/:/RAIZ_RPI'
+          ports:
+              - '8087:8200'
+          image: duplicati/duplicati
+  ```
   - Configuración email (requiere contraseña generada en Mi Cuenta/Seguridad/Contraseñas de aplicaciones):
     ```  
     --send-mail-url=smtp://smtp.gmail.com:587/?starttls=when-available
@@ -600,15 +600,24 @@
 
 #### INVENTARIO: generar y copiar los domingos a las 2am cuando enciendo el Disco USB
 
-      ```
-      cmdPeliculas="cd /media/DISCO_USB_EXT/Peliculas && lm -R -l > Inventario_Peliculas.txt"
-      cmdSeries="cd /media/DISCO_USB_EXT/Series && lm -R -l > Inventario_Series.txt"
-      #Todos los días a las 21h
-      schedPelis="0 2 2 ? * SUN * $cmdPeliculas"
-      schedSeries="0 2 2 ? * SUN * $cmdSeries"
-      ( crontab -l | grep -v -F "$cmdPeliculas" ; echo "$schedPelis" ) | crontab -
-      ( crontab -l | grep -v -F "$cmdSeries" ; echo "$schedSeries" ) | crontab -
-      ```      
+    ```
+    cmdPeliculas="cd /media/DISCO_USB_EXT/Peliculas && lm -R -l > Inventario_Peliculas.txt"
+    cmdSeries="cd /media/DISCO_USB_EXT/Series && lm -R -l > Inventario_Series.txt"
+    #Domingos a las 2:05am
+    schedPelis="0 5 2 ? * SUN * $cmdPeliculas"
+    schedSeries="0 5 2 ? * SUN * $cmdSeries"
+    ( crontab -l | grep -v -F "$cmdPeliculas" ; echo "$schedPelis" ) | crontab -
+    ( crontab -l | grep -v -F "$cmdSeries" ; echo "$schedSeries" ) | crontab -
+    ```      
+#### BACKUP Dockers: each Wednesday 04am
+    ```
+    0 4 * * 3 cd /home/pi/dockers_backup/ && sudo tar -zcvpf "$(date '+\%Y-\%m-\%d')_dockers_backup.tgz" /home/pi/dockers --exclude=webtop
+    ```
+
+#### BACKUP Cron: Domingos a las 2:10am   
+    ```
+    10 2 * * 0 crontab -l > /media/DISCO_USB_EXT/_"$(date '+\%Y-\%m-\%d')_Backup_crontab.txt"
+    ```
 
 
 ### AMULE
@@ -777,8 +786,9 @@
   - Inventario: **lm -R -l > 211230_inventario.txt**
   - Tamaño carpetas (Series,Pelis) del disco externo: **du -h --max-depth=1 /media/DISCO_USB_EXT/**
 
-  - resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.MDK**
-  - buscar videos que no sean  h264 ni h265: **./buscar_videos_trascodificar.sh <carpeta>**
+  - video: resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.MDK**
+  - video: solo el codec: **ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 VIDEO.AVI**
+  - video: buscar videos que no sean h264 ni h265: **./buscar_videos_trascodificar.sh <carpeta>**
 
   - montar PORTATIL: **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
 
