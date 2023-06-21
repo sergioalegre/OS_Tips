@@ -146,8 +146,7 @@
         - /home/pi/dockers/audiobookshelf/audiobooks:/audiobooks
         - /home/pi/dockers/audiobookshelf/podcasts:/podcasts
         - /home/pi/dockers/audiobookshelf/config:/config
-        - /home/pi/dockers/audiobookshelf/metadata:/metadata
-      restart: always                      
+        - /home/pi/dockers/audiobookshelf/metadata:/metadata                   
   ```  
 
 
@@ -768,6 +767,8 @@
 
 
 ### COMANDOS_UTILES
+  - actualizar: **sudo apt update && sudo apt dist-upgrade** to upgrade the OS, followed by **sudo rpi-update** to update firmware
+
   - CPU velocidad: **cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq**
   - CPU temperatura: **vcgencmd measure_tempnano**
 
