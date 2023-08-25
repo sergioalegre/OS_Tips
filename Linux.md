@@ -196,7 +196,8 @@
   - **htop**
   - **free** RAM: cuanta esta libre
   - **iostat 2 -m** disco: en un sistema OK el %iowait cerca de 0% y %idle cerca del 100%. Requiere **sudo apt-get install sysstat -y**
-  - **atop** disco: dentro de atop pulsar **d** para ver que aplicaciones usan mas disco
+  - **atop 2** disco: dentro de atop pulsar **d** para ver que aplicaciones usan mas disco. El 2 es opcional, asi refresca cada 2 segundos en lugar de 10 por defecto.
+  - **iotop** disco: procesos que mas cargan el disco. OJO consume mucha CPU.
 
 
 ### VARIOS

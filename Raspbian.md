@@ -64,6 +64,7 @@
 
 ### CONFIG-TXT  
 
+  - Importante que estas sean las últimas líneas del fichero
   - **sudo cp /boot/config.txt /boot/config_ORIGINAL.txt && sudo nano /boot/config.txt**
       ```
       hdmi_edid_file=1
@@ -103,9 +104,7 @@
 
 ### MY_DOCKERS
 
-#### TRANSMISSION-DOCKER
-
-  - nota: hubo que usar seccomp:unconfined porque sino el docker no arrancaba
+#### TRANSMISSION
 
     ```
     services:
@@ -130,6 +129,31 @@
         restart: always      
     ```  
 
+#### TRANSMISSION-BIG
+
+    ```
+    version: "2.1"
+    services:
+      transmission:
+        image: lscr.io/linuxserver/transmission
+        container_name: transmission-big
+        security_opt:
+          - seccomp:unconfined
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=America/Argentina/Buenos_Aires
+          - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+        volumes:
+          - /home/pi/dockers/transmission-big/config:/config
+          - /media/DISCO_USB_EXT/Downloads-big:/downloads
+          - /home/pi/dockers/transmission/watch:/watch
+        ports:
+          - 9092:9091
+          - 51414:51414
+          - 51414:51414/udp
+        restart: always
+    ```
 
 #### AUDIOBOOKSELF
 
@@ -288,34 +312,6 @@
   --restart unless-stopped \
   jc21/nginx-proxy-manager
   ```
-
-
-#### FAIL2BAN
-
-  ```
-  services:
-      fail2ban:
-          container_name: fail2ban
-          restart: always
-          security_opt:
-          - seccomp:unconfined        
-          network_mode: host
-          volumes:
-              - '/home/pi/dockers/fail2ban:/data'
-              - '/var/log:/var/log:ro'
-          image: 'crazymax/fail2ban:latest'   
-  ```           
-  - **sudo nano /home/pi/dockers/fail2ban/jail.d/sshd.conf**
-
-    ```
-    [sshd]
-    enabled = true
-    chain = INPUT
-    port = ssh
-    filter = sshd[mode=aggressive]
-    logpath = /var/log/auth.log
-    maxretry = 3
-    ```
 
 
 #### PORTAINER
@@ -608,6 +604,7 @@
     ( crontab -l | grep -v -F "$cmdPeliculas" ; echo "$schedPelis" ) | crontab -
     ( crontab -l | grep -v -F "$cmdSeries" ; echo "$schedSeries" ) | crontab -
     ```      
+
 #### BACKUP Dockers: each Wednesday 04am
     ```
     0 4 * * 3 cd /home/pi/dockers_backup/ && sudo tar -zcvpf "$(date '+\%Y-\%m-\%d')_dockers_backup.tgz" /home/pi/dockers --exclude=webtop
@@ -676,21 +673,35 @@
 
 ### VARIOS
 
+  - Fail2Ban https://elblogdelazaro.org/posts/2017-10-05-fail2ban-raspberry/
+    - Poner **enabled = true** en webmin-auth y nginx-http-auth
+    - comprobar con **sudo fail2ban-client status**
+
+  - Bloquear acceso desde TRASTERO:
+    - ver el estado actual con **sudo iptables -L**
+    - **sudo apt-get install iptables-persistent**
+    - **sudo iptables -A INPUT -s 192.168.0.204 -j DROP**
+    - **sudo netfilter-persistent save**
+    - para quitarlo: **sudo iptables -D INPUT -s 192.168.0.204 -j DROP**
+
   - Portainer: mostrar Dockers ocultos: Settings / Remove
+
   - paquetes últiles: **sudo apt-get install tmux renameutils** (el ultimo tiene **qmv** para renames masivos)
+
   - arrancar tmux al inicio:
     - **nano ~/.bash_profile**
           ```
-          # inicia tmux
-          if [ -z "$TMUX" ]; then
-              tmux attach -t default || tmux new -s default
-          fi
+            # inicia tmux
+            if [ -z "$TMUX" ]; then
+                tmux attach -t default || tmux new -s default
+            fi
           ```          
-  - cron job: **sudo chown -R pi /home/pi/Descargas**
+
   - alias .bashrc:
     - alias la='ls -al --color'
     - alias lm='ls -al --block-size=MB'
     - alias incoming='cd /home/amule/.aMule/Incoming/ && ls'
+
   - PiKISS: https://github.com/jmcerrejon/PiKISS
 
   - MOTD:
@@ -781,7 +792,7 @@
   - cambiar prompt y colores: **PS1='\e[33;1m\u@\h: ' && LS_COLORS="di=1;35:ex=4;31:*.mp3=1;32;41"**
 
   - Home assistant:
-    - **systemctl stop hassio-supervisor && docker ps -a -q | xargs docker stop**
+    - **systemctl stop hassio-supervisor**
     - **systemctl status hassio-supervisor**
 
   - Inventario: **lm -R -l > 211230_inventario.txt**
@@ -798,6 +809,11 @@
   - RClone, conexion multicloud: https://ostechnix.com/how-to-mount-google-drive-locally-as-virtual-file-system-in-linux/
     - **rclone config**
     - IMPORTANTE: cuando estemos en Remote config /Use auto config? decir **N**
+  
+  - Fail2Ban:
+    - **sudo fail2ban-client status** listar los servicios auditados
+    - **sudo fail2ban-client status nginx-http-auth** ver las estadisticas de un servicio concreto
+
 
 
 
@@ -819,7 +835,7 @@
   - Cambiar el ratio de compartición al mínimo
 
 #### FILEBROWSER
-  - NOTA: deprecado en favor de docker
+  - NOTA: deprecado ahora es un docker
   - en docker **/srv** ha de apuntar a **/** en el host
   - legacy:
     - https://filebrowser.org/installation
