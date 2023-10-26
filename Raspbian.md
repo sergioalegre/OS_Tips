@@ -152,7 +152,6 @@
           - 9092:9091
           - 51414:51414
           - 51414:51414/udp
-        restart: always
     ```
 
 #### AUDIOBOOKSELF
@@ -798,9 +797,9 @@
   - Inventario: **lm -R -l > 211230_inventario.txt**
   - Tamaño carpetas (Series,Pelis) del disco externo: **du -h --max-depth=1 /media/DISCO_USB_EXT/**
 
-  - video: resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.MDK**
-  - video: solo el codec: **ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 VIDEO.AVI**
-  - video: buscar videos que no sean h264 ni h265: **./buscar_videos_trascodificar.sh <carpeta>**
+  - video: resolucion video, codec, idiomas, subtitulos: **ffmpeg -i VIDEO.mp4**
+  - video: solo el codec: **ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 VIDEO.mp4**
+  - video: solo el bitrate: **ffmpeg -i VIDEO.mp4 2>&1 | grep "bitrate"**
 
   - montar PORTATIL: **sudo mount -t cifs //192.168.0.112/c /mnt/PORTATIL/ -o username="sergio"**
 
